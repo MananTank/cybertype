@@ -1,26 +1,69 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+/* latin */
+@font-face {
+	font-family: 'Orbitron';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url(/orbitron.woff2) format('woff2');
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+	font-family: 'Orbitron', sans-serif;
+	background-color: var(--bodybg);
+
+	color: var(--fontcolor);
+	user-select: none;
+	transition: background 100ms ease;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	/* outline: 1px solid red; */
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+[data-theme='green'] {
+	--bodybg: #07110a;
+	--activeword: #1e3b28;
+	--activechar: #a0ff2b;
+	--typedword: #2c4d39;
+	--fontcolor: #27ff27;
+	--error: #e6f8fc;
+	--bg: 110deg;
+	--fastest: #27ff27;
+	--fast: #acce3d;
+	--normal: #fff216;
+	--slow: #fb885c;
+	--slowest: #da274b;
+}
+
+[data-theme='red'] {
+	--bodybg: #200401;
+	--activeword: #410802;
+	--typedword: #ffaaaa45;
+	--activechar: #fa7769;
+	--fontcolor: #faa;
+	--error: #f1f1f1;
+	--bg: 0deg;
+	--fastest: white;
+	--fast: #fff216;
+	--normal: #f77;
+	--slow: #f44;
+	--slowest: #f00;
+}
+
+[data-theme='purple'] {
+	--bodybg: #100019;
+	--activeword: #360850;
+	--typedword: #581b7b;
+	--activechar: #fbfbfa;
+	--fontcolor: #e2acff;
+	--error: #ff329b;
+	--bg: 280deg;
+	--fastest: #27ff27;
+	--fast: #fff216;
+	--normal: #e2acff;
+	--slow: #d62d7e;
+	--slowest: #f44;
 }
