@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preexport": "npm run build",
+    "export": "next export",
+    "prestart": "npm run export"
   },
   "dependencies": {
     "classnames": "^2.3.2",
