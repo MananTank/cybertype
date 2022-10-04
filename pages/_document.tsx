@@ -28,7 +28,7 @@ export default function Document() {
 						}
 
 						body {
-							font-family: 'InputMono', serif;
+							font-family: 'InputMono', monospace;
 						}
 					`,
 					}}
