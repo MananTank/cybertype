@@ -27,7 +27,12 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
 			className={styles.wordsWrapper}
 			style={{ '--font-size-multiplier': fontSizeMultiplier } as CSSProperties}
 		>
-			<input type='text' className={styles.hiddenInput} ref={hiddenInputRef} aria-hidden='true' />
+			<input
+				type='text'
+				className={styles.hiddenInput}
+				ref={hiddenInputRef}
+				aria-label='type here'
+			/>
 
 			<div
 				className={styles.words}
