@@ -1,12 +1,24 @@
-import { State, Action, KeyStatRecord } from './types';
-import { english1k } from './wordsData';
+import { State, Action, KeyStatRecord, QuoteData } from './types';
+import { getRandomWords, createEmptyKeyStatRecord } from './utils';
 
-/** safe to mutate state because this is a reducer is used by use-immer */
+type LoadedData = Record<State['dataName'], State['data'] | undefined>;
+
+// key-value store of all the data loaded from network
+export const loadedData = {} as LoadedData;
 
 export function stateReducer(state: State, action: Action): void {
 	switch (action.type) {
-		case 'setTargetSpeed': {
-			state.targetSpeed = action.speed;
+		case 'setData': {
+			loadedData[state.dataName] = action.data;
+			state.data = action.data;
+			updateWords(state);
+			resetProgress(state);
+			return;
+		}
+
+		case 'setDataName': {
+			state.dataName = action.data;
+			resetProgress(state);
 			return;
 		}
 
@@ -84,9 +96,14 @@ function handleKeyDown(state: State, key: string, keyDownTime: number, isCorrect
 	// update the stats for the key
 
 	if (isCorrect) {
-		const keyStats = state.keyStats[key];
-		keyStats.count = keyStats.count + 1;
-		keyStats.totalTime = keyStats.totalTime + (keyDownTime - state.lastCharTypedTime);
+		const stats = state.keyStats[key.toLowerCase()];
+
+		// if we are tracking the stat for this key
+		if (stats) {
+			const keyStats = stats;
+			keyStats.count = keyStats.count + 1;
+			keyStats.totalTime = keyStats.totalTime + (keyDownTime - state.lastCharTypedTime);
+		}
 
 		state.totalCharsTyped++;
 	}
@@ -117,7 +134,7 @@ function handleKeyDown(state: State, key: string, keyDownTime: number, isCorrect
 		state.progress.wordIndex = 0;
 		state.progress.charIndex = 0;
 		// change words
-		state.words = getRandomWords();
+		updateWords(state);
 		// clear errorLocations
 		state.errorLocations = {};
 	}
@@ -154,17 +171,28 @@ function resetProgress(state: State) {
 	};
 }
 
+function updateWords(state: State) {
+	if (state.dataName === 'quotes') {
+		const i = Math.round(Math.random() * state.data.length);
+		const data = state.data as unknown as QuoteData[];
+		state.words = data[i].text.split(' ').map(w => w + ' ');
+	} else {
+		state.words = getRandomWords(state.data);
+	}
+}
+
 function reset(state: State) {
 	resetProgress(state);
-	state.words = getRandomWords();
+	updateWords(state);
 }
 
 export function getInitialState(): State {
 	return {
+		data: [],
+		dataName: 'english-200',
 		totalErrors: 0,
 		typingStarted: false,
-		targetSpeed: 100,
-		words: getRandomWords(),
+		words: [],
 		lastWordTypedTime: 0,
 		lastCharTypedTime: 0,
 		totalTimeTaken: 0,
@@ -206,32 +234,12 @@ export const keys = [
 	'x',
 	'y',
 	'z',
+	' ',
+	'[',
+	']',
+	';',
+	`'`,
+	',',
+	'.',
+	'/',
 ];
-
-function createEmptyKeyStatRecord() {
-	const value: KeyStatRecord = {};
-	keys.forEach(key => {
-		value[key] = {
-			count: 0,
-			totalTime: 0,
-		};
-	});
-
-	value[' '] = {
-		count: 0,
-		totalTime: 0,
-	};
-
-	return value;
-}
-
-function getRandomWords() {
-	let words = [];
-	for (let i = 0; i < 12; i++) {
-		const randomIndex = Math.floor(Math.random() * english1k.length);
-		words.push(english1k[randomIndex] + ' ');
-	}
-	return words;
-}
-
-export const validKeyRegex = /^([a-zA-Z]|\s)$/;

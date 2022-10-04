@@ -1,7 +1,8 @@
-import { memo } from 'react';
+import { CSSProperties, memo, useEffect, useMemo, useRef } from 'react';
 import styles from '../styles/Words.module.scss';
 import classnames from 'classnames';
-import { ErrorLocations, Progress } from '../types';
+import { ErrorLocations, Progress } from '../lib/types';
+import { SpaceIcon } from './icons';
 
 type WordsProps = {
 	words: string[];
@@ -10,17 +11,30 @@ type WordsProps = {
 };
 
 export function Words({ words, progress, errorLocations }: WordsProps) {
+	const fontSizeMultiplier = useMemo(() => {
+		const chars = words.reduce((acc, w) => acc + w.length, 0);
+		if (chars < 150) return 1;
+		if (chars < 200) return 0.8;
+		if (chars < 250) return 0.7;
+		return 0.6;
+	}, [words]);
+
 	return (
-		<div className={styles.words}>
-			{words.map((word, wordIndex) => (
-				<Word
-					key={wordIndex}
-					word={word}
-					isTyped={progress.wordIndex > wordIndex}
-					activeCharIndex={progress.wordIndex !== wordIndex ? -1 : progress.charIndex}
-					errorsInWord={errorLocations[wordIndex]}
-				/>
-			))}
+		<div
+			className={styles.wordsWrapper}
+			style={{ '--font-size-multiplier': fontSizeMultiplier } as CSSProperties}
+		>
+			<div className={styles.words}>
+				{words.map((word, wordIndex) => (
+					<Word
+						key={wordIndex}
+						word={word}
+						isTyped={progress.wordIndex > wordIndex}
+						activeCharIndex={progress.wordIndex !== wordIndex ? -1 : progress.charIndex}
+						errorsInWord={errorLocations[wordIndex]}
+					/>
+				))}
+			</div>
 		</div>
 	);
 }
@@ -45,13 +59,14 @@ const Word = memo(function Word({ word, errorsInWord, activeCharIndex, isTyped }
 				<span
 					key={characterIndex}
 					className={classnames({
+						[styles.typed]: characterIndex < activeCharIndex,
 						[styles.character]: true,
 						[styles.current]: activeCharIndex === characterIndex,
 						[styles.isSpace]: character === ' ',
 						[styles.error]: errorsInWord && errorsInWord[characterIndex] === true,
 					})}
 				>
-					{character === ' ' ? '_' : character}
+					{character === ' ' ? SpaceIcon : character}
 				</span>
 			))}
 		</div>

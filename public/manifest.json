@@ -1,8 +1,8 @@
 {
   "name": "CyberType",
   "short_name": "CyberType",
-  "theme_color": "#200401",
-  "background_color": "#200401",
+  "theme_color": "#171717",
+  "background_color": "#171717",
   "display": "fullscreen",
   "orientation": "portrait",
   "scope": "/",

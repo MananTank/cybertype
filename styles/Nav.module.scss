@@ -1,0 +1,40 @@
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid var(--typed-char);
+
+	.appName {
+		font-size: 20px;
+		letter-spacing: 0.5em;
+		text-transform: uppercase;
+		color: var(--secondary);
+
+		@media (max-width: 600px) {
+			font-size: 16px;
+		}
+	}
+
+	&Right {
+		display: flex;
+		gap: 20px;
+	}
+
+	svg {
+		--icon: var(--secondary);
+		&:hover {
+			--icon: var(--primary);
+			transition: transform 100ms ease;
+			transform: scale(1.2);
+		}
+	}
+
+	@media (max-width: 600px) {
+		svg {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}

@@ -13,8 +13,27 @@ export type KeyStatRecord = Record<string, KeyStat>;
 export type ErrorLocations = Record<number, Record<number, boolean>>; // { 0: { 1: true, 3: true  }}
 
 export type State = {
+	data: string[];
+	dataName:
+		| 'english-200'
+		| 'english-1k'
+		| 'english-10k'
+		| 'javascript'
+		| 'misspelling'
+		| 'contractions'
+		| 'rust'
+		| 'html'
+		| 'css'
+		| 'c++'
+		| 'sql'
+		| 'git'
+		| 'english-5k'
+		| 'bash'
+		| 'python'
+		| 'wordle'
+		| 'quotes';
+
 	typingStarted: boolean;
-	targetSpeed: number;
 	totalTimeTaken: number;
 	totalWordsTyped: number;
 	totalCharsTyped: number;
@@ -29,10 +48,6 @@ export type State = {
 
 export type Action =
 	| {
-			type: 'setTargetSpeed';
-			speed: number;
-	  }
-	| {
 			type: 'resetProgress';
 	  }
 	| {
@@ -45,4 +60,18 @@ export type Action =
 	| {
 			type: 'back';
 			alt: boolean;
+	  }
+	| {
+			type: 'setData';
+			dataName: State['dataName'];
+			data: State['data'];
+	  }
+	| {
+			type: 'setDataName';
+			data: State['dataName'];
 	  };
+
+export type QuoteData = {
+	text: string;
+	source: string;
+};

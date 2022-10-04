@@ -1,0 +1,75 @@
+.settings {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+
+	@media (max-width: 600px) {
+		flex-direction: column;
+		align-items: flex-end;
+	}
+
+	button {
+		background: none;
+		outline: none;
+		border: none;
+	}
+}
+
+.icons {
+	--icon: var(--secondary);
+	display: flex;
+	align-items: center;
+	gap: 20px;
+
+	& > * {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+
+		&:hover {
+			transform: scale(1.2);
+			--icon: var(--primary);
+			transition: transform 100ms ease, color 100ms ease;
+		}
+	}
+}
+
+.dataSelector {
+	position: relative;
+	padding-right: 24px;
+
+	svg {
+		--icon: var(--secondary);
+		position: absolute;
+		right: 0px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	select {
+		font-size: 14px;
+		letter-spacing: 0.1em;
+		text-align: right;
+		appearance: none;
+		text-transform: uppercase;
+		background: none;
+		color: var(--secondary);
+		border: none;
+		outline: none;
+		cursor: pointer;
+		font-family: inherit;
+
+		&:hover {
+			color: var(--primary);
+		}
+
+		option {
+			font-family: inherit;
+			text-transform: uppercase;
+		}
+
+		&:focus {
+			border-color: var(--primary);
+		}
+	}
+}

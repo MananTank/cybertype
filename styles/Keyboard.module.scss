@@ -1,0 +1,164 @@
+.key {
+	position: relative;
+
+	// when pressing the key
+	&[data-pressed] .keyLabel {
+		border: 1px solid var(--color);
+		transform: scale(1.1);
+	}
+
+	// when hovering a typed key
+	&:not(.notTyped):hover {
+		.keyLabel {
+			border: 1px solid var(--color);
+			transform: scale(1.1);
+		}
+
+		.keyStat {
+			transform: translate(-50%, -150%);
+			opacity: 1;
+			visibility: visible;
+			transition: transform 100ms ease-out, opacity 100ms ease-out;
+		}
+	}
+}
+
+.keyLabel {
+	font-size: 24px;
+	width: 40px;
+	height: 40px;
+
+	color: var(--color, var(--typed-char));
+
+	// text-transform: uppercase;
+	border-radius: 4px;
+
+	position: relative;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	cursor: pointer;
+	transition: transform 200ms ease, color 200ms ease;
+
+	@media (max-width: 600px) {
+		font-size: 16px;
+		width: 22px;
+		height: 22px;
+		border: none;
+	}
+
+	@media (max-width: 400px) {
+		font-size: 12px;
+		width: 18px;
+		height: 18px;
+		border: none;
+	}
+
+	&::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background: var(--color);
+		left: 50%;
+		top: 50%;
+		border-radius: 50%;
+		filter: blur(16px);
+		z-index: -1;
+		animation: glow var(--anim-duration) ease infinite alternate;
+	}
+}
+
+.keyStat {
+	position: absolute;
+	color: var(--color);
+	backdrop-filter: blur(20px);
+	background: rgba(255, 255, 255, 0.05);
+	border-bottom: 4px solid var(--color);
+	z-index: 2;
+	padding: 10px 30px;
+	transform: translate(-50%, -50%) scale(0.7);
+	pointer-events: none;
+	gap: 10px;
+	visibility: hidden;
+	opacity: 0;
+	top: 0;
+	left: 50%;
+
+	@media (max-width: 600px) {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.speed {
+		font-size: 50px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.unit {
+		font-size: 20px;
+	}
+}
+
+.fastest {
+	--color: var(--fastest);
+	--anim-duration: 1.5s;
+}
+
+.fast {
+	--color: var(--fast);
+	--anim-duration: 2s;
+}
+
+.normal {
+	--color: var(--normal);
+	--anim-duration: 2.5s;
+}
+
+.slow {
+	--color: var(--slow);
+	--anim-duration: 3s;
+}
+
+.slowest {
+	--color: var(--slowest);
+	--anim-duration: 3.5s;
+}
+
+@keyframes glow {
+	from {
+		opacity: 0.2;
+		transform: translate(-50%, -50%) scale(0.7);
+	}
+	to {
+		opacity: 0.5;
+		transform: translate(-50%, -50%) scale(1.2);
+	}
+}
+
+.keyboard {
+	margin-top: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+
+.row {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	margin-bottom: 8px;
+
+	@media (max-width: 600px) {
+		margin-bottom: 14px;
+		gap: 8px;
+	}
+}

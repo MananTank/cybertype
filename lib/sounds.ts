@@ -3,8 +3,6 @@ import { Howl } from 'howler';
 export type Sounds = {
 	randomClick: () => void;
 	error: Howl;
-	back: Howl;
-	thump: Howl;
 };
 
 export function getSounds(): Sounds {
@@ -23,7 +21,5 @@ export function getSounds(): Sounds {
 			clicks[i].play();
 		},
 		error: new Howl({ src: '/sounds/miss-click.aac', volume: 0.2 }),
-		back: new Howl({ src: '/sounds/back-click.aac', volume: 0.3 }),
-		thump: new Howl({ src: '/sounds/blip.aac', volume: 0.2 }),
 	};
 }

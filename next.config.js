@@ -1,15 +1,21 @@
 const runtimeCaching = require('next-pwa/cache');
 
-const withPWA = require('next-pwa')({
-	dest: 'public',
-	runtimeCaching,
-});
-
 /** @type {import('next').NextConfig} */
-module.exports = withPWA({
+const nextConfig = {
 	reactStrictMode: false,
 	swcMinify: true,
 	experimental: {
 		optimizeCss: true,
 	},
-});
+};
+
+if (process.env.NODE_ENV !== 'production') {
+	module.exports = nextConfig;
+} else {
+	const withPWA = require('next-pwa')({
+		dest: 'public',
+		runtimeCaching,
+	});
+
+	module.exports = withPWA(nextConfig);
+}

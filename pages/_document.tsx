@@ -5,19 +5,36 @@ export default function Document() {
 		<Html lang='en'>
 			<Head>
 				<meta charSet='utf-8' />
-				<link rel='preload' href='/blur.webp' as='image' />
-				<link rel='preload' href='/orbitron.woff2' as='font' type='font/woff2' crossOrigin='true' />
 
+				{/* pwa manifest */}
 				<link rel='manifest' href='/manifest.json' />
-				<link rel='apple-touch-icon' href='/icon.png'></link>
-				<meta name='theme-color' content='#317EFB' />
-				<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-				<link rel='icon' type='image/svg+xml' href='/icon.svg'></link>
-				<link href='/icons/favicon-16x16.png' rel='icon' type='image/png' sizes='16x16' />
+				{/* favicons */}
+				<link rel='icon' type='image/svg+xml' href='/icons/icon.svg'></link>
+				<link rel='apple-touch-icon' href='/icons/favicon-32x32.png'></link>
 				<link href='/icons/favicon-32x32.png' rel='icon' type='image/png' sizes='32x32' />
+
+				{/* Critical Font CSS  */}
+				<style
+					data-id='critical'
+					dangerouslySetInnerHTML={{
+						__html: `
+						@font-face {
+							font-family: 'InputMono';
+							font-style: normal;
+							font-weight: 400;
+							font-display: swap;
+							src: url(/InputMono-Light.woff2) format('woff2');
+						}
+
+						body {
+							font-family: 'InputMono', serif;
+						}
+					`,
+					}}
+				></style>
 			</Head>
-			<body data-theme='red'>
+			<body data-theme='theme-1'>
 				<Main />
 			</body>
 			<NextScript />

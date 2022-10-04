@@ -1,0 +1,85 @@
+.tips {
+	background: var(--bg);
+
+	box-shadow: 6.7px 2.3px 5.3px rgba(0, 0, 0, 0.028), 22.3px 7.8px 17.9px rgba(0, 0, 0, 0.042),
+		100px 35px 80px rgba(0, 0, 0, 0.07);
+
+	border: 2px solid var(--primary);
+	border-radius: 4px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 40px 30px;
+	width: calc(100% - 40px);
+	max-width: 600px;
+	color: var(--primary);
+	z-index: 200;
+	font-size: 16px;
+
+	opacity: 0;
+	animation: popup 300ms ease forwards;
+
+	p {
+		margin-bottom: 20px;
+		line-height: 2;
+	}
+
+	--icon: var(--secondary);
+
+	h2 {
+		margin-bottom: 30px;
+
+		svg {
+			--icon: var(--secondary);
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	svg {
+		width: 20px;
+		vertical-align: middle;
+	}
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--bg);
+	z-index: 100;
+	opacity: 0;
+	animation: modalFadeIn 200ms ease forwards;
+}
+
+.tips kbd {
+	font-family: monospace;
+	padding: 0.4em 1.1em;
+	font-size: 14px;
+	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.05);
+	white-space: nowrap;
+}
+
+@keyframes popup {
+	from {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0.7);
+	}
+	to {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
+	}
+}
+
+@keyframes modalFadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 0.7;
+	}
+}

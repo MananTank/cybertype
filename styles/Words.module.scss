@@ -1,61 +1,42 @@
-.words {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 30px;
-	max-width: 1000px;
-	margin: 0 auto;
-	flex-wrap: wrap;
-	margin-top: 20px;
+.wordsWrapper {
+	outline: none;
+	padding-bottom: 50px;
+	padding-top: 50px;
+}
 
-	@media (max-width: 600px) {
-		padding: 20px;
-		margin-top: 50px;
-	}
+.words {
+	text-align: center;
 }
 
 .word {
 	margin-bottom: 10px;
-	display: flex;
+	display: inline-flex;
 	transition: all 50ms ease;
-	border: 2px solid transparent;
-
-	@media (max-width: 600px) {
-		margin-bottom: 10px;
-	}
-
-	&.current {
-		background: rgba(0, 0, 0, 0.4);
-		// border: 2px solid rgba(255, 255, 255, 0.1);
-	}
-
-	&.typed .character {
-		color: var(--typedword);
-		// text-shadow: 0 0 1em var(--typedword);
-	}
+	border-bottom: 2px solid transparent;
 }
 
 .character {
-	font-size: 30px;
-	padding: 0.15em;
+	font-size: calc(55px * var(--font-size-multiplier, 1));
+	padding: 0.03em;
 	display: inline-block;
-	border-bottom: 1px solid transparent;
+	color: var(--secondary);
+	--icon: var(--typed-char);
+	transition: color 100ms ease;
 
 	@media (max-width: 600px) {
-		font-size: 18px;
+		font-size: calc(26px * var(--font-size-multiplier, 1));
 	}
 
-	&.isSpace {
-		opacity: 0.2;
+	// space
+	svg {
+		transform: translateY(30%);
+		width: 0.6em;
 	}
 
 	&.error {
-		// position: relative;
-		color: var(--error) !important;
-		text-shadow: 0 0 20px var(--error);
-		border-bottom-color: white;
-		// transform: translateZ(0);
-		// font-weight: bold;
+		color: var(--error);
+		--icon: var(--error);
+		text-shadow: 0 0 0.5em var(--error);
 	}
 
 	&.current {
@@ -67,16 +48,27 @@
 	}
 }
 
+// active word character
+.word.current .character:not(.error, .typed) {
+	color: var(--active-word);
+}
+
+// typed character
+.character.typed:not(.error),
+.word.typed .character:not(.error) {
+	color: var(--typed-char);
+}
+
 @keyframes cursor {
 	0%,
 	60% {
-		background: var(--activechar);
-		color: var(--bodybg);
+		background: var(--primary);
+		color: var(--bg);
 	}
 	70%,
 	100% {
-		background: var(--bodybg);
-		color: var(--activechar);
+		background: var(--bg);
+		color: var(--primary);
 	}
 }
 
@@ -84,11 +76,11 @@
 	0%,
 	60% {
 		background: var(--error);
-		color: var(--bodybg);
+		color: var(--bg);
 	}
 	70%,
 	100% {
-		background: var(--bodybg);
+		background: var(--bg);
 		color: var(--error);
 	}
 }
