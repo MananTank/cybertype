@@ -5,7 +5,6 @@ import { Stats } from '../components/Stats';
 import { Words } from '../components/Words';
 import { KeyStats } from '../components/Keyboard';
 import { loadedData, getInitialState, stateReducer } from '../lib/state';
-import { AnimatedLoadingIcon } from '../components/icons';
 import { useImmerReducer } from 'use-immer';
 import { Sounds, getSounds } from '../lib/sounds';
 import { State } from '../lib/types';
@@ -14,6 +13,7 @@ import { Settings } from '../components/Settings';
 import { Nav } from '../components/Nav';
 import { useTypingFocus } from '../hooks/useTypingFocus';
 import { Tips } from '../components/Tips';
+import { Loader } from '../components/Loader';
 
 const ignoreKeys = new Set([
 	'Shift',
@@ -153,7 +153,7 @@ const Home: NextPage = () => {
 					/>
 				</>
 			) : (
-				<div className={styles.loader}>{AnimatedLoadingIcon}</div>
+				<Loader />
 			)}
 
 			{showTips && <Tips onClose={() => setShowTips(false)} />}

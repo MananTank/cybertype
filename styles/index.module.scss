@@ -7,28 +7,6 @@
 	padding: 0 20px;
 }
 
-.loader {
-	height: 300px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 30px;
-	text-transform: uppercase;
-	opacity: 0;
-	animation: fade-in 400ms 200ms ease forwards;
-	--icon: var(--secondary);
-}
-
-@keyframes fade-in {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
 .dashboard {
 	outline: none !important;
 	display: flex;
