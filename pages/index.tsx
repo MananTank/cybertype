@@ -32,8 +32,11 @@ const HomeHead = (
 	<Head>
 		<title> CYBERTYPE </title>
 		<meta name='theme-color' content='#171717' />
-		<meta name='description' content='Cyberpunk themed typing app created by Manan Tank' />
-		<meta name='keywords' content='cybertype, cyberpunk, typing app, futuristic ui, Manan Tank' />
+		<meta name='description' content='Fast and Minimal Typing App - Improve your typing speed.' />
+		<meta
+			name='keywords'
+			content='cybertype, typing app, practice typing, simple typing app, improve typing speed'
+		/>
 		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 	</Head>
 );
