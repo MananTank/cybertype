@@ -2,6 +2,7 @@
 	outline: none;
 	padding-bottom: 50px;
 	padding-top: 50px;
+	position: relative;
 }
 
 .words {
@@ -84,4 +85,12 @@
 		background: var(--bg);
 		color: var(--error);
 	}
+}
+
+.hiddenInput {
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	z-index: -1;
+	pointer-events: none;
 }

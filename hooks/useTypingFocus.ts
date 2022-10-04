@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 
 // bring focus to element when typing starts
 export function useTypingFocus() {
-	const ref = useRef<HTMLDivElement>(null);
+	const ref = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		function handleKeyDown(event: KeyboardEvent) {

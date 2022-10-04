@@ -3,6 +3,7 @@ import styles from '../styles/Words.module.scss';
 import classnames from 'classnames';
 import { ErrorLocations, Progress } from '../lib/types';
 import { SpaceIcon } from './icons';
+import { useTypingFocus } from '../hooks/useTypingFocus';
 
 type WordsProps = {
 	words: string[];
@@ -11,6 +12,8 @@ type WordsProps = {
 };
 
 export function Words({ words, progress, errorLocations }: WordsProps) {
+	const hiddenInputRef = useTypingFocus();
+
 	const fontSizeMultiplier = useMemo(() => {
 		const chars = words.reduce((acc, w) => acc + w.length, 0);
 		if (chars < 150) return 1;
@@ -24,7 +27,15 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
 			className={styles.wordsWrapper}
 			style={{ '--font-size-multiplier': fontSizeMultiplier } as CSSProperties}
 		>
-			<div className={styles.words}>
+			<input type='text' className={styles.hiddenInput} ref={hiddenInputRef} />
+
+			<div
+				className={styles.words}
+				onClick={() => {
+					hiddenInputRef.current!.click();
+					hiddenInputRef.current!.focus();
+				}}
+			>
 				{words.map((word, wordIndex) => (
 					<Word
 						key={wordIndex}

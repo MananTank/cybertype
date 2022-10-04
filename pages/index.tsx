@@ -11,7 +11,6 @@ import { State } from '../lib/types';
 import Head from 'next/head';
 import { Settings } from '../components/Settings';
 import { Nav } from '../components/Nav';
-import { useTypingFocus } from '../hooks/useTypingFocus';
 import { Tips } from '../components/Tips';
 import { Loader } from '../components/Loader';
 
@@ -45,7 +44,7 @@ const Home: NextPage = () => {
 	const [soundEnabled, setSoundEnabled] = useState(true);
 	const [fetchingData, setFetchingData] = useState(false);
 	const soundsRef = useRef<Sounds>();
-	const focusRef = useTypingFocus();
+
 	const [showTips, setShowTips] = useState(false);
 
 	// only call getInitialState once
@@ -130,7 +129,7 @@ const Home: NextPage = () => {
 
 			<Nav />
 
-			<div className={styles.dashboard} ref={focusRef} tabIndex={0}>
+			<div className={styles.dashboard}>
 				<Stats
 					charsTyped={state.totalCharsTyped}
 					timeTaken={state.totalTimeTaken}
