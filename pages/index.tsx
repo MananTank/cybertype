@@ -102,7 +102,9 @@ const Home: NextPage = () => {
 			}
 
 			if (event.key === 'Backspace') {
-				return dispatch({ type: 'back', alt: event.altKey });
+				// in windows: ctrl + backspace to delete entire word
+				// in mac: option (alt) + backspace to delete entire word
+				return dispatch({ type: 'back', alt: event.altKey || event.ctrlKey });
 			}
 
 			dispatch({ type: 'keydown', key: event.key });
