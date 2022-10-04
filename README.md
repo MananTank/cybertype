@@ -4,9 +4,23 @@ A Fast and Minimal Typing App.
 
 Checkout [cybertype.app](https://cybertype.app/)
 
+Practice typing in various modes such as common 1k, 5k, 10k English Words, most commonly misspelled words or Programming Language keywords for various languages such as JavaScript, HTML, CSS, Rust, Python, C++ etc.
+
+<br>
+
+## Awesome Themes
+
 <img src='./docs/themes.png' />
 
-Practice typing in various modes such as common 1k, 5k, 10k English Words, most commonly misspelled words or Programming Language keywords for various languages such as JavaScript, HTML, CSS, Rust, Python, C++ etc.
+<br>
+
+## Speed Heatmap
+
+Find your weakness and keep practicing to improve your typing speed.
+
+<p align="center">
+<img src='./docs/heatmap.png' width='500' align='center' />
+</p>
 
 <br>
 
@@ -14,9 +28,11 @@ Practice typing in various modes such as common 1k, 5k, 10k English Words, most 
 
 It is a Progressive Web app that can be installed and can work 100% offline.
 
-<img  src='./docs/perf.png'/>
+<p align="center">
+<img  src='./docs/perf.png' width='500' />
+</p>
 
-## Tech Stack
+## Created with
 
 - `TypeScript`
 - `Next.js`
