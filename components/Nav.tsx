@@ -1,5 +1,6 @@
 import { GithubIcon, twitterIcon } from './icons';
 import styles from '../styles/Nav.module.scss';
+import { PWAInstallButton } from './PWAInstallButton';
 
 export function Nav() {
 	return (
@@ -7,6 +8,7 @@ export function Nav() {
 			<div className={styles.appName}>CyberType</div>
 
 			<div className={styles.navRight}>
+				<PWAInstallButton />
 				<a
 					href='https://github.com/MananTank/cybertype'
 					target='_blank'

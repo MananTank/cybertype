@@ -1,0 +1,29 @@
+.button {
+	background: none;
+	border: 1px solid var(--secondary);
+	border-radius: 4px;
+	color: var(--secondary);
+	padding: 0.5em 1em;
+	outline: none;
+	font-size: 14px;
+	text-transform: lowercase;
+	letter-spacing: 0.1em;
+	cursor: pointer;
+	transition: transform 200ms ease;
+
+	&:hover {
+		color: var(--primary);
+		border-color: var(--primary);
+		transform: scale(1.1);
+	}
+
+	@media (max-width: 600px) {
+		font-size: 12px;
+	}
+
+	display: none;
+}
+
+:global(body.show-pwa-install) .button {
+	display: block;
+}

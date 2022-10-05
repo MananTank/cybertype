@@ -13,12 +13,19 @@
 		color: var(--secondary);
 
 		@media (max-width: 600px) {
-			font-size: 16px;
+			font-size: 14px;
 		}
+	}
+
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	&Right {
 		display: flex;
+		align-items: center;
 		gap: 20px;
 	}
 
