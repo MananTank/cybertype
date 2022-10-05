@@ -92,6 +92,20 @@ body {
 	--slowest: #ff8aae;
 }
 
+[data-theme='theme-7'] {
+	--bg: rgb(24,24,24);
+	--primary: rgba(86,86,86);
+	--secondary: #d4d4d4;
+	--active-word: #ffffff;
+	--typed-char: #00aeff;
+	--error: white;
+	--fastest: #00aeff;
+	--fast: #00aeffc0;
+	--normal: #00aeff96;
+	--slow: #00aeff4f;
+	--slowest: #00aeff23;
+}
+
 /* custom scroll bar styles  */
 
 body::-webkit-scrollbar {

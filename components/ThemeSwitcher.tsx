@@ -2,8 +2,8 @@ import styles from '../styles/Settings.module.scss';
 import { ThemeIcon } from './icons';
 
 // must match the css
-const themes = ['theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6'];
-const bgs = ['#171717', '#181313', '#021c3b', '#270c39', '#060709', '#4f6367'];
+const themes = ['theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6', 'theme-7'];
+const bgs = ['#171717', '#181313', '#021c3b', '#270c39', '#060709', '#4f6367', '#0c0c0c'];
 let index = 0;
 
 function changeTheme() {
