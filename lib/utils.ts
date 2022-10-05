@@ -50,7 +50,7 @@ export const dataNameGroups: Group[] = [
 	},
 	{
 		group: 'Code',
-		values: ['javascript', 'rust', 'html', 'css', 'c++', 'sql', 'git', 'bash', 'python'],
+		values: ['javascript', 'rust', 'html', 'css', 'c++', 'sql', 'git', 'bash', 'python', 'java'],
 	},
 ];
 

@@ -31,7 +31,8 @@ export type State = {
 		| 'bash'
 		| 'python'
 		| 'wordle'
-		| 'quotes';
+		| 'quotes'
+		| 'java';
 
 	typingStarted: boolean;
 	totalTimeTaken: number;
