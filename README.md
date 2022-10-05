@@ -4,7 +4,7 @@ A Fast and Minimal Typing App.
 
 Checkout [cybertype.app](https://cybertype.app/)
 
-Practice typing in various modes such as common 1k, 5k, 10k English Words, most commonly misspelled words or Programming Language keywords for various languages such as JavaScript, HTML, CSS, Rust, Python, C++ etc.
+Practice typing in various modes such as common 1k, 5k, 10k English Words, most commonly misspelled words, Quotes or Programming Language keywords for various languages such as JavaScript, HTML, CSS, Rust, Python, C++ etc.
 
 <br>
 
@@ -35,8 +35,9 @@ It is a Progressive Web app that can be installed and can work 100% offline.
 ## Created with
 
 - `TypeScript`
-- `Next.js`
+- `Next.js`,
 - `React`
+- `SCSS`
 - `use-immer`, `howler`, `next-pwa`
 
 <br>
@@ -44,4 +45,4 @@ It is a Progressive Web app that can be installed and can work 100% offline.
 
 ### Credits for Data Collection
 
-Data for words collected from the amazing [MonkeyType](https://github.com/monkeytypegame/monkeytype) Repository. Cred
+JSON Data for various languages is collected from the amazing [MonkeyType](https://github.com/monkeytypegame/monkeytype) Repository.
