@@ -91,3 +91,24 @@ body {
 	--slow: #ffd1d1;
 	--slowest: #ff8aae;
 }
+
+/* custom scroll bar styles  */
+
+body::-webkit-scrollbar {
+	width: 6px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+	background: var(--bodybg);
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+	background: var(--typed-char);
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+	background: var(--secondary);
+}
