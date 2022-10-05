@@ -16,7 +16,7 @@ export function Tips(props: Props) {
 				</p>
 
 				<p>
-					Hit <kbd>option + delete</kbd> in Mac OR <kbd>alt + backspace</kbd> in Windows to go back
+					Hit <kbd>Option + Delete</kbd> in Mac OR <kbd>CTRL + Backspace</kbd> in Windows to go back
 					one word instead of a single character
 				</p>
 			</div>
