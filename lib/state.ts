@@ -82,7 +82,6 @@ function fixErrorsIfCorrected(state: State) {
 
 	if (state.errorLocations[w] && state.errorLocations[w][c]) {
 		state.errorLocations[w][c] = false;
-		state.totalErrors--;
 	}
 }
 
