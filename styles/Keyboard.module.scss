@@ -42,11 +42,16 @@
 	cursor: pointer;
 	transition: transform 200ms ease, color 200ms ease;
 
+	@media (max-width: 1400px) {
+		font-size: 20px;
+		width: 30px;
+		height: 30px;
+	}
+
 	@media (max-width: 600px) {
 		font-size: 16px;
 		width: 22px;
 		height: 22px;
-		border: none;
 	}
 
 	@media (max-width: 400px) {

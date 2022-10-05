@@ -26,7 +26,15 @@
 	transition: color 100ms ease;
 
 	@media (max-width: 1600px) {
-		--font-size: 40px;
+		--font-size: 50px;
+	}
+
+	@media (max-width: 1400px) {
+		--font-size: 45px;
+	}
+
+	@media (max-width: 1200px) {
+		--font-size: 35px;
 	}
 
 	@media (max-width: 600px) {
