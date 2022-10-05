@@ -2,7 +2,7 @@
 	display: flex;
 	gap: 50px;
 
-	@media (max-width: 600px) {
+	@media (max-width: 800px) {
 		gap: 20px;
 		flex-direction: column;
 		padding-right: 10px;
