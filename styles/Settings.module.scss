@@ -59,6 +59,12 @@
 		cursor: pointer;
 		font-family: inherit;
 
+		// for windows
+		option,
+		optgroup {
+			color: initial;
+		}
+
 		&:hover {
 			color: var(--primary);
 		}
