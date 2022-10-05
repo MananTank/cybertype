@@ -17,15 +17,20 @@
 }
 
 .character {
-	font-size: calc(55px * var(--font-size-multiplier, 1));
+	--font-size: 55px;
+	font-size: calc(var(--font-size) * var(--font-size-multiplier, 1));
 	padding: 0.03em;
 	display: inline-block;
 	color: var(--secondary);
 	--icon: var(--typed-char);
 	transition: color 100ms ease;
 
+	@media (max-width: 1600px) {
+		--font-size: 40px;
+	}
+
 	@media (max-width: 600px) {
-		font-size: calc(26px * var(--font-size-multiplier, 1));
+		--font-size: 26px;
 	}
 
 	// space
