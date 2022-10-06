@@ -1,8 +1,9 @@
 import { GithubIcon, twitterIcon } from './icons';
 import styles from '../styles/Nav.module.scss';
 import { PWAInstallButton } from './PWAInstallButton';
+import { memo } from 'react';
 
-export function Nav() {
+export const Nav = memo(function Nav() {
 	return (
 		<nav className={styles.nav}>
 			<div className={styles.appName}>CyberType</div>
@@ -31,4 +32,4 @@ export function Nav() {
 			</div>
 		</nav>
 	);
-}
+});
