@@ -1,6 +1,7 @@
 export type Progress = {
 	wordIndex: number;
 	charIndex: number;
+	// rawCharIndex: number;
 };
 
 export type KeyStat = {
@@ -48,9 +49,6 @@ export type State = {
 };
 
 export type Action =
-	| {
-			type: 'resetProgress';
-	  }
 	| {
 			type: 'reset';
 	  }

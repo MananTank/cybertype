@@ -27,14 +27,9 @@
 	font-size: 24px;
 	width: 40px;
 	height: 40px;
-
 	color: var(--color, var(--typed-char));
-
-	// text-transform: uppercase;
 	border-radius: 4px;
-
 	position: relative;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -43,12 +38,12 @@
 	transition: transform 200ms ease, color 200ms ease;
 
 	@media (max-width: 1400px) {
-		font-size: 20px;
-		width: 30px;
-		height: 30px;
+		font-size: 18px;
+		width: 28px;
+		height: 28px;
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 1200px) {
 		font-size: 16px;
 		width: 22px;
 		height: 22px;
@@ -152,7 +147,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-top: 60px;
+	padding-top: 30px;
 	padding-bottom: 40px;
 }
 

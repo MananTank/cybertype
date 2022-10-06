@@ -6,30 +6,42 @@ type LoadedData = Record<State['dataName'], State['data'] | undefined>;
 // key-value store of all the data loaded from network
 export const loadedData = {} as LoadedData;
 
+const initWords = 500;
+
+// new words will be appended if less than bufferWords are left to be typed
+const bufferWords = 100;
+
 export function stateReducer(state: State, action: Action): void {
 	switch (action.type) {
 		case 'setData': {
 			loadedData[state.dataName] = action.data;
 			state.data = action.data;
-			updateWords(state);
-			resetProgress(state);
+			// need to reset when setting new data
+			reset(state);
 			return;
 		}
 
 		case 'setDataName': {
 			state.dataName = action.data;
-			resetProgress(state);
 			return;
 		}
 
 		case 'back': {
 			if (action.alt) {
+				const beforeCharIndex = state.progress.charIndex;
+
 				if (state.progress.charIndex === 0) {
 					if (state.progress.wordIndex === 0) return;
 					state.progress.wordIndex--;
+					// state.progress.rawCharIndex -= state.words[state.progress.wordIndex].length;
+				} else {
+					// state.progress.rawCharIndex -= beforeCharIndex;
 				}
+
 				state.progress.charIndex = 0;
 			} else {
+				// state.progress.rawCharIndex--;
+
 				if (state.progress.charIndex === 0) {
 					if (state.progress.wordIndex === 0) return;
 					state.progress.charIndex = state.words[state.progress.wordIndex - 1].length - 1;
@@ -39,11 +51,6 @@ export function stateReducer(state: State, action: Action): void {
 				}
 			}
 
-			return;
-		}
-
-		case 'resetProgress': {
-			resetProgress(state);
 			return;
 		}
 
@@ -109,37 +116,28 @@ function handleKeyDown(state: State, key: string, keyDownTime: number, isCorrect
 
 	state.totalTimeTaken = state.totalTimeTaken + (keyDownTime - state.lastCharTypedTime);
 
+	// state.progress.rawCharIndex++;
+
 	// word not fully typed, progress to next character
 	if (state.progress.charIndex < state.words[state.progress.wordIndex].length - 1) {
 		state.progress.charIndex++;
-	}
-
-	// if word fully typed, progress to next word if there is a next word
-	else if (state.progress.wordIndex < state.words.length - 1) {
-		// set progress to next word
+	} else {
+		// if word fully typed, progress to next word if there is a next word
+		// set progress to next worda
 		state.progress.wordIndex++;
 		state.progress.charIndex = 0;
-
-		// update the number of words typed and total time taken
-		if (isCorrect) {
-			state.totalWordsTyped++;
-			state.lastWordTypedTime = keyDownTime;
-		}
 	}
 
-	// typing complete
-	else {
-		// reset progress
-		state.progress.wordIndex = 0;
-		state.progress.charIndex = 0;
-		// change words
-		updateWords(state);
-		// clear errorLocations
-		state.errorLocations = {};
-	}
-
+	// update the number of words typed and total time taken
 	if (isCorrect) {
+		state.totalWordsTyped++;
+		state.lastWordTypedTime = keyDownTime;
 		state.lastCharTypedTime = keyDownTime;
+	}
+
+	// append new words if required
+	if (state.progress.wordIndex > state.words.length - bufferWords) {
+		appendWords(state);
 	}
 }
 
@@ -154,7 +152,29 @@ function handleIncorrectKeyDown(state: State) {
 	state.errorLocations[w][c] = true;
 }
 
-function resetProgress(state: State) {
+function getRandomQuotes(data: QuoteData[], charCount: number) {
+	const words: string[] = [];
+	const wordCount = charCount / 5;
+
+	while (words.length < wordCount) {
+		const i = Math.round(Math.random() * data.length);
+		const newWords = data[i].text.split(' ').map(w => w + ' ');
+		words.push(...newWords);
+	}
+	return words;
+}
+
+function appendWords(state: State, count = 200) {
+	const words = state.words;
+	if (state.dataName === 'quotes') {
+		state.words = [...words, ...getRandomQuotes(state.data as unknown as QuoteData[], count)];
+	} else {
+		state.words = [...words, ...getRandomWords(state.data, count)];
+	}
+}
+
+function reset(state: State) {
+	// reset progress
 	state.totalErrors = 0;
 	state.typingStarted = false;
 	state.lastWordTypedTime = 0;
@@ -167,22 +187,12 @@ function resetProgress(state: State) {
 	state.progress = {
 		wordIndex: 0,
 		charIndex: 0,
+		// rawCharIndex: 0,
 	};
-}
 
-function updateWords(state: State) {
-	if (state.dataName === 'quotes') {
-		const i = Math.round(Math.random() * state.data.length);
-		const data = state.data as unknown as QuoteData[];
-		state.words = data[i].text.split(' ').map(w => w + ' ');
-	} else {
-		state.words = getRandomWords(state.data);
-	}
-}
-
-function reset(state: State) {
-	resetProgress(state);
-	updateWords(state);
+	// set new words
+	state.words = [];
+	appendWords(state, initWords);
 }
 
 export function getInitialState(): State {
@@ -199,9 +209,11 @@ export function getInitialState(): State {
 		totalCharsTyped: 0,
 		keyStats: createEmptyKeyStatRecord(),
 		errorLocations: {},
+
 		progress: {
 			wordIndex: 0,
 			charIndex: 0,
+			// rawCharIndex: 0,
 		},
 	};
 }

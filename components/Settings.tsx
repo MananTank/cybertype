@@ -9,17 +9,18 @@ type SettingsProps = {
 	dispatch: Dispatch<Action>;
 	soundEnabled: boolean;
 	dataName: State['dataName'];
-	showTips: () => void;
-	toggleUseSound: () => void;
+	showTips: boolean;
+	setSoundEnabled: (value: boolean) => void;
+	setShowTips: (value: boolean) => void;
 };
 
-export const Settings = memo(function Settings({
+export const Settings = memo<SettingsProps>(function Settings({
 	dispatch,
 	soundEnabled,
 	dataName,
-	toggleUseSound,
-	showTips,
-}: SettingsProps) {
+	setSoundEnabled,
+	setShowTips,
+}) {
 	return (
 		<div className={styles.settings}>
 			{/* data selector */}
@@ -56,12 +57,22 @@ export const Settings = memo(function Settings({
 				<ThemeSwitcher />
 
 				{/* sound */}
-				<button className={styles.sound} onClick={toggleUseSound} aria-label='toggle sound effects'>
+				<button
+					className={styles.sound}
+					onClick={() => {
+						setSoundEnabled(!soundEnabled);
+					}}
+					aria-label='toggle sound effects'
+				>
 					{soundEnabled ? SoundEnabledIcon : SoundDisabled}
 				</button>
 
 				{/* question */}
-				<button aria-label='ShortCuts' className={styles.question} onClick={showTips}>
+				<button
+					aria-label='ShortCuts'
+					className={styles.question}
+					onClick={() => setShowTips(true)}
+				>
 					{QuestionIcon}
 				</button>
 			</div>

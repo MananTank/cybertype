@@ -17,11 +17,11 @@ export function createEmptyKeyStatRecord() {
 	return value;
 }
 
-export function getRandomWords(data: string[]) {
+export function getRandomWords(data: string[], count: number) {
 	let words = [];
 	let chars = 0;
 
-	while (chars < 80) {
+	while (chars < count) {
 		const randomIndex = Math.floor(Math.random() * data.length);
 		chars += data[randomIndex].length;
 		words.push(data[randomIndex] + ' ');
