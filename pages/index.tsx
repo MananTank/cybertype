@@ -13,19 +13,7 @@ import { Settings } from '../components/Settings';
 import { Nav } from '../components/Nav';
 import { Tips } from '../components/Tips';
 import { Loader } from '../components/Loader';
-
-const ignoreKeys = new Set([
-	'Shift',
-	'Alt',
-	'Tab',
-	'Meta',
-	'Control',
-	'ArrowUp',
-	'CapsLock',
-	'ArrowDown',
-	'ArrowLeft',
-	'ArrowRight',
-]);
+import { shouldIgnore } from '../lib/keys';
 
 const HomeHead = (
 	<Head>
@@ -94,15 +82,14 @@ const Home: NextPage = () => {
 		if (!soundsRef.current) soundsRef.current = getSounds();
 
 		function handleKeyDown(event: KeyboardEvent) {
-			if (ignoreKeys.has(event.key)) return;
-			// if (!interestedKeySet.has(event.key)) return;
+			if (shouldIgnore(event.key)) return;
 			if (soundEnabled) soundsRef.current!.randomClick();
 
 			if (event.key === 'Enter') {
 				return dispatch({ type: 'reset' });
 			}
 
-			if (event.key === 'Backspace') {
+			if (event.key === 'Backspace' || event.key === 'ArrowLeft') {
 				// in windows: ctrl + backspace to delete entire word
 				// in mac: option (alt) + backspace to delete entire word
 				return dispatch({ type: 'back', alt: event.altKey || event.ctrlKey });

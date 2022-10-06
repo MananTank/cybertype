@@ -13,18 +13,19 @@ const row3 = ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/'];
 
 export function KeyStats({ keyStats }: KeyStatsProps) {
 	const mapper = (keys: string[]) =>
-		keys.map(key => (
-			<KeyStat
-				key={key}
-				keyName={key}
-				count={keyStats[key].count}
-				totalTime={keyStats[key].totalTime}
-			/>
-		));
+		keys.map(key => {
+			return (
+				<KeyStat
+					key={key}
+					keyName={key}
+					count={keyStats[key].count}
+					totalTime={keyStats[key].totalTime}
+				/>
+			);
+		});
 
 	return (
 		<div className={styles.keyboard}>
-			{/* {mapper([...row1, ...row2, ...row3])} */}
 			<div className={styles.row}>{mapper(row1)}</div>
 			<div className={styles.row}>{mapper(row2)}</div>
 			<div className={styles.row}>{mapper(row3)}</div>

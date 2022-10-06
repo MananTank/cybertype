@@ -1,4 +1,4 @@
-import { keys } from './state';
+import { heatmapKeys } from './keys';
 import { KeyStatRecord, State } from './types';
 
 export function getSpeed(words: number, time: number) {
@@ -7,7 +7,7 @@ export function getSpeed(words: number, time: number) {
 
 export function createEmptyKeyStatRecord() {
 	const value: KeyStatRecord = {};
-	keys.forEach(key => {
+	heatmapKeys.forEach(key => {
 		value[key] = {
 			count: 0,
 			totalTime: 0,
