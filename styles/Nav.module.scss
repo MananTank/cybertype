@@ -2,17 +2,17 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-top: 20px;
+	padding-top: 30px;
 	padding-bottom: 20px;
 	border-bottom: 1px solid var(--typed-char);
 
 	.appName {
 		font-size: 20px;
-		letter-spacing: 0.5em;
-		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		text-transform: lowercase;
 		color: var(--secondary);
 
-		@media (max-width: 600px) {
+		@media (max-width: 1500px) {
 			font-size: 14px;
 		}
 	}

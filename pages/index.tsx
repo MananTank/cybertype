@@ -29,7 +29,7 @@ const ignoreKeys = new Set([
 
 const HomeHead = (
 	<Head>
-		<title> CYBERTYPE </title>
+		<title> cybertype </title>
 		<meta name='theme-color' content='#171717' />
 		<meta name='description' content='Fast and Minimal Typing App - Improve your typing speed.' />
 		<meta

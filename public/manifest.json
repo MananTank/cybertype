@@ -1,6 +1,6 @@
 {
-  "name": "CYBERTYPE",
-  "short_name": "CYBERTYPE",
+  "name": "cybertype",
+  "short_name": "cybertype",
   "theme_color": "#171717",
   "background_color": "#171717",
   "display": "fullscreen",

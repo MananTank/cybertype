@@ -5,45 +5,43 @@
 	@media (max-width: 800px) {
 		gap: 20px;
 		flex-direction: column;
-		padding-right: 10px;
+		padding-right: 30px;
 		border-right: 1px solid var(--typed-char);
 	}
 }
 
 .stat {
-	@media (max-width: 600px) {
-		min-width: 120px;
-	}
-
 	.value {
 		display: flex;
-		gap: 0.2em;
+		gap: 0.1em;
 		align-items: center;
 		font-size: 40px;
 		color: var(--primary);
 
-		@media (max-width: 600px) {
+		@media (max-width: 1500px) {
 			font-size: 34px;
 		}
 
 		.unit {
+			color: var(--secondary);
 			font-size: 0.5em;
+			opacity: 0.5;
 		}
 	}
 
-	.text {
-		font-size: 14px;
-		letter-spacing: 0.1em;
-		color: var(--secondary);
+	// .text {
+	// 	font-size: 14px;
+	// 	letter-spacing: 0.1em;
+	// 	color: var(--secondary);
 
-		@media (max-width: 600px) {
-			font-size: 10px;
-		}
-	}
+	// 	@media (max-width: 600px) {
+	// 		font-size: 10px;
+	// 	}
+	// }
 
-	@media (min-width: 600px) {
-		&:nth-child(2) {
-			padding-right: 30px;
-		}
-	}
+	// @media (min-width: 600px) {
+	// 	&:nth-child(2) {
+	// 		padding-right: 40px;
+	// 	}
+	// }
 }

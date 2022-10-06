@@ -17,7 +17,7 @@ export default function Document() {
 				{/* <!-- Facebook Meta Tags --> */}
 				<meta property='og:url' content='https://cybertype.app' />
 				<meta property='og:type' content='website' />
-				<meta property='og:title' content=' CYBERTYPE' />
+				<meta property='og:title' content='cybertype' />
 				<meta
 					property='og:description'
 					content='Fast and Minimal Typing App - Improve your typing speed.'
@@ -28,7 +28,7 @@ export default function Document() {
 				<meta name='twitter:card' content='summary_large_image' />
 				<meta property='twitter:domain' content='cybertype.app' />
 				<meta property='twitter:url' content='https://cybertype.app' />
-				<meta name='twitter:title' content=' CYBERTYPE ' />
+				<meta name='twitter:title' content='cybertype' />
 				<meta
 					name='twitter:description'
 					content='Fast and Minimal Typing App - Improve your typing speed.'

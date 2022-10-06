@@ -37,7 +37,7 @@
 	cursor: pointer;
 	transition: transform 200ms ease, color 200ms ease;
 
-	@media (max-width: 1400px) {
+	@media (max-width: 1500px) {
 		font-size: 18px;
 		width: 28px;
 		height: 28px;
@@ -148,7 +148,7 @@
 	flex-direction: column;
 	align-items: center;
 	padding-top: 30px;
-	padding-bottom: 40px;
+	padding-bottom: 20px;
 }
 
 .row {
