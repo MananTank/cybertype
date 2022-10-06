@@ -53,7 +53,3 @@ export const dataNameGroups: Group[] = [
 		values: ['javascript', 'rust', 'html', 'css', 'c++', 'sql', 'git', 'bash', 'python', 'java'],
 	},
 ];
-
-export function padStartZero(num: number) {
-	return (num + '').padStart(3, '0');
-}

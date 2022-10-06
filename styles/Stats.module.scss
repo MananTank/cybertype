@@ -1,19 +1,20 @@
 .statsContainer {
 	display: flex;
-	gap: 50px;
+	gap: 20px;
 
 	@media (max-width: 800px) {
-		gap: 20px;
+		gap: 10px;
 		flex-direction: column;
-		padding-right: 30px;
-		border-right: 1px solid var(--typed-char);
 	}
 }
 
 .stat {
+	min-width: 110px;
+
 	.value {
 		display: flex;
 		gap: 0.1em;
+		letter-spacing: 1;
 		align-items: center;
 		font-size: 40px;
 		color: var(--primary);
@@ -28,20 +29,4 @@
 			opacity: 0.5;
 		}
 	}
-
-	// .text {
-	// 	font-size: 14px;
-	// 	letter-spacing: 0.1em;
-	// 	color: var(--secondary);
-
-	// 	@media (max-width: 600px) {
-	// 		font-size: 10px;
-	// 	}
-	// }
-
-	// @media (min-width: 600px) {
-	// 	&:nth-child(2) {
-	// 		padding-right: 40px;
-	// 	}
-	// }
 }

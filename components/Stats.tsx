@@ -1,5 +1,5 @@
 import styles from '../styles/Stats.module.scss';
-import { getSpeed, padStartZero } from '../lib/utils';
+import { getSpeed } from '../lib/utils';
 
 type StatsProps = {
 	timeTaken: number;
@@ -15,29 +15,26 @@ export function Stats(props: StatsProps) {
 
 	return (
 		<div className={styles.statsContainer}>
-			<Stat unit='wpm' text='speed' value={padStartZero(wpmSpeed)} />
-			<Stat unit='%' text='accuracy' value={padStartZero(accuracy)} />
+			<Stat unit='wpm' value={wpmSpeed} />
+			<Stat unit='%' value={accuracy} />
 		</div>
 	);
 }
 
 type StatProps = {
 	unit: string;
-	text: string;
 	value: string | number;
 	className?: string;
 };
 
 function Stat(props: StatProps) {
-	const { unit, text, value, className } = props;
+	const { unit, value, className } = props;
 	return (
 		<div className={`${styles.stat} ${className || ''}`}>
 			<div className={styles.value}>
 				<span> {value} </span>
 				<span className={styles.unit}>{unit}</span>
 			</div>
-
-			{/* <div className={styles.text}>{text}</div> */}
 		</div>
 	);
 }
