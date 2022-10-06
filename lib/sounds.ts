@@ -20,6 +20,6 @@ export function getSounds(): Sounds {
 			const i = Math.round(Math.random() * (clicks.length - 1));
 			clicks[i].play();
 		},
-		error: new Howl({ src: '/sounds/miss-click.aac', volume: 0.1 }),
+		error: new Howl({ src: '/sounds/bubble.wav', volume: 0.3 }),
 	};
 }
