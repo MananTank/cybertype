@@ -51,7 +51,6 @@
 		letter-spacing: 0.1em;
 		text-align: right;
 		appearance: none;
-		text-transform: uppercase;
 		background: none;
 		color: var(--secondary);
 		border: none;
@@ -71,7 +70,6 @@
 
 		option {
 			font-family: inherit;
-			text-transform: uppercase;
 		}
 
 		&:focus {

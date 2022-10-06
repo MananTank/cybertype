@@ -15,8 +15,8 @@ export function Stats(props: StatsProps) {
 
 	return (
 		<div className={styles.statsContainer}>
-			<Stat unit='WPM' text='Speed' value={padStartZero(wpmSpeed)} />
-			<Stat unit='%' text='Accuracy' value={padStartZero(accuracy)} />
+			<Stat unit='wpm' text='speed' value={padStartZero(wpmSpeed)} />
+			<Stat unit='%' text='accuracy' value={padStartZero(accuracy)} />
 		</div>
 	);
 }
@@ -37,7 +37,7 @@ function Stat(props: StatProps) {
 				<span className={styles.unit}>{unit}</span>
 			</div>
 
-			<div className={styles.text}>{text}</div>
+			{/* <div className={styles.text}>{text}</div> */}
 		</div>
 	);
 }

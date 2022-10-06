@@ -29,7 +29,7 @@ const ignoreKeys = new Set([
 
 const HomeHead = (
 	<Head>
-		<title> CYBERTYPE </title>
+		<title> cybertype </title>
 		<meta name='theme-color' content='#171717' />
 		<meta name='description' content='Fast and Minimal Typing App - Improve your typing speed.' />
 		<meta
@@ -95,6 +95,7 @@ const Home: NextPage = () => {
 
 		function handleKeyDown(event: KeyboardEvent) {
 			if (ignoreKeys.has(event.key)) return;
+			// if (!interestedKeySet.has(event.key)) return;
 			if (soundEnabled) soundsRef.current!.randomClick();
 
 			if (event.key === 'Enter') {
@@ -138,12 +139,14 @@ const Home: NextPage = () => {
 					errors={state.totalErrors}
 				/>
 
+				{/* memoized - don't pass unstable callbacks */}
 				<Settings
+					showTips={showTips}
 					dispatch={dispatch}
 					soundEnabled={soundEnabled}
 					dataName={state.dataName}
-					toggleUseSound={() => setSoundEnabled(v => !v)}
-					showTips={() => setShowTips(true)}
+					setSoundEnabled={setSoundEnabled}
+					setShowTips={setShowTips}
 				/>
 			</div>
 
