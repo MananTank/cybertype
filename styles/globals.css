@@ -260,7 +260,7 @@ body::-webkit-scrollbar-thumb:hover {
 	--tertiary: hsl(195deg 100% 18%);
 	--primary: hsl(43deg 100% 71%);
 	--secondary: hsl(198deg 10% 55%);
-	--error: hsl(200deg 11% 55%);
+	--error: hsl(0deg 100% 64%);
 	--fast: hsl(195deg 100% 34%);
 	--normal: hsl(0deg 0% 100%);
 	--slow: hsl(43deg 100% 71%);
