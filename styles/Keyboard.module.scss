@@ -132,6 +132,10 @@
 	align-items: center;
 	padding-top: 30px;
 	padding-bottom: 20px;
+
+	@media (max-height: 800px) and (min-width: 1000px) {
+		display: none;
+	}
 }
 
 .row {

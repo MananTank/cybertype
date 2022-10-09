@@ -47,17 +47,15 @@ body::-webkit-scrollbar-thumb:hover {
 
 /* Neon Pro */
 [data-theme='1'] {
-	--bg: hsl(0deg 0% 67%);
-	--tertiary: hsl(0deg 0% 80%);
-	--secondary: hsl(0deg 0% 15%);
-	--primary: hsl(107deg 100% 77%);
-	--error: hsl(338deg 100% 90%);
-
-	--fast: hsl(107deg 100% 64%);
-	--normal: hsl(0deg 0% 100%);
-	--slow: hsl(338deg 100% 93%);
-
-	--island-fg: var(--secondary);
+	--bg: hsl(237deg 98% 17%);
+	--tertiary: hsl(223deg 71% 35%);
+	--secondary: hsl(223deg 100% 52%);
+	--primary: hsl(83deg 99% 45%);
+	--error: hsl(299deg 100% 50%);
+	--fast: hsl(83deg 98% 56%);
+	--normal: hsl(223deg 100% 65%);
+	--slow: hsl(299deg 100% 58%);
+	--island-fg: var(--bg);
 	--island-bg: var(--primary);
 }
 
