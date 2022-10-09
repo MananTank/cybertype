@@ -3,7 +3,6 @@ import styles from '../styles/Words.module.scss';
 import classnames from 'classnames';
 import { ErrorLocations, Progress } from '../lib/types';
 import { SpaceIcon } from './icons';
-// import { useTypingFocus } from '../hooks/useTypingFocus';
 
 type WordsProps = {
 	words: string[];
@@ -12,11 +11,8 @@ type WordsProps = {
 };
 
 export function Words({ words, progress, errorLocations }: WordsProps) {
-	// const hiddenElRef = useTypingFocus();
 	const wordsRef = useRef<HTMLDivElement>(null);
 	const shouldScrollRef = useRef(true);
-
-	// const lastRawProgress = useRef(progress.rawCharIndex);
 
 	// auto infinite scroll
 	// set transform on the .words element to keep the active word in view
@@ -27,10 +23,6 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
 		setTimeout(() => {
 			shouldScrollRef.current = true;
 		}, 500); // scrolling throttled to at most every 500ms
-
-		// TODO: adjust transition based on how fast the user is typing
-		// const progressDiff = Math.abs(lastRawProgress.current - progress.charIndex);
-		// lastRawProgress.current = progress.charIndex;
 
 		const activeWordEl = wordsRef.current!.querySelector(
 			`.${styles.current}.${styles.word}`

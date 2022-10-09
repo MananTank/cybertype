@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { BeforeInstallPromptEvent } from '../lib/types';
 import styles from '../styles/PWAInstallButton.module.scss';
+import { InstallIcon } from './icons';
 
 const showPWAClass = 'show-pwa-install';
 
@@ -9,7 +10,7 @@ export function PWAInstallButton() {
 
 	return (
 		<button onClick={HideInstallPrompt} className={styles.button}>
-			Install
+			{InstallIcon}
 		</button>
 	);
 }

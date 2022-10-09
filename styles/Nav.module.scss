@@ -1,9 +1,9 @@
 .nav {
 	display: flex;
 	align-items: center;
-	gap: 30px;
+	gap: 20px;
 	margin-top: auto;
-	justify-content: space-between;
+	justify-content: center;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	color: var(--secondary);
@@ -15,33 +15,24 @@
 		height: 24px;
 	}
 
+	@media (max-width: 1400px) {
+		font-size: 12px;
+
+		svg {
+			width: 18px;
+			height: 18px;
+		}
+	}
+
 	.appName {
 		letter-spacing: 0.1em;
 		text-transform: lowercase;
-
-		@media (max-width: 1200px) {
-			font-size: 14px;
-		}
 	}
 
 	a {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
-
-	&Right {
-		display: flex;
-		align-items: center;
-		gap: 20px;
-	}
-
-	svg {
-		&:hover {
-			--icon: var(--primary);
-			transition: transform 100ms ease;
-			transform: scale(1.2);
-		}
 	}
 }
 

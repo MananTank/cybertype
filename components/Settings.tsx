@@ -1,8 +1,9 @@
 import { Dispatch, memo } from 'react';
 import { Action, State } from '../lib/types';
-import { SoundDisabled, SoundEnabledIcon, ChevronIcon, ThemeIcon, ResetIcon } from './icons';
+import { SoundDisabled, SoundEnabledIcon, ChevronIcon, ThemeIcon } from './icons';
 import styles from '../styles/Settings.module.scss';
 import { ClientOnly } from './ClientOnly';
+import { PWAInstallButton } from './PWAInstallButton';
 
 type SettingsProps = {
 	dispatch: Dispatch<Action>;
@@ -51,6 +52,8 @@ export const Settings = memo<SettingsProps>(function Settings({
 						{soundEnabled ? SoundEnabledIcon : SoundDisabled}
 					</ClientOnly>
 				</button>
+
+				<PWAInstallButton />
 			</div>
 		</div>
 	);

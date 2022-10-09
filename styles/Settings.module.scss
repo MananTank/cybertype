@@ -1,19 +1,26 @@
 .settings {
 	display: flex;
 	align-items: center;
-	gap: 20px;
+	gap: 24px;
 
 	button {
 		background: none;
 		outline: none;
 		border: none;
 	}
+
+	@media (max-width: 1600px) {
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+	}
 }
 
 .icons {
 	display: flex;
 	align-items: center;
-	gap: 20px;
+	gap: 1em;
 
 	& > * {
 		cursor: pointer;
@@ -36,6 +43,10 @@
 	border-radius: 6px;
 	cursor: pointer;
 	font-size: 14px;
+
+	@media (max-width: 1600px) {
+		font-size: 12px;
+	}
 
 	svg {
 		position: absolute;

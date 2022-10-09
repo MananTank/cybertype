@@ -118,3 +118,18 @@ export const closeIcon = (
 		></path>
 	</svg>
 );
+
+export const InstallIcon = (
+	<svg
+		xmlns='http://www.w3.org/2000/svg'
+		height={iconSize}
+		width={iconSize}
+		viewBox='0 0 24 24'
+		fill='none'
+	>
+		<path
+			d='M19 22H5V20H19V22ZM12 18L6 12L7.41 10.59L11 14.17V2H13V14.17L16.59 10.59L18 12L12 18Z'
+			fill={fill}
+		/>
+	</svg>
+);

@@ -1,5 +1,7 @@
 import { useRef, useEffect } from 'react';
 
+// This file is not used right now, but it will be used later when adding support for mobile
+
 // bring focus to element when typing starts
 export function useTypingFocus() {
 	const ref = useRef<HTMLDivElement>(null);

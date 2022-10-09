@@ -13,9 +13,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	--width: 200px;
+	max-width: calc(100vw - 40px);
+	--width: 240px;
 	width: calc(var(--width) + var(--data-name-len, 10) * 1ch);
-	height: 40px;
+	height: 44px;
 	border-radius: 34px;
 
 	transition: width 200ms cubic-bezier(0.666, 0, 0.4, 1),
@@ -25,14 +26,18 @@
 	--icon: var(--island-fg);
 	will-change: transform;
 	overflow: auto;
+
+	@media (max-width: 1600px) {
+		--width: 200px;
+		height: 34px;
+	}
 }
 
 // when typing
 :global(body.typing) .dynamicIsland {
 	--width: 250px;
-	height: 80px;
+	height: 70px;
 	background: transparent;
-	// background: var(--tertiary);
 }
 
 // when showing theme
