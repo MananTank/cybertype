@@ -21,13 +21,22 @@
 			transition: transform 100ms ease-out, opacity 100ms ease-out;
 		}
 	}
+
+	@media (max-width: 600px) {
+		&[data-key='['],
+		&[data-key=']'],
+		&[data-key="'"] {
+			display: none;
+		}
+	}
 }
 
 .keyLabel {
-	font-size: 24px;
-	width: 40px;
-	height: 40px;
-	color: var(--color, var(--typed-char));
+	font-size: 16px;
+	width: 2em;
+	height: 2em;
+	color: var(--color, var(--secondary));
+	box-shadow: 0em 0em 0.15em var(--color, var(--tertiary));
 	border-radius: 4px;
 	position: relative;
 	display: flex;
@@ -37,23 +46,8 @@
 	cursor: pointer;
 	transition: transform 200ms ease, color 200ms ease;
 
-	@media (max-width: 1600px) {
-		font-size: 18px;
-		width: 28px;
-		height: 28px;
-	}
-
-	@media (max-width: 1200px) {
-		font-size: 16px;
-		width: 22px;
-		height: 22px;
-	}
-
 	@media (max-width: 400px) {
 		font-size: 12px;
-		width: 18px;
-		height: 18px;
-		border: none;
 	}
 
 	&::before {
@@ -76,7 +70,7 @@
 	color: var(--color);
 	backdrop-filter: blur(20px);
 	background: rgba(255, 255, 255, 0.05);
-	border-bottom: 4px solid var(--color);
+	border-bottom: 1px solid var(--color);
 	z-index: 2;
 	padding: 10px 30px;
 	transform: translate(-50%, -50%) scale(0.7);
@@ -95,7 +89,7 @@
 	}
 
 	.speed {
-		font-size: 50px;
+		font-size: 40px;
 		display: flex;
 		align-items: center;
 		gap: 10px;
@@ -104,11 +98,6 @@
 	.unit {
 		font-size: 20px;
 	}
-}
-
-.fastest {
-	--color: var(--fastest);
-	--anim-duration: 1.5s;
 }
 
 .fast {
@@ -126,11 +115,6 @@
 	--anim-duration: 3s;
 }
 
-.slowest {
-	--color: var(--slowest);
-	--anim-duration: 3.5s;
-}
-
 @keyframes glow {
 	from {
 		opacity: 0.2;
@@ -143,7 +127,6 @@
 }
 
 .keyboard {
-	margin-top: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -155,7 +138,7 @@
 	display: flex;
 	justify-content: center;
 	gap: 12px;
-	margin-bottom: 8px;
+	margin-bottom: 12px;
 
 	@media (max-width: 600px) {
 		margin-bottom: 14px;

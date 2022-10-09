@@ -14,27 +14,12 @@ export type KeyStatRecord = Record<string, KeyStat>;
 export type ErrorLocations = Record<number, Record<number, boolean>>; // { 0: { 1: true, 3: true  }}
 
 export type State = {
+	showDataSelector: boolean;
+	showThemes: boolean;
+	soundEnabled: boolean;
+	fetchingData: boolean;
 	data: string[];
-	dataName:
-		| 'english-200'
-		| 'english-1k'
-		| 'english-10k'
-		| 'javascript'
-		| 'misspelling'
-		| 'contractions'
-		| 'rust'
-		| 'html'
-		| 'css'
-		| 'c++'
-		| 'sql'
-		| 'git'
-		| 'english-5k'
-		| 'bash'
-		| 'python'
-		| 'wordle'
-		| 'quotes'
-		| 'java';
-
+	dataName: string;
 	typingStarted: boolean;
 	totalTimeTaken: number;
 	totalWordsTyped: number;
@@ -68,6 +53,26 @@ export type Action =
 	| {
 			type: 'setDataName';
 			data: State['dataName'];
+	  }
+	| {
+			type: 'setFetchingData';
+			data: boolean;
+	  }
+	| {
+			type: 'setSoundEnabled';
+			data: boolean;
+	  }
+	| {
+			type: 'setShowThemes';
+			data: boolean;
+	  }
+	| {
+			type: 'setShowTips';
+			data: boolean;
+	  }
+	| {
+			type: 'setShowDataSelector';
+			data: boolean;
 	  };
 
 export type QuoteData = {
@@ -101,3 +106,18 @@ export interface BeforeInstallPromptEvent extends Event {
 	 */
 	prompt(): Promise<void>;
 }
+
+export type Theme = {
+	// main
+	bg: string;
+	primary: string;
+	secondary: string;
+	tertiary: string;
+	error: string;
+	// speeds
+	fastest: string;
+	fast: string;
+	normal: string;
+	slow: string;
+	slowest: string;
+};

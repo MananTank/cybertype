@@ -1,22 +1,33 @@
-import styles from '../styles/Settings.module.scss';
-import { ThemeIcon } from './icons';
+import { themes, useThemeIndex } from '../hooks/useThemeIndex';
+import styles from '../styles/ThemeSwitcher.module.scss';
 
-// must match the css
-const themes = ['theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6'];
-const bgs = ['#171717', '#181313', '#021c3b', '#270c39', '#060709', '#4f6367'];
-let index = 0;
+export type Props = {
+	onThemeChange: () => void;
+};
 
-function changeTheme() {
-	index = index === themes.length - 1 ? 0 : index + 1;
-	document.body.setAttribute('data-theme', themes[index]);
-	const meta = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
-	meta.setAttribute('content', bgs[index]);
-}
-
-export function ThemeSwitcher() {
+export function ThemeSwitcher(props: Props) {
+	const [themeIndex, setThemeIndex] = useThemeIndex();
 	return (
-		<button aria-label='Change Theme' className={styles.switch} onClick={changeTheme}>
-			{ThemeIcon}
-		</button>
+		<div className={styles.themeSwitcher}>
+			<div className={styles.themes}>
+				{themes.map((theme, i) => {
+					return (
+						<div
+							data-theme={i}
+							key={i}
+							// style={{ background: theme }}
+							onClick={() => {
+								props.onThemeChange();
+								setThemeIndex(i);
+							}}
+							className={styles.theme}
+						>
+							<h3> {theme.name}</h3>
+							<div className={styles.palette}></div>
+						</div>
+					);
+				})}
+			</div>
+		</div>
 	);
 }

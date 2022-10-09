@@ -1,95 +1,5 @@
 body {
-	background-color: var(--bg);
-}
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-[data-theme='theme-1'] {
-	--bg: #171717;
-	--primary: #ffd369;
-	--secondary: white;
-	--typed-char: hsl(0deg 0% 25%);
-	--active-word: #ffd369;
-	--error: #fd413d;
-	--fastest: #27ff27;
-	--fast: white;
-	--normal: #fff3b0;
-	--slow: #ffd369;
-	--slowest: #ff0000;
-}
-
-[data-theme='theme-2'] {
-	--bg: #181313;
-	--primary: #ffba38;
-	--secondary: hsl(27deg 28% 40%);
-	--typed-char: #443737;
-	--active-word: #ffba38;
-	--error: #fa1e0e;
-	--fastest: #27ff27;
-	--fast: #fff216;
-	--normal: #fcdab7;
-	--slow: #fa7d09;
-	--slowest: #ff4301;
-}
-
-[data-theme='theme-3'] {
-	--bg: #021c3b;
-	--primary: #f1fa3c;
-	--secondary: hsl(217deg 100% 60%);
-	--typed-char: hsl(213deg 93% 26%);
-	--active-word: #f1fa3c;
-	--error: white;
-	--fastest: #27ff27;
-	--fast: #3cffdf;
-	--normal: #f1fa3c;
-	--slow: #ff9090;
-	--slowest: #ff2e63;
-}
-
-[data-theme='theme-4'] {
-	--bg: #270c39;
-	--primary: #fff024;
-	--secondary: #d972ff;
-	--typed-char: hsl(277deg 59% 28%);
-	--active-word: #fff024;
-	--error: #ff4949;
-	--fastest: #27ff27;
-	--fast: #38e54d;
-	--normal: #d2daff;
-	--slow: #fff024;
-	--slowest: #ff4949;
-}
-
-[data-theme='theme-5'] {
-	--bg: #060709;
-	--primary: #d6e3ff;
-	--secondary: #3e485d;
-	--typed-char: #121721;
-	--active-word: #d6e3ff;
-	--error: #ff0000;
-	--fastest: #9cff2e;
-	--fast: #80ffdb;
-	--normal: #d6e3ff;
-	--slow: #fa7d09;
-	--slowest: #ff0000;
-}
-
-[data-theme='theme-6'] {
-	--bg: #4f6367;
-	--primary: #b8d8d8;
-	--secondary: #eef5db;
-	--active-word: #b8d8d8;
-	--typed-char: hsl(190deg 13% 48%);
-	--error: white;
-	--fastest: #90c8ac;
-	--fast: #ffe9ae;
-	--normal: #eef5db;
-	--slow: #ffd1d1;
-	--slowest: #ff8aae;
+	background: var(--bg);
 }
 
 /* custom scroll bar styles  */
@@ -105,10 +15,255 @@ body::-webkit-scrollbar-track {
 
 /* Handle */
 body::-webkit-scrollbar-thumb {
-	background: var(--typed-char);
+	background: var(--tertiary);
 }
 
 /* Handle on hover */
 body::-webkit-scrollbar-thumb:hover {
 	background: var(--secondary);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* Espresso */
+[data-theme='0'] {
+	--bg: hsl(0deg 12% 8%);
+	--secondary: hsl(27deg 31% 70%);
+	--tertiary: hsl(0deg 11% 24%);
+	--primary: hsl(39deg 100% 61%);
+	--error: hsl(4deg 96% 52%);
+
+	--fast: hsl(39deg 100% 86%);
+	--normal: hsl(39deg 100% 61%);
+	--slow: hsl(4deg 96% 52%);
+
+	--island-fg: var(--bg);
+	--island-bg: var(--primary);
+}
+
+/* Neon Pro */
+[data-theme='1'] {
+	--bg: hsl(0deg 0% 67%);
+	--tertiary: hsl(0deg 0% 80%);
+	--secondary: hsl(0deg 0% 15%);
+	--primary: hsl(107deg 100% 77%);
+	--error: hsl(338deg 100% 90%);
+
+	--fast: hsl(107deg 100% 64%);
+	--normal: hsl(0deg 0% 100%);
+	--slow: hsl(338deg 100% 93%);
+
+	--island-fg: var(--secondary);
+	--island-bg: var(--primary);
+}
+
+/* Classic */
+[data-theme='2'] {
+	--bg: hsl(57deg 14% 67%);
+	--tertiary: hsl(60deg 14% 76%);
+	--secondary: hsl(69deg 8% 10%);
+	--primary: hsl(60deg 33% 91%);
+	--error: hsl(4deg 64% 52%);
+	--fast: hsl(0deg 0% 100%);
+	--normal: hsl(60deg 100% 77%);
+	--slow: hsl(4deg 100% 50%);
+
+	--island-bg: var(--primary);
+	--island-fg: var(--secondary);
+}
+
+/* halloween */
+[data-theme='3'] {
+	--bg: hsl(311deg 38% 6%);
+	--tertiary: hsl(319deg 38% 18%);
+	--secondary: hsl(26deg 100% 50%);
+	--primary: hsl(76deg 99% 61%);
+	--error: hsl(274deg 99% 56%);
+	--fast: hsl(76deg 99% 61%);
+	--normal: hsl(274deg 100% 81%);
+	--slow: hsl(26deg 100% 50%);
+	--island-fg: var(--bg);
+	--island-bg: var(--primary);
+}
+
+/* effervescent */
+[data-theme='4'] {
+	--bg: hsl(260deg 73% 66%);
+	--tertiary: hsl(287deg 100% 80%);
+	--secondary: hsl(263deg 35% 7%);
+	--primary: hsl(95deg 100% 78%);
+	--error: hsl(55deg 100% 65%);
+	--fast: hsl(95deg 100% 74%);
+	--normal: hsl(55deg 100% 50%);
+	--slow: hsl(336deg 100% 85%);
+	--island-fg: var(--secondary);
+	--island-bg: var(--primary);
+}
+
+/* Blackhole */
+[data-theme='5'] {
+	--bg: hsl(220deg 20% 3%);
+	--primary: hsl(221deg 100% 92%);
+	--secondary: hsl(221deg 20% 35%);
+	--tertiary: hsl(220deg 29% 13%);
+	--error: hsl(0deg 100% 50%);
+	--fastest: hsl(88deg 100% 59%);
+	--fast: hsl(0deg 0% 100%);
+	--normal: hsl(221deg 19% 48%);
+	--slow: hsl(0deg 100% 50%);
+	--slowest: hsl(0deg 100% 50%);
+	--island-fg: var(--bg);
+	--island-bg: var(--primary);
+}
+
+/* Serendipity */
+[data-theme='6'] {
+	--bg: hsl(0deg 0% 16%);
+	--tertiary: hsl(0deg 0% 28%);
+	--primary: hsl(47deg 84% 48%);
+	--secondary: hsl(118deg 2% 56%);
+	--error: hsl(51deg 24% 79%);
+	--normal: hsl(47deg 84% 48%);
+	--fast: hsl(0deg 0% 100%);
+	--slow: hsl(0deg 92% 56%);
+	--island-fg: var(--bg);
+	--island-bg: var(--primary);
+}
+
+/* Elixir */
+[data-theme='7'] {
+	--bg: hsl(243deg 55% 14%);
+	--tertiary: hsl(257deg 50% 25%);
+	--secondary: hsl(236deg 78% 62%);
+	--primary: hsl(23deg 97% 54%);
+	--error: hsl(82deg 97% 61%);
+	--fastest: hsl(105deg 35% 62%);
+	--fast: hsl(82deg 97% 61%);
+	--normal: hsl(236deg 81% 76%);
+	--slow: hsl(23deg 97% 54%);
+	--slowest: hsl(6deg 96% 59%);
+	--island-fg: var(--bg);
+	--island-bg: var(--primary);
+}
+
+/* Eudaemonia */
+[data-theme='8'] {
+	--bg: hsl(53deg 7% 75%);
+	--primary: hsl(344deg 98% 33%);
+	--tertiary: hsl(53deg 7% 60%);
+	--secondary: hsl(195deg 5% 15%);
+	--error: hsl(0deg 0% 100%);
+	--fast: hsl(53deg 100% 76%);
+	--normal: hsl(0deg 0% 100%);
+	--slow: hsl(344deg 98% 33%);
+	--island-fg: hsl(53deg 7% 90%);
+	--island-bg: var(--primary);
+}
+
+/* Tranquillity */
+[data-theme='9'] {
+	--bg: hsl(270deg 3% 85%);
+	--primary: hsl(320deg 9% 7%);
+	--tertiary: hsl(0deg 0% 100%);
+	--secondary: hsl(209deg 10% 50%);
+	--error: hsl(19deg 97% 57%);
+	--fast: hsl(0deg 0% 100%);
+	--normal: hsl(209deg 10% 80%);
+	--slow: hsl(19deg 97% 57%);
+	--island-fg: var(--bg);
+	--island-bg: var(--primary);
+}
+
+/* aesthete */
+[data-theme='10'] {
+	--bg: hsl(0deg 0% 13%);
+	--primary: hsl(129deg 57% 39%);
+	--secondary: hsl(20deg 3% 79%);
+	--tertiary: hsl(0deg 0% 25%);
+	--error: hsl(5deg 72% 43%);
+	--fast: hsl(129deg 73% 44%);
+	--normal: hsl(0deg 0% 100%);
+	--slow: hsl(5deg 77% 53%);
+	--island-fg: var(--bg);
+	--island-bg: var(--primary);
+}
+
+/* Sunlit */
+[data-theme='11'] {
+	--bg: hsl(210deg 100% 30%);
+	--primary: hsl(58deg 95% 61%);
+	--secondary: hsl(210deg 64% 75%);
+	--tertiary: hsl(210deg 64% 43%);
+	--error: hsl(182deg 100% 70%);
+	--fast: hsl(170deg 100% 62%);
+	--normal: hsl(0deg 0% 100%);
+	--slow: hsl(63deg 95% 61%);
+	--island-fg: hsl(210deg 100% 25%);
+	--island-bg: var(--primary);
+}
+
+/* witch craft */
+[data-theme='12'] {
+	--bg: hsl(205deg 37% 8%);
+	--tertiary: hsl(180deg 41% 17%);
+	--primary: hsl(179deg 31% 62%);
+	--secondary: hsl(19deg 75% 57%);
+	--error: hsl(0deg 0% 100%);
+	--fastest: hsl(105deg 35% 62%);
+	--fast: hsl(157deg 16% 58%);
+	--normal: hsl(0deg 0% 100%);
+	--slow: hsl(19deg 75% 57%);
+	--slowest: hsl(0deg 78% 49%);
+	--island-fg: var(--secondary);
+	--island-bg: hsl(205deg 37% 12%);
+	--island-fg: var(--bg);
+	--island-bg: var(--primary);
+}
+
+/* mechanical */
+[data-theme='13'] {
+	--bg: hsl(210deg 11% 15%);
+	--tertiary: hsl(210deg 10% 23%);
+	--primary: hsl(359deg 77% 56%);
+	--secondary: hsl(208deg 7% 46%);
+	--error: hsl(0deg 0% 100%);
+	--fast: hsl(0deg 0% 100%);
+	--normal: hsl(210deg 5% 52%);
+	--slow: hsl(359deg 100% 70%);
+	--island-fg: hsl(210deg 10% 55%);
+	--island-bg: hsl(210deg 10% 23%);
+	--island-fg: white;
+	--island-bg: var(--secondary);
+}
+
+/* Night Owl */
+[data-theme='14'] {
+	--bg: hsl(258deg 53% 7%);
+	--tertiary: hsl(241deg 47% 29%);
+	--primary: hsl(11deg 89% 62%);
+	--secondary: hsl(232deg 69% 54%);
+	--error: hsl(46deg 100% 50%);
+	--fast: hsl(232deg 87% 69%);
+	--normal: hsl(46deg 100% 50%);
+	--slow: hsl(11deg 89% 62%);
+	--island-fg: hsl(0deg 0% 100%);
+	--island-bg: var(--secondary);
+}
+
+/* Forest */
+[data-theme='15'] {
+	--bg: hsl(198deg 100% 8%);
+	--tertiary: hsl(195deg 100% 18%);
+	--primary: hsl(43deg 100% 71%);
+	--secondary: hsl(198deg 10% 55%);
+	--error: hsl(200deg 11% 55%);
+	--fast: hsl(195deg 100% 34%);
+	--normal: hsl(0deg 0% 100%);
+	--slow: hsl(43deg 100% 71%);
+	--island-fg: var(--bg);
+	--island-bg: var(--primary);
 }

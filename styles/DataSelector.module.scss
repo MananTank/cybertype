@@ -1,0 +1,32 @@
+.dataSelector {
+	padding: 20px;
+	padding-top: 60px;
+
+	h3 {
+		margin-bottom: 20px;
+		font-size: 18px;
+	}
+}
+
+.group {
+	margin-bottom: 40px;
+}
+
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.option {
+	font-size: 14px;
+	padding: 0.5em 1em;
+	color: var(--island-fg);
+	border: 1px solid;
+	cursor: pointer;
+	border-radius: 6px;
+
+	&:hover {
+		transition: color 200ms ease, background-color 200ms ease;
+	}
+}

@@ -78,19 +78,6 @@ export const SoundDisabled = (
 	</svg>
 );
 
-export const QuestionIcon = (
-	<svg
-		xmlns='http://www.w3.org/2000/svg'
-		height={iconSize}
-		width={iconSize}
-		fill={fill}
-		viewBox='0 0 24 24'
-	>
-		<path d='M0 0h24v24H0z' fill='none' />
-		<path d='M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z' />
-	</svg>
-);
-
 export const ChevronIcon = (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
@@ -114,5 +101,20 @@ export const SpaceIcon = (
 	>
 		<path d='M0 0h24v24H0V0z' fill='none' />
 		<path d='M18 9v4H6V9H4v6h16V9z' />
+	</svg>
+);
+
+export const closeIcon = (
+	<svg
+		height={iconSize}
+		width={iconSize}
+		viewBox='0 0 24 24'
+		fill='none'
+		xmlns='http://www.w3.org/2000/svg'
+	>
+		<path
+			d='M17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41L17.59 5Z'
+			fill={fill}
+		></path>
 	</svg>
 );

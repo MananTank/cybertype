@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
+import Script from 'next/script';
 
 export default function Document() {
 	return (
@@ -55,7 +56,18 @@ export default function Document() {
 					}}
 				></style>
 			</Head>
-			<body data-theme='theme-1'>
+			<body data-theme='0'>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+						const theme = localStorage.getItem('theme');
+						if (theme) {
+							document.body.setAttribute('data-theme', theme);
+						}
+					`,
+					}}
+				></script>
+
 				<Main />
 			</body>
 			<NextScript />

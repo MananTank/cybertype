@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { useImmerReducer } from 'use-immer';
 import { State, Action, QuoteData } from './types';
 import { getRandomWords, createEmptyKeyStatRecord } from './utils';
 
@@ -21,8 +23,19 @@ export function stateReducer(state: State, action: Action): void {
 			return;
 		}
 
+		case 'setShowDataSelector': {
+			state.showDataSelector = action.data;
+			return;
+		}
+
 		case 'setDataName': {
 			state.dataName = action.data;
+			setLocalStorage('dataName', action.data);
+			return;
+		}
+
+		case 'setShowThemes': {
+			state.showThemes = action.data;
 			return;
 		}
 
@@ -56,6 +69,17 @@ export function stateReducer(state: State, action: Action): void {
 
 		case 'reset': {
 			reset(state);
+			return;
+		}
+
+		case 'setFetchingData': {
+			state.fetchingData = action.data;
+			return;
+		}
+
+		case 'setSoundEnabled': {
+			state.soundEnabled = action.data;
+			setLocalStorage('soundEnabled', String(action.data));
 			return;
 		}
 
@@ -166,7 +190,7 @@ function getRandomQuotes(data: QuoteData[], charCount: number) {
 
 function appendWords(state: State, count = 200) {
 	const words = state.words;
-	if (state.dataName === 'quotes') {
+	if (state.dataName === 'Quotes') {
 		state.words = [...words, ...getRandomQuotes(state.data as unknown as QuoteData[], count)];
 	} else {
 		state.words = [...words, ...getRandomWords(state.data, count)];
@@ -195,10 +219,31 @@ function reset(state: State) {
 	appendWords(state, initWords);
 }
 
+function getLocalStorage(key: string) {
+	try {
+		return localStorage.getItem(key);
+	} catch (error) {
+		console.error(error);
+		return undefined; // in server side rendering or when local storage is disabled
+	}
+}
+
+function setLocalStorage(key: string, value: string) {
+	try {
+		localStorage.setItem(key, value);
+	} catch (error) {
+		console.error(error);
+	}
+}
+
 export function getInitialState(): State {
 	return {
+		showDataSelector: false,
+		showThemes: false,
+		soundEnabled: getLocalStorage('soundEnabled') === 'false' ? false : true,
+		fetchingData: false,
 		data: [],
-		dataName: 'english-200',
+		dataName: (getLocalStorage('dataName') || 'english-200') as State['dataName'],
 		totalErrors: 0,
 		typingStarted: false,
 		words: [],
@@ -209,11 +254,21 @@ export function getInitialState(): State {
 		totalCharsTyped: 0,
 		keyStats: createEmptyKeyStatRecord(),
 		errorLocations: {},
-
 		progress: {
 			wordIndex: 0,
 			charIndex: 0,
-			// rawCharIndex: 0,
 		},
 	};
+}
+
+export function useAppState() {
+	// only call getInitialState once
+	// because there is no idiomatic way to do it in useImmerReducer hook itself
+	const rendered = useRef(false);
+	const [state, dispatch] = useImmerReducer(
+		stateReducer,
+		rendered.current ? (null as unknown as State) : getInitialState()
+	);
+	rendered.current = true;
+	return [state, dispatch] as const;
 }

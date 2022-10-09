@@ -3,7 +3,7 @@ import styles from '../styles/Words.module.scss';
 import classnames from 'classnames';
 import { ErrorLocations, Progress } from '../lib/types';
 import { SpaceIcon } from './icons';
-import { useTypingFocus } from '../hooks/useTypingFocus';
+// import { useTypingFocus } from '../hooks/useTypingFocus';
 
 type WordsProps = {
 	words: string[];
@@ -12,7 +12,7 @@ type WordsProps = {
 };
 
 export function Words({ words, progress, errorLocations }: WordsProps) {
-	const hiddenInputRef = useTypingFocus();
+	// const hiddenElRef = useTypingFocus();
 	const wordsRef = useRef<HTMLDivElement>(null);
 	const shouldScrollRef = useRef(true);
 
@@ -36,36 +36,28 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
 			`.${styles.current}.${styles.word}`
 		) as HTMLInputElement;
 
-		const top = activeWordEl.getBoundingClientRect().top;
-		const wordsTop = wordsRef.current!.getBoundingClientRect().top;
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				if (!wordsRef.current) return;
+				const top = activeWordEl.getBoundingClientRect().top;
+				const wordsTop = wordsRef.current.getBoundingClientRect().top;
 
-		wordsRef.current!.style.setProperty('--depth', wordsTop - top + 'px');
+				wordsRef.current.style.setProperty('--depth', wordsTop - top + 'px');
+			});
+		});
 	});
 
 	return (
 		<div className={styles.wordsWrapper}>
 			<div className={styles.wordsScroll}>
-				<input
-					type='text'
-					className={styles.hiddenInput}
-					ref={hiddenInputRef}
-					aria-label='type here'
-				/>
-
-				<div
-					className={styles.words}
-					ref={wordsRef}
-					onClick={() => {
-						hiddenInputRef.current!.click();
-						hiddenInputRef.current!.focus();
-					}}
-				>
+				<div className={styles.words} ref={wordsRef}>
 					{words.map((word, wordIndex) => (
 						<Word
 							key={wordIndex}
 							word={word}
 							isTyped={progress.wordIndex > wordIndex}
-							activeCharIndex={progress.wordIndex !== wordIndex ? -1 : progress.charIndex}
+							isCurrent={progress.wordIndex === wordIndex}
+							activeCharIndex={progress.charIndex}
 							errorsInWord={errorLocations[wordIndex]}
 						/>
 					))}
@@ -77,17 +69,24 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
 
 type WordProps = {
 	word: string;
+	isCurrent: boolean;
 	isTyped: boolean;
 	activeCharIndex: number; // -1 if active character Index is not inside the word
 	errorsInWord?: ErrorLocations[number];
 };
 
-const Word = memo(function Word({ word, errorsInWord, activeCharIndex, isTyped }: WordProps) {
+const Word = memo(function Word({
+	word,
+	errorsInWord,
+	activeCharIndex,
+	isTyped,
+	isCurrent,
+}: WordProps) {
 	return (
 		<div
 			className={classnames({
 				[styles.word]: true,
-				[styles.current]: activeCharIndex !== -1,
+				[styles.current]: isCurrent,
 				[styles.typed]: isTyped,
 			})}
 		>
@@ -97,7 +96,7 @@ const Word = memo(function Word({ word, errorsInWord, activeCharIndex, isTyped }
 					className={classnames({
 						[styles.typed]: characterIndex < activeCharIndex,
 						[styles.character]: true,
-						[styles.current]: activeCharIndex === characterIndex,
+						[styles.current]: isCurrent && activeCharIndex === characterIndex,
 						[styles.isSpace]: character === ' ',
 						[styles.error]: errorsInWord && errorsInWord[characterIndex] === true,
 					})}

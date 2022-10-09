@@ -29,27 +29,3 @@ export function getRandomWords(data: string[], count: number) {
 
 	return words;
 }
-
-type Group = {
-	group: string;
-	values: State['dataName'][];
-};
-
-export const dataNameGroups: Group[] = [
-	{
-		group: 'English',
-		values: [
-			'english-200',
-			'english-1k',
-			'english-5k',
-			'english-10k',
-			'quotes',
-			'wordle',
-			'misspelling',
-		],
-	},
-	{
-		group: 'Code',
-		values: ['javascript', 'rust', 'html', 'css', 'c++', 'sql', 'git', 'bash', 'python', 'java'],
-	},
-];

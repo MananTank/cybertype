@@ -58,7 +58,7 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
 	}, [keyName]);
 
 	return (
-		<div className={`${styles.key} ${label}`} ref={elRef}>
+		<div className={`${styles.key} ${label}`} ref={elRef} data-key={keyName}>
 			<div className={styles.keyLabel}>{keyName}</div>
 			{keySpeed !== 0 && (
 				<div className={styles.keyStat}>
@@ -73,10 +73,8 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
 });
 
 export const getSpeedLabel = (speed: number) => {
-	if (speed === 0) return styles.notTyped;
-	if (speed >= 150) return styles.fastest;
+	if (speed === 0) return '';
 	if (speed >= 100) return styles.fast;
-	if (speed >= 60) return styles.normal;
-	if (speed >= 50) return styles.slow;
-	return styles.slowest;
+	if (speed < 60) return styles.slow;
+	return styles.normal;
 };

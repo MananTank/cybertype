@@ -3,11 +3,6 @@
 	align-items: center;
 	gap: 20px;
 
-	@media (max-width: 600px) {
-		flex-direction: column;
-		align-items: flex-end;
-	}
-
 	button {
 		background: none;
 		outline: none;
@@ -16,7 +11,6 @@
 }
 
 .icons {
-	--icon: var(--secondary);
 	display: flex;
 	align-items: center;
 	gap: 20px;
@@ -27,53 +21,26 @@
 		align-items: center;
 
 		&:hover {
-			transform: scale(1.2);
-			--icon: var(--primary);
 			transition: transform 100ms ease, color 100ms ease;
 		}
 	}
 }
 
+:global(body.typing) .settings {
+	display: none;
+}
+
 .dataSelector {
 	position: relative;
 	padding-right: 24px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 14px;
 
 	svg {
-		--icon: var(--secondary);
 		position: absolute;
 		right: 0px;
 		top: 50%;
 		transform: translateY(-50%);
-	}
-
-	select {
-		font-size: 14px;
-		letter-spacing: 0.1em;
-		text-align: right;
-		appearance: none;
-		background: none;
-		color: var(--secondary);
-		border: none;
-		outline: none;
-		cursor: pointer;
-		font-family: inherit;
-
-		// for windows
-		option,
-		optgroup {
-			color: initial;
-		}
-
-		&:hover {
-			color: var(--primary);
-		}
-
-		option {
-			font-family: inherit;
-		}
-
-		&:focus {
-			border-color: var(--primary);
-		}
 	}
 }

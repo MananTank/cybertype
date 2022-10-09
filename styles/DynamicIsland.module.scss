@@ -1,0 +1,88 @@
+.dynamicIslandContainer {
+	display: flex;
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	z-index: 1000;
+	transform: translateX(-50%);
+	gap: 10px;
+}
+
+.dynamicIsland {
+	background: var(--island-bg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	--width: 200px;
+	width: calc(var(--width) + var(--data-name-len, 10) * 1ch);
+	height: 40px;
+	border-radius: 34px;
+
+	transition: width 200ms cubic-bezier(0.666, 0, 0.4, 1),
+		height 250ms cubic-bezier(0.666, 0, 0.4, 1), background-color 200ms ease,
+		border-radius 200ms ease;
+	color: var(--island-fg);
+	--icon: var(--island-fg);
+	will-change: transform;
+	overflow: auto;
+}
+
+// when typing
+:global(body.typing) .dynamicIsland {
+	--width: 250px;
+	height: 80px;
+	background: transparent;
+	// background: var(--tertiary);
+}
+
+// when showing theme
+.dynamicIsland[data-show-theme='true'] {
+	border-radius: 14px;
+	display: block;
+	width: 800px;
+	height: 500px;
+
+	@media (max-width: 900px) {
+		width: calc(100vw - 40px);
+		height: 700px;
+	}
+
+	@media (max-width: 600px) {
+		height: 600px;
+	}
+}
+
+// when showing data selector
+.dynamicIsland[data-show-data-selector='true'] {
+	border-radius: 14px;
+	display: block;
+	width: 400px;
+	height: 500px;
+
+	@media (max-width: 700px) {
+		width: calc(100vw - 20px);
+	}
+}
+
+.dynamicIsland[data-show-theme='true'] .dashboard,
+.dynamicIsland[data-show-data-selector='true'] .dashboard {
+	display: none;
+}
+
+.dashboard {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-20px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}

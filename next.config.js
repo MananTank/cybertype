@@ -9,13 +9,9 @@ const nextConfig = {
 	},
 };
 
-if (process.env.NODE_ENV !== 'production') {
-	module.exports = nextConfig;
-} else {
-	const withPWA = require('next-pwa')({
-		dest: 'public',
-		runtimeCaching,
-	});
+const withPWA = require('next-pwa')({
+	dest: 'public',
+	runtimeCaching,
+});
 
-	module.exports = withPWA(nextConfig);
-}
+module.exports = withPWA(nextConfig);

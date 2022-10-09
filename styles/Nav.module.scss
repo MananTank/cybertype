@@ -1,16 +1,23 @@
 .nav {
 	display: flex;
 	align-items: center;
+	gap: 30px;
+	margin-top: auto;
 	justify-content: space-between;
-	padding-top: 30px;
+	padding-top: 20px;
 	padding-bottom: 20px;
-	border-bottom: 1px solid var(--typed-char);
+	color: var(--secondary);
+	--icon: var(--secondary);
+	font-size: 20px;
+
+	svg {
+		width: 24px;
+		height: 24px;
+	}
 
 	.appName {
-		font-size: 20px;
 		letter-spacing: 0.1em;
 		text-transform: lowercase;
-		color: var(--secondary);
 
 		@media (max-width: 1200px) {
 			font-size: 14px;
@@ -30,18 +37,15 @@
 	}
 
 	svg {
-		--icon: var(--secondary);
 		&:hover {
 			--icon: var(--primary);
 			transition: transform 100ms ease;
 			transform: scale(1.2);
 		}
 	}
+}
 
-	@media (max-width: 600px) {
-		svg {
-			width: 24px;
-			height: 24px;
-		}
-	}
+:global(body.typing) .nav {
+	opacity: 0;
+	transition: opacity 200ms ease;
 }

@@ -1,7 +1,7 @@
 .button {
 	background: none;
-	border: 1px solid var(--secondary);
 	border-radius: 4px;
+	border: 1px solid;
 	color: var(--secondary);
 	padding: 0.5em 1em;
 	outline: none;
@@ -13,7 +13,6 @@
 
 	&:hover {
 		color: var(--primary);
-		border-color: var(--primary);
 		transform: scale(1.1);
 	}
 
