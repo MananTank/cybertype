@@ -1,3 +1,7 @@
 :global(body:not(.show-pwa-install)) .button {
 	display: none !important;
 }
+
+.show-pwa-install {
+	padding: 0;
+}
