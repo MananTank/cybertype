@@ -1,6 +1,6 @@
 .themeSwitcher {
 	max-height: 600px;
-	overflow: scroll;
+
 	color: var(--island-fg);
 	padding: 30px;
 	padding-top: 80px;
@@ -16,6 +16,10 @@
 		font-size: 12px;
 		letter-spacing: 0.15em;
 		margin-bottom: 10px;
+	}
+
+	@media (max-width: 600px) {
+		overflow-y: auto;
 	}
 }
 
