@@ -59,8 +59,12 @@
 	margin-top: 150px;
 	margin-bottom: 40px;
 
-	@media (max-width: 900px) {
-		height: 290px;
+	@media (max-width: 1600px) {
+		height: 340px;
+	}
+
+	@media (max-width: 1400px) {
+		height: 300px;
 	}
 
 	@media (max-width: 600px) {
