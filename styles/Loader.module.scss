@@ -55,4 +55,15 @@
 	font-size: 30px;
 	opacity: 0;
 	animation: fade-in 400ms 200ms ease forwards;
+	// this should be same as wordsWrapper
+	margin-top: 150px;
+	margin-bottom: 40px;
+
+	@media (max-width: 900px) {
+		height: 290px;
+	}
+
+	@media (max-width: 600px) {
+		height: 240px;
+	}
 }
