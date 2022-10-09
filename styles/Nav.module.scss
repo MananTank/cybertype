@@ -1,21 +1,21 @@
 .nav {
 	display: flex;
 	align-items: center;
-	gap: 20px;
+	gap: 1em;
 	margin-top: auto;
 	justify-content: center;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	color: var(--secondary);
 	--icon: var(--secondary);
-	font-size: 20px;
+	font-size: 18px;
 
 	svg {
 		width: 24px;
 		height: 24px;
 	}
 
-	@media (max-width: 1400px) {
+	@media (max-width: 1600px) {
 		font-size: 12px;
 
 		svg {
