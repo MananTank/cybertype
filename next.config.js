@@ -4,9 +4,6 @@ const runtimeCaching = require('next-pwa/cache');
 const nextConfig = {
 	reactStrictMode: false,
 	swcMinify: true,
-	experimental: {
-		optimizeCss: true,
-	},
 };
 
 const withPWA = require('next-pwa')({
