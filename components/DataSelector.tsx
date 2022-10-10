@@ -21,7 +21,9 @@ const dataNameGroups = [
 	},
 ];
 
-export function DataSelector({ dispatch }: { dispatch: Dispatch<Action> }) {
+type Props = { dispatch: Dispatch<Action>; handleClose: () => void };
+
+export function DataSelector({ dispatch, handleClose }: Props) {
 	return (
 		<div className={styles.dataSelector}>
 			{dataNameGroups.map(dataNameGroup => (
@@ -33,7 +35,7 @@ export function DataSelector({ dispatch }: { dispatch: Dispatch<Action> }) {
 								key={value}
 								className={styles.option}
 								onClick={() => {
-									dispatch({ type: 'setShowDataSelector', data: false });
+									handleClose();
 									dispatch({ type: 'setDataName', data: value });
 								}}
 							>

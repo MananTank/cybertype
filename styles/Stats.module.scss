@@ -2,6 +2,26 @@
 	display: flex;
 	justify-content: center;
 	gap: 40px;
+	position: absolute;
+	width: 300px;
+	top: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	animation: fade-in 500ms ease;
+
+	:global(body:not(.typing)) & {
+		display: none;
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
 }
 
 .stat {
@@ -24,6 +44,12 @@
 	}
 }
 
-:global(body:not(.typing)) .statsContainer {
-	display: none;
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
 }

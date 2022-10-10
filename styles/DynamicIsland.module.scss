@@ -1,93 +1,122 @@
-.dynamicIslandContainer {
-	display: flex;
+.dynamicIsland {
+	color: var(--island-fg);
+	--icon: var(--island-fg);
 	position: absolute;
 	top: 30px;
 	left: 50%;
-	z-index: 1000;
 	transform: translateX(-50%);
 	gap: 10px;
-}
-
-.dynamicIsland {
-	background: var(--island-bg);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	max-width: calc(100vw - 40px);
-	--width: 240px;
-	width: calc(var(--width) + var(--data-name-len, 10) * 1ch);
-	height: 44px;
 	border-radius: 34px;
+	background: var(--island-bg);
+	padding: 0.5em 2em;
+	z-index: 50;
+	min-width: 280px;
+	transition: opacity 200ms cubic-bezier(0.666, 0, 0.4, 1),
+		transform 200ms cubic-bezier(0.666, 0, 0.4, 1);
 
-	transition: width 200ms cubic-bezier(0.666, 0, 0.4, 1),
-		height 250ms cubic-bezier(0.666, 0, 0.4, 1), background-color 200ms ease,
-		border-radius 200ms ease;
+	// move the island up and hide it when typing starts
+	:global(body.typing) & {
+		transform: translate(-50%, -100%);
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	// setting icons
+	& > * {
+		transition: opacity 300ms ease;
+	}
+
+	// when a island is open, hide the icons
+	[data-modal-open='true'] & > * {
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+.dynamicIslandExpander {
+	padding: 20px;
+	padding-top: 60px;
+	padding-bottom: 40px;
+	transform-origin: top;
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	background: var(--island-bg);
+	border-radius: 14px;
 	color: var(--island-fg);
+	z-index: 50;
+
+	&:not([data-show='true']) {
+		display: none;
+	}
+
+	--content-aspect-ratio: 0.833; // 400 / 480
+
+	animation: island-in 400ms cubic-bezier(0.666, 0, 0.4, 1) forwards;
+
+	&[data-closing='true'] {
+		animation: island-out 400ms cubic-bezier(0.666, 0, 0.4, 1) forwards;
+	}
+
+	&[data-closing='true'] > * {
+		animation: fade-out 300ms ease forwards;
+	}
+
+	&[data-show='true']:not([data-closing='true']) > * {
+		animation: fade-in 300ms ease forwards;
+	}
+}
+
+.close {
+	padding: 0;
 	--icon: var(--island-fg);
-	will-change: transform;
-	overflow: hidden;
-
-	@media (max-width: 1600px) {
-		--width: 200px;
-		height: 34px;
-	}
+	background: none;
+	border: none;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	z-index: 1;
+	cursor: pointer;
 }
 
-// when typing
-:global(body.typing) .dynamicIsland {
-	--width: 250px;
-	height: 70px;
-	background: transparent;
-}
-
-// when showing theme
-.dynamicIsland[data-show-theme='true'] {
-	border-radius: 14px;
-	display: block;
-	width: 800px;
-	height: 500px;
-
-	@media (max-width: 900px) {
-		width: calc(100vw - 40px);
-		height: 700px;
-	}
-
-	@media (max-width: 600px) {
-		height: 600px;
-	}
-}
-
-// when showing data selector
-.dynamicIsland[data-show-data-selector='true'] {
-	border-radius: 14px;
-	display: block;
-	width: 400px;
-	height: 500px;
-
-	@media (max-width: 700px) {
-		width: calc(100vw - 20px);
-	}
-}
-
-.dynamicIsland[data-show-theme='true'] .dashboard,
-.dynamicIsland[data-show-data-selector='true'] .dashboard {
-	display: none;
-}
-
-.dashboard {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-@keyframes float {
+@keyframes island-in {
 	0% {
-		transform: translateY(0px);
+		transform: translateX(-50%) scaleY(0) scaleX(var(--ratio));
 	}
-	50% {
-		transform: translateY(-20px);
+
+	100% {
+		transform: translateX(-50%) scale(1);
+	}
+}
+
+@keyframes island-out {
+	0% {
+		transform: translateX(-50%) scale(1);
 	}
 	100% {
-		transform: translateY(0px);
+		transform: translateX(-50%) scaleY(0) scaleX(var(--ratio));
+	}
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
 	}
 }

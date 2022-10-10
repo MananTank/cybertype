@@ -33,15 +33,12 @@
 	}
 }
 
-:global(body.typing) .settings {
-	display: none;
-}
-
 .dataSelector {
 	position: relative;
 	padding-right: 24px;
 	border-radius: 6px;
 	cursor: pointer;
+	white-space: nowrap;
 	font-size: 14px;
 
 	@media (max-width: 1600px) {

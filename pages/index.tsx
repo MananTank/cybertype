@@ -72,18 +72,6 @@ const Home: NextPage = () => {
 				<kbd>enter</kbd> to reset / change
 			</div>
 
-			{modalIsOpen && (
-				<Overlay
-					onClick={() => {
-						if (state.showThemes) {
-							dispatch({ type: 'setShowThemes', data: false });
-						} else if (state.showDataSelector) {
-							dispatch({ type: 'setShowDataSelector', data: false });
-						}
-					}}
-				/>
-			)}
-
 			<Nav />
 		</div>
 	);

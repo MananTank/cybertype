@@ -1,6 +1,6 @@
 .dataSelector {
-	padding: 20px;
-	padding-top: 60px;
+	width: 400px;
+	max-width: calc(100vw - 40px);
 
 	h3 {
 		margin-bottom: 20px;
