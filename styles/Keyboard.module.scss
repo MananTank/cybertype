@@ -1,147 +1,147 @@
 .keyboard {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 30px;
-	padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .row {
-	display: flex;
-	justify-content: center;
-	gap: 12px;
-	margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
 
-	@media (max-width: 600px) {
-		margin-bottom: 14px;
-		gap: 8px;
-	}
+  @media (max-width: 600px) {
+    margin-bottom: 14px;
+    gap: 8px;
+  }
 }
 
 .key {
-	position: relative;
+  position: relative;
 
-	// when pressing the key
-	&[data-pressed] .keyLabel {
-		border: 1px solid var(--color);
-		transform: scale(1.1);
-	}
+  // when pressing the key
+  &[data-pressed] .keyLabel {
+    border: 1px solid var(--color);
+    transform: scale(1.1);
+  }
 
-	// when hovering a typed key
-	&:not(.notTyped):hover {
-		.keyLabel {
-			border: 1px solid var(--color);
-			transform: scale(1.1);
-		}
+  // when hovering a typed key
+  &:not(.notTyped):hover {
+    .keyLabel {
+      border: 1px solid var(--color);
+      transform: scale(1.1);
+    }
 
-		.keyStat {
-			transform: translate(-50%, -150%);
-			opacity: 1;
-			visibility: visible;
-			transition: transform 100ms ease-out, opacity 100ms ease-out;
-		}
-	}
+    .keyStat {
+      transform: translate(-50%, -150%);
+      opacity: 1;
+      visibility: visible;
+      transition: transform 100ms ease-out, opacity 100ms ease-out;
+    }
+  }
 
-	@media (max-width: 600px) {
-		&[data-key='['],
-		&[data-key=']'],
-		&[data-key="'"] {
-			display: none;
-		}
-	}
+  @media (max-width: 600px) {
+    &[data-key='['],
+    &[data-key=']'],
+    &[data-key="'"] {
+      display: none;
+    }
+  }
 }
 
 .keyLabel {
-	font-size: 16px;
-	width: 2em;
-	height: 2em;
-	color: var(--color, var(--secondary));
-	box-shadow: 0em 0em 0.15em var(--color, var(--tertiary));
-	border-radius: 4px;
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  font-size: 16px;
+  width: 2em;
+  height: 2em;
+  color: var(--color, var(--secondary));
+  box-shadow: 0em 0em 0.15em var(--color, var(--tertiary));
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-	cursor: pointer;
-	transition: transform 200ms ease, color 200ms ease;
+  cursor: pointer;
+  transition: transform 200ms ease, color 200ms ease;
 
-	@media (max-width: 1600px) {
-		font-size: 12px;
-	}
+  @media (max-width: 1600px) {
+    font-size: 12px;
+  }
 
-	&::before {
-		content: '';
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		background: var(--color);
-		left: 50%;
-		top: 50%;
-		border-radius: 50%;
-		filter: blur(16px);
-		z-index: -1;
-		animation: glow var(--anim-duration) ease infinite alternate;
-	}
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: var(--color);
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    filter: blur(16px);
+    z-index: -1;
+    animation: glow var(--anim-duration) ease infinite alternate;
+  }
 }
 
 .keyStat {
-	position: absolute;
-	color: var(--color);
-	backdrop-filter: blur(20px);
-	background: rgba(255, 255, 255, 0.05);
-	border-bottom: 1px solid var(--color);
-	z-index: 2;
-	padding: 10px 30px;
-	transform: translate(-50%, -50%) scale(0.7);
-	pointer-events: none;
-	gap: 10px;
-	visibility: hidden;
-	opacity: 0;
-	top: 0;
-	left: 50%;
+  position: absolute;
+  color: var(--color);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--color);
+  z-index: 2;
+  padding: 10px 30px;
+  transform: translate(-50%, -50%) scale(0.7);
+  pointer-events: none;
+  gap: 10px;
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  left: 50%;
 
-	@media (max-width: 600px) {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translateX(-50%);
-	}
+  @media (max-width: 600px) {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-	.speed {
-		font-size: 40px;
-		display: flex;
-		align-items: center;
-		gap: 10px;
-	}
+  .speed {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-	.unit {
-		font-size: 20px;
-	}
+  .unit {
+    font-size: 20px;
+  }
 }
 
 .fast {
-	--color: var(--fast);
-	--anim-duration: 2s;
+  --color: var(--fast);
+  --anim-duration: 2s;
 }
 
 .normal {
-	--color: var(--normal);
-	--anim-duration: 2.5s;
+  --color: var(--normal);
+  --anim-duration: 2.5s;
 }
 
 .slow {
-	--color: var(--slow);
-	--anim-duration: 3s;
+  --color: var(--slow);
+  --anim-duration: 3s;
 }
 
 @keyframes glow {
-	from {
-		opacity: 0.2;
-		transform: translate(-50%, -50%) scale(0.7);
-	}
-	to {
-		opacity: 0.5;
-		transform: translate(-50%, -50%) scale(1.2);
-	}
+  from {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  to {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
 }

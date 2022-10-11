@@ -1,71 +1,73 @@
-import type { NextPage } from 'next';
-import styles from '../styles/index.module.scss';
-import { Words } from '../components/Words';
-import { KeyStats } from '../components/Keyboard';
-import { useAppState } from '../lib/state';
-import Head from 'next/head';
-import { Nav } from '../components/Nav';
-import { Loader } from '../components/Loader';
-import { DynamicIsland } from '../components/DynamicIsland';
-import { useData } from '../hooks/useData';
-import { useKeys } from '../hooks/useKeys';
-import { useTypingStarted } from '../hooks/useTyping';
+import type { NextPage } from 'next'
+import styles from '../styles/index.module.scss'
+import { Words } from '../components/Words'
+import { KeyStats } from '../components/Keyboard'
+import { useAppState } from '../lib/state'
+import Head from 'next/head'
+import { Nav } from '../components/Nav'
+import { Loader } from '../components/Loader'
+import { DynamicIsland } from '../components/DynamicIsland'
+import { useData } from '../hooks/useData'
+import { useKeys } from '../hooks/useKeys'
+import { useTypingStarted } from '../hooks/useTyping'
 
 const Home: NextPage = () => {
-	const [state, dispatch] = useAppState();
+  const [state, dispatch] = useAppState()
 
-	const targetKey =
-		state.words.length === 0 ? '' : state.words[state.progress.wordIndex][state.progress.charIndex];
+  const targetKey =
+    state.words.length === 0
+      ? ''
+      : state.words[state.progress.wordIndex][state.progress.charIndex]
 
-	// ignore typing when dynamic island is expanded
-	const ignoreTyping = state.showThemes || state.showDataSelector;
+  // ignore typing when dynamic island is expanded
+  const ignoreTyping = state.showThemes || state.showDataSelector
 
-	useData(state.dataName, dispatch);
-	useKeys(targetKey, dispatch, state.soundEnabled, ignoreTyping);
-	useTypingStarted(state.typingStarted);
+  useData(state.dataName, dispatch)
+  useKeys(targetKey, dispatch, state.soundEnabled, ignoreTyping)
+  useTypingStarted(state.typingStarted)
 
-	return (
-		<div className={styles.container}>
-			<Head>
-				<title> cybertype </title>
-				<meta name='theme-color' content='#171212' />
-				<meta
-					name='description'
-					content='Fast and Minimal Typing App - Improve your typing speed.'
-				/>
-				<meta
-					name='keywords'
-					content='cybertype, typing app, practice typing, simple typing app, improve typing speed'
-				/>
-				<meta name='viewport' content='width=device-width, initial-scale=1.0' />
-			</Head>
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title> cybertype </title>
+        <meta name="theme-color" content="#171212" />
+        <meta
+          name="description"
+          content="Fast and Minimal Typing App - Improve your typing speed."
+        />
+        <meta
+          name="keywords"
+          content="cybertype, typing app, practice typing, simple typing app, improve typing speed"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
 
-			{/* body  */}
+      {/* body  */}
 
-			<DynamicIsland state={state} dispatch={dispatch} />
+      <DynamicIsland state={state} dispatch={dispatch} />
 
-			{/* if there is data to show and no other data is being fetched */}
-			{state.data.length && !state.fetchingData ? (
-				<>
-					<Words
-						words={state.words}
-						progress={state.progress}
-						errorLocations={state.errorLocations}
-					/>
-				</>
-			) : (
-				<Loader />
-			)}
+      {/* if there is data to show and no other data is being fetched */}
+      {state.data.length && !state.fetchingData ? (
+        <>
+          <Words
+            words={state.words}
+            progress={state.progress}
+            errorLocations={state.errorLocations}
+          />
+        </>
+      ) : (
+        <Loader />
+      )}
 
-			<KeyStats keyStats={state.keyStats} />
+      <KeyStats keyStats={state.keyStats} />
 
-			<div className={styles.tips}>
-				<kbd>enter</kbd> to reset / change
-			</div>
+      <div className={styles.tips}>
+        <kbd>enter</kbd> to reset / change
+      </div>
 
-			<Nav />
-		</div>
-	);
-};
+      <Nav />
+    </div>
+  )
+}
 
-export default Home;
+export default Home

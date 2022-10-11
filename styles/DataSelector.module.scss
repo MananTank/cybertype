@@ -1,36 +1,36 @@
 .dataSelector {
-	width: 400px;
-	max-width: calc(100vw - 80px);
+  width: 400px;
+  max-width: calc(100vw - 80px);
 }
 
 .optionGroup {
-	margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
 .groupTitle {
-	margin-bottom: 20px;
-	font-size: 18px;
+  margin-bottom: 20px;
+  font-size: 18px;
 }
 
 .options {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .option {
-	font-size: 14px;
-	padding: 0.5em 1em;
-	color: var(--island-fg);
-	border: 1px solid;
-	cursor: pointer;
-	border-radius: 0.4em;
+  font-size: 14px;
+  padding: 0.5em 1em;
+  color: var(--island-fg);
+  border: 1px solid;
+  cursor: pointer;
+  border-radius: 0.4em;
 
-	@media (max-width: 1600px) {
-		font-size: 12px;
-	}
+  @media (max-width: 1600px) {
+    font-size: 12px;
+  }
 
-	&:hover {
-		transition: color 200ms ease, background-color 200ms ease;
-	}
+  &:hover {
+    transition: color 200ms ease, background-color 200ms ease;
+  }
 }

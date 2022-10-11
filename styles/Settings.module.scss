@@ -1,54 +1,54 @@
 .settings {
-	display: flex;
-	align-items: center;
-	gap: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 
-	button {
-		background: none;
-		outline: none;
-		border: none;
-	}
+  button {
+    background: none;
+    outline: none;
+    border: none;
+  }
 
-	@media (max-width: 1600px) {
-		svg {
-			width: 20px;
-			height: 20px;
-		}
-	}
+  @media (max-width: 1600px) {
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
 
 .icons {
-	display: flex;
-	align-items: center;
-	gap: 1em;
+  display: flex;
+  align-items: center;
+  gap: 1em;
 
-	& > * {
-		cursor: pointer;
-		display: flex;
-		align-items: center;
+  & > * {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 
-		&:hover {
-			transition: transform 100ms ease, color 100ms ease;
-		}
-	}
+    &:hover {
+      transition: transform 100ms ease, color 100ms ease;
+    }
+  }
 }
 
 .dataSelector {
-	position: relative;
-	padding-right: 24px;
-	border-radius: 6px;
-	cursor: pointer;
-	white-space: nowrap;
-	font-size: 14px;
+  position: relative;
+  padding-right: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 14px;
 
-	@media (max-width: 1600px) {
-		font-size: 12px;
-	}
+  @media (max-width: 1600px) {
+    font-size: 12px;
+  }
 
-	svg {
-		position: absolute;
-		right: 0px;
-		top: 50%;
-		transform: translateY(-50%);
-	}
+  svg {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }

@@ -1,34 +1,34 @@
 .nav {
-	display: flex;
-	align-items: center;
-	gap: 1em;
-	margin-top: auto;
-	justify-content: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	color: var(--secondary);
-	--icon: var(--secondary);
-	font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-top: auto;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: var(--secondary);
+  --icon: var(--secondary);
+  font-size: 18px;
 
-	// hide nav when typing starts
-	:global(body.typing) & {
-		opacity: 0;
-		transition: opacity 200ms ease;
-	}
+  // hide nav when typing starts
+  :global(body.typing) & {
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
 
-	svg {
-		width: 1.2em;
-		height: 1.2em;
-	}
+  svg {
+    width: 1.2em;
+    height: 1.2em;
+  }
 
-	a {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .appName {
-	letter-spacing: 0.1em;
-	text-transform: lowercase;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
 }
