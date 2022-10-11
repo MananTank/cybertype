@@ -27,9 +27,9 @@ export function DataSelector({ dispatch, handleClose }: Props) {
 	return (
 		<div className={styles.dataSelector}>
 			{dataNameGroups.map(dataNameGroup => (
-				<div key={dataNameGroup.group} className={styles.group}>
-					<h3> {dataNameGroup.group} </h3>
-					<div className={styles.grid}>
+				<div key={dataNameGroup.group} className={styles.optionGroup}>
+					<h3 className={styles.groupTitle}> {dataNameGroup.group} </h3>
+					<div className={styles.options}>
 						{dataNameGroup.values.map(value => (
 							<div
 								key={value}

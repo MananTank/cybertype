@@ -10,23 +10,15 @@
 	--icon: var(--secondary);
 	font-size: 18px;
 
+	// hide nav when typing starts
+	:global(body.typing) & {
+		opacity: 0;
+		transition: opacity 200ms ease;
+	}
+
 	svg {
-		width: 24px;
-		height: 24px;
-	}
-
-	@media (max-width: 1600px) {
-		font-size: 12px;
-
-		svg {
-			width: 18px;
-			height: 18px;
-		}
-	}
-
-	.appName {
-		letter-spacing: 0.1em;
-		text-transform: lowercase;
+		width: 1.2em;
+		height: 1.2em;
 	}
 
 	a {
@@ -36,7 +28,7 @@
 	}
 }
 
-:global(body.typing) .nav {
-	opacity: 0;
-	transition: opacity 200ms ease;
+.appName {
+	letter-spacing: 0.1em;
+	text-transform: lowercase;
 }

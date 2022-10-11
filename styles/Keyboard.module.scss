@@ -1,3 +1,23 @@
+.keyboard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 30px;
+	padding-bottom: 20px;
+}
+
+.row {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	margin-bottom: 12px;
+
+	@media (max-width: 600px) {
+		margin-bottom: 14px;
+		gap: 8px;
+	}
+}
+
 .key {
 	position: relative;
 
@@ -123,25 +143,5 @@
 	to {
 		opacity: 0.5;
 		transform: translate(-50%, -50%) scale(1.2);
-	}
-}
-
-.keyboard {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-top: 30px;
-	padding-bottom: 20px;
-}
-
-.row {
-	display: flex;
-	justify-content: center;
-	gap: 12px;
-	margin-bottom: 12px;
-
-	@media (max-width: 600px) {
-		margin-bottom: 14px;
-		gap: 8px;
 	}
 }

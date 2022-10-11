@@ -25,8 +25,8 @@ export function DynamicIsland({ state, dispatch }: Props) {
 	const isModalOpen = state.showThemes || state.showDataSelector;
 
 	return (
-		<div data-modal-open={isModalOpen}>
-			<div className={styles.dynamicIsland}>
+		<div data-island-open={isModalOpen}>
+			<div className={styles.pill}>
 				{/* memoized - don't pass unstable callbacks */}
 				<Settings dispatch={dispatch} soundEnabled={state.soundEnabled} dataName={state.dataName} />
 			</div>
@@ -38,7 +38,7 @@ export function DynamicIsland({ state, dispatch }: Props) {
 					timeTaken={state.totalTimeTaken}
 					errors={state.totalErrors}
 				/>
-				{/* theme switcher */}
+
 				<DynamicIslandExpander
 					show={state.showThemes}
 					handleClose={closeThemeSwitcher}
@@ -48,7 +48,7 @@ export function DynamicIsland({ state, dispatch }: Props) {
 
 				<DynamicIslandExpander
 					handleClose={closeDataSelector}
-					ratio={0.5}
+					ratio={0.6}
 					show={state.showDataSelector}
 					render={close => <DataSelector dispatch={dispatch} handleClose={close} />}
 				/>
@@ -106,7 +106,7 @@ function DynamicIslandExpander(props: {
 				} as React.CSSProperties
 			}
 		>
-			<button aria-label={'close'} className={styles.close} onClick={handleClose}>
+			<button aria-label={'close'} className={styles.closeIcon} onClick={handleClose}>
 				{closeIcon}
 			</button>
 			{props.render(handleClose)}

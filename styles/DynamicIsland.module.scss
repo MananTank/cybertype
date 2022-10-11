@@ -1,4 +1,4 @@
-.dynamicIsland {
+.pill {
 	color: var(--island-fg);
 	--icon: var(--island-fg);
 	position: absolute;
@@ -17,20 +17,20 @@
 	transition: opacity 200ms cubic-bezier(0.666, 0, 0.4, 1),
 		transform 200ms cubic-bezier(0.666, 0, 0.4, 1);
 
-	// move the island up and hide it when typing starts
+	// move the pill up and hide it when typing starts
 	:global(body.typing) & {
 		transform: translate(-50%, -100%);
 		opacity: 0;
 		pointer-events: none;
 	}
 
-	// setting icons
+	// pill content
 	& > * {
 		transition: opacity 300ms ease;
 	}
 
-	// when a island is open, hide the icons
-	[data-modal-open='true'] & > * {
+	// when the island is open, hide pill content - but not pill itself
+	[data-island-open='true'] & > * {
 		opacity: 0;
 		pointer-events: none;
 	}
@@ -53,24 +53,25 @@
 		display: none;
 	}
 
-	--content-aspect-ratio: 0.833; // 400 / 480
+	animation: island-open 400ms cubic-bezier(0.666, 0, 0.4, 1) forwards;
 
-	animation: island-in 400ms cubic-bezier(0.666, 0, 0.4, 1) forwards;
-
+	// island closing animation
 	&[data-closing='true'] {
-		animation: island-out 400ms cubic-bezier(0.666, 0, 0.4, 1) forwards;
+		animation: island-close 400ms cubic-bezier(0.666, 0, 0.4, 1) forwards;
 	}
 
+	// fade out the content of island when closing
 	&[data-closing='true'] > * {
 		animation: fade-out 300ms ease forwards;
 	}
 
+	// fade in the content of island when opening
 	&[data-show='true']:not([data-closing='true']) > * {
 		animation: fade-in 300ms ease forwards;
 	}
 }
 
-.close {
+.closeIcon {
 	padding: 0;
 	--icon: var(--island-fg);
 	background: none;
@@ -82,7 +83,7 @@
 	cursor: pointer;
 }
 
-@keyframes island-in {
+@keyframes island-open {
 	0% {
 		transform: translateX(-50%) scaleY(0) scaleX(var(--ratio));
 	}
@@ -92,7 +93,7 @@
 	}
 }
 
-@keyframes island-out {
+@keyframes island-close {
 	0% {
 		transform: translateX(-50%) scale(1);
 	}

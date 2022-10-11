@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect } from 'react';
+import { MutableRefObject, useEffect, useRef } from 'react';
 import { shouldIgnore } from '../lib/keys';
 import { getSounds, Sounds } from '../lib/sounds';
 import { Action } from '../lib/types';
@@ -7,13 +7,17 @@ export function useKeys(
 	targetKey: string,
 	dispatch: React.Dispatch<Action>,
 	soundEnabled: boolean,
-	soundsRef: MutableRefObject<Sounds | undefined>,
 	ignore: boolean
 ) {
+	const soundsRef = useRef<Sounds>();
+
+	if (!soundsRef.current && typeof window !== 'undefined') {
+		console.log('get sounds');
+		soundsRef.current = getSounds();
+	}
+
 	useEffect(() => {
 		if (ignore) return;
-
-		if (!soundsRef.current) soundsRef.current = getSounds();
 
 		function handleKeyDown(event: KeyboardEvent) {
 			if (ignore) return;
@@ -55,5 +59,5 @@ export function useKeys(
 		return () => {
 			window.removeEventListener('keydown', handleKeyDown);
 		};
-	}, [soundEnabled, dispatch, targetKey, soundsRef, ignore]);
+	}, [soundEnabled, dispatch, targetKey, ignore]);
 }

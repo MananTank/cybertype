@@ -22,7 +22,7 @@
 
 .tips {
 	z-index: -1;
-	pointer-events: none;
+
 	position: fixed;
 	bottom: 20px;
 	display: flex;
@@ -35,6 +35,12 @@
 	transition: opacity 200ms ease;
 	left: 0;
 	vertical-align: middle;
+
+	// hide when not typing
+	:global(body:not(.typing)) & {
+		pointer-events: none;
+		opacity: 0;
+	}
 
 	@media (max-width: 1500px) {
 		font-size: 12px;
@@ -49,8 +55,4 @@
 		margin-right: 10px;
 		border: 1px solid var(--secondary);
 	}
-}
-
-:global(body:not(.typing)) .tips {
-	opacity: 0;
 }
