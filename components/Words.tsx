@@ -24,19 +24,17 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
 			shouldScrollRef.current = true;
 		}, 500); // scrolling throttled to at most every 500ms
 
-		const activeWordEl = wordsRef.current!.querySelector(
-			`.${styles.current}.${styles.word}`
-		) as HTMLInputElement;
+		setTimeout(() => {
+			if (!wordsRef.current) return;
 
-		requestAnimationFrame(() => {
-			requestAnimationFrame(() => {
-				if (!wordsRef.current) return;
-				const top = activeWordEl.getBoundingClientRect().top;
-				const wordsTop = wordsRef.current.getBoundingClientRect().top;
+			const activeWordEl = wordsRef.current!.querySelector(
+				`.${styles.current}.${styles.word}`
+			) as HTMLElement;
 
-				wordsRef.current.style.setProperty('--depth', wordsTop - top + 'px');
-			});
-		});
+			const top = activeWordEl.getBoundingClientRect().top;
+			const wordsTop = wordsRef.current.getBoundingClientRect().top;
+			wordsRef.current.style.setProperty('--depth', wordsTop - top + 'px');
+		}, 50);
 	});
 
 	return (
