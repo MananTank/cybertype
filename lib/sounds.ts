@@ -18,7 +18,7 @@ export function getSounds() {
   return {
     packs: {
       nkCreams: packPlayer('nkCreams', 'aac', 0.3),
-      otemuBrowns: packPlayer('otemuBrowns', 'ogg', 0.3),
+      otemuBrowns: packPlayer('otemuBrowns', 'aac', 0.3),
       holyPandas: packPlayer('holyPandas', 'wav', 0.3)
     },
     error: () => error.play()
