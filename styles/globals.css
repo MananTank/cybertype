@@ -45,20 +45,20 @@ body::-webkit-scrollbar-thumb:hover {
   --island-fg: var(--bg);
 }
 
-/* Neon Pro */
+/* Campfire */
 [data-theme='1'] {
-  --bg: hsl(237deg 98% 17%);
-  --tertiary: hsl(223deg 71% 35%);
-  --secondary: hsl(223deg 100% 52%);
-  --primary: hsl(83deg 99% 45%);
-  --error: hsl(299deg 100% 50%);
+  --bg: hsl(216deg 5% 21%);
+  --tertiary: hsl(216deg 5% 36%);
+  --secondary: hsl(24deg 100% 78%);
+  --primary: hsl(13deg 85% 64%);
+  --error: hsl(0deg 85% 64%);
 
-  --fast: hsl(83deg 98% 56%);
-  --normal: hsl(223deg 100% 65%);
-  --slow: hsl(299deg 100% 58%);
+  --fast: hsl(0deg 0% 60%);
+  --normal: hsl(24deg 100% 78%);
+  --slow: hsl(13deg 85% 64%);
 
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+  --island-bg: hsl(13deg 85% 64%);
+  --island-fg: hsl(216deg 5% 21%);
 }
 
 /* Classic */

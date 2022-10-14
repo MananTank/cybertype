@@ -8,7 +8,7 @@ import { useState } from 'react'
 
 export const themes = [
   { name: 'Espresso', bar: 'hsl(0deg 12% 8%)' }, // 0 - bg works
-  { name: 'Neon Pro', bar: 'hsl(0deg 0% 67%)' }, // 1 - secondary
+  { name: 'Campfire', bar: 'hsl(0deg 0% 67%)' }, // 1 - secondary
   { name: 'Classic', bar: 'hsl(57deg 14% 67%)' }, // 2 - secondary
   { name: 'Halloween', bar: 'hsl(311deg 38% 6%)' }, // 3 - none worked - bg
   { name: 'Effervescent', bar: 'hsl(260deg 73% 66%)' }, // 4 - none worked - bg
