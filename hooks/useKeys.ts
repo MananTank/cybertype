@@ -29,6 +29,8 @@ export function useKeys(
         if (event.key === 'r' || event.key === '-' || event.key === '=') return
       }
 
+      event.preventDefault()
+
       if (event.key === 'Enter') {
         return dispatch({ type: 'reset' })
       }
