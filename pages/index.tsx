@@ -23,7 +23,7 @@ const Home: NextPage = () => {
   const ignoreTyping = state.showThemes || state.showDataSelector
 
   useData(state.dataName, dispatch)
-  useKeys(targetKey, dispatch, state.soundEnabled, ignoreTyping)
+  useKeys(targetKey, dispatch, state.soundEnabled, state.soundPack, ignoreTyping)
   useTypingStarted(state.typingStarted)
 
   return (

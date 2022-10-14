@@ -14,6 +14,7 @@
   padding: 0.5em 2em;
   z-index: 50;
   min-width: 280px;
+  max-width: calc(100vw - 40px);
   transition: opacity 200ms cubic-bezier(0.666, 0, 0.4, 1),
     transform 200ms cubic-bezier(0.666, 0, 0.4, 1);
 

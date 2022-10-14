@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useImmerReducer } from 'use-immer'
+import { SoundPack } from './sounds'
 import { State, Action, QuoteData } from './types'
 import { getRandomWords, createEmptyKeyStatRecord } from './utils'
 
@@ -23,6 +24,12 @@ export function stateReducer(state: State, action: Action): void {
       return
     }
 
+    case 'setSoundPack': {
+      state.soundPack = action.data
+      setLocalStorage('soundPack', action.data)
+      return
+    }
+
     case 'setShowDataSelector': {
       state.showDataSelector = action.data
       return
@@ -31,6 +38,11 @@ export function stateReducer(state: State, action: Action): void {
     case 'setDataName': {
       state.dataName = action.data
       setLocalStorage('dataName', action.data)
+      return
+    }
+
+    case 'setShowSoundSelector': {
+      state.showSoundSelector = action.data
       return
     }
 
@@ -246,7 +258,9 @@ function setLocalStorage(key: string, value: string) {
 
 export function getInitialState(): State {
   return {
+    soundPack: (getLocalStorage('soundPack') || 'nkCreams') as SoundPack,
     showDataSelector: false,
+    showSoundSelector: false,
     showThemes: false,
     soundEnabled: getLocalStorage('soundEnabled') === 'false' ? false : true,
     fetchingData: false,

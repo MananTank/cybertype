@@ -1,18 +1,18 @@
 import { useEffect, useRef } from 'react'
 import { shouldIgnore } from '../lib/keys'
-import { getSounds, Sounds } from '../lib/sounds'
+import { getSounds, SoundPack, Sounds } from '../lib/sounds'
 import { Action } from '../lib/types'
 
 export function useKeys(
   targetKey: string,
   dispatch: React.Dispatch<Action>,
   soundEnabled: boolean,
+  soundPack: SoundPack,
   ignore: boolean
 ) {
   const soundsRef = useRef<Sounds>()
 
   if (!soundsRef.current && typeof window !== 'undefined') {
-    console.log('get sounds')
     soundsRef.current = getSounds()
   }
 
@@ -29,10 +29,6 @@ export function useKeys(
         if (event.key === 'r' || event.key === '-' || event.key === '=') return
       }
 
-      if (soundEnabled && soundsRef.current) {
-        soundsRef.current.randomClick()
-      }
-
       if (event.key === 'Enter') {
         return dispatch({ type: 'reset' })
       }
@@ -47,10 +43,9 @@ export function useKeys(
 
       // play error if typed the wrong key
       if (soundEnabled && soundsRef.current) {
+        soundsRef.current.packs[soundPack]()
         if (targetKey !== event.key) {
-          soundsRef.current.error.play()
-        } else {
-          soundsRef.current.randomClick()
+          soundsRef.current.error()
         }
       }
     }

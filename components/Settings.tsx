@@ -1,6 +1,12 @@
 import { Dispatch, memo } from 'react'
 import { Action, State } from '../lib/types'
-import { SoundDisabled, SoundEnabledIcon, ChevronIcon, ThemeIcon } from './icons'
+import {
+  SoundDisabled,
+  SoundEnabledIcon,
+  ChevronIcon,
+  ThemeIcon,
+  SoundIcon
+} from './icons'
 import styles from '../styles/Settings.module.scss'
 import { ClientOnly } from './ClientOnly'
 import { PWAInstallButton } from './PWAInstallButton'
@@ -51,6 +57,10 @@ export const Settings = memo(function Settings({
           <ClientOnly ssr={SoundEnabledIcon}>
             {soundEnabled ? SoundEnabledIcon : SoundDisabled}
           </ClientOnly>
+        </button>
+
+        <button onClick={() => dispatch({ type: 'setShowSoundSelector', data: true })}>
+          {SoundIcon}
         </button>
 
         <PWAInstallButton />

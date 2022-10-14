@@ -1,3 +1,5 @@
+import { SoundPack } from './sounds'
+
 export type Progress = {
   wordIndex: number
   charIndex: number
@@ -13,6 +15,8 @@ export type KeyStatRecord = Record<string, KeyStat>
 export type ErrorLocations = Record<number, Record<number, boolean>> // { 0: { 1: true, 3: true  }}
 
 export type State = {
+  soundPack: SoundPack
+  showSoundSelector: boolean
   showDataSelector: boolean
   showThemes: boolean
   soundEnabled: boolean
@@ -57,6 +61,14 @@ export type Action =
   | {
       type: 'setShowDataSelector'
       data: boolean
+    }
+  | {
+      type: 'setShowSoundSelector'
+      data: boolean
+    }
+  | {
+      type: 'setSoundPack'
+      data: SoundPack
     }
 
 export type QuoteData = {

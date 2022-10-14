@@ -1,25 +1,42 @@
 import { Howl } from 'howler'
 
-export type Sounds = {
-  randomClick: () => void
-  error: Howl
-}
+function packPlayer(pack: string, format: string, volume: number) {
+  const clicks: Howl[] = []
+  for (let i = 0; i < 6; i++) {
+    clicks[i] = new Howl({ src: `/sounds/${pack}/click${i + 1}.${format}`, volume })
+  }
 
-export function getSounds(): Sounds {
-  const click1 = new Howl({ src: '/sounds/click1.aac', volume: 0.3 })
-  const click2 = new Howl({ src: '/sounds/click2.aac', volume: 0.3 })
-  const click3 = new Howl({ src: '/sounds/click3.aac', volume: 0.3 })
-  const click4 = new Howl({ src: '/sounds/click4.aac', volume: 0.3 })
-  const click5 = new Howl({ src: '/sounds/click5.aac', volume: 0.3 })
-  const click6 = new Howl({ src: '/sounds/click6.aac', volume: 0.3 })
-
-  const clicks = [click1, click2, click3, click4, click5, click6]
-
-  return {
-    randomClick: () => {
-      const i = Math.round(Math.random() * (clicks.length - 1))
-      clicks[i].play()
-    },
-    error: new Howl({ src: '/sounds/bubble.wav', volume: 0.3 })
+  return () => {
+    console.log('play sound')
+    const i = Math.round(Math.random() * 5)
+    clicks[i].play()
   }
 }
+
+export function getSounds() {
+  const error = new Howl({ src: '/sounds/error.wav', volume: 0.3 })
+  return {
+    packs: {
+      nkCreams: packPlayer('nkCreams', 'aac', 0.3),
+      otemuBrowns: packPlayer('otemuBrowns', 'ogg', 0.3),
+      holyPandas: packPlayer('holyPandas', 'wav', 0.3)
+    },
+    error: () => error.play()
+  }
+}
+
+type SoundPackInfo = {
+  name: string
+  id: SoundPack
+  type: string
+}
+
+export const soundPacks: SoundPackInfo[] = [
+  { name: 'NK Creams', id: 'nkCreams', type: 'Linear' },
+  { name: 'Otemu Browns', id: 'otemuBrowns', type: 'Tactile' },
+  { name: 'Holy Pandas', id: 'holyPandas', type: 'Tactile' }
+]
+
+export type Sounds = ReturnType<typeof getSounds>
+
+export type SoundPack = keyof Sounds['packs']

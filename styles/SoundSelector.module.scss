@@ -1,0 +1,41 @@
+.option {
+  padding: 14px;
+  color: var(--island-fg);
+  border: 1px solid;
+  cursor: pointer;
+  border-radius: 0.4em;
+  margin-bottom: 12px;
+  position: relative;
+
+  &[data-active='true'] {
+    background: var(--island-fg);
+    color: var(--island-bg);
+  }
+}
+
+.name {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.type {
+  font-size: 14px;
+}
+
+.options {
+  width: 400px;
+  max-width: calc(100vw - 80px);
+  gap: 0.5em;
+}
+
+.done {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  --icon: var(--island-bg);
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
