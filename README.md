@@ -19,7 +19,7 @@ Practice typing in various modes such as common 1k, 5k, 10k English Words, most 
 Find your weakness and keep practicing to improve your typing speed.
 
 <p align="center">
-<img src='./docs/heatmap.png' width='500' align='center' />
+<img src='./docs/heatmap.png' width='400' align='center' />
 </p>
 
 <br>
