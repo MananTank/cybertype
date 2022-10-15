@@ -59,7 +59,10 @@ export const Settings = memo(function Settings({
           </ClientOnly>
         </button>
 
-        <button onClick={() => dispatch({ type: 'setShowSoundSelector', data: true })}>
+        <button
+          onClick={() => dispatch({ type: 'setShowSoundSelector', data: true })}
+          aria-label="select key sound"
+        >
           {SoundIcon}
         </button>
 
