@@ -7,7 +7,6 @@ function packPlayer(pack: string, format: string, volume: number) {
   }
 
   return () => {
-    console.log('play sound')
     const i = Math.round(Math.random() * 5)
     clicks[i].play()
   }
@@ -17,9 +16,9 @@ export function getSounds() {
   const error = new Howl({ src: '/sounds/error.wav', volume: 0.3 })
   return {
     packs: {
-      nkCreams: packPlayer('nkCreams', 'aac', 0.3),
-      otemuBrowns: packPlayer('otemuBrowns', 'aac', 0.3),
-      holyPandas: packPlayer('holyPandas', 'wav', 0.3)
+      nkCreams: packPlayer('nkCreams', 'aac', 0.8),
+      otemuBrowns: packPlayer('otemuBrowns', 'aac', 0.8),
+      holyPandas: packPlayer('holyPandas', 'wav', 0.8)
     },
     error: () => error.play()
   }
