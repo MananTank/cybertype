@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import { dataNameGroups } from '../components/DataSelector'
 import { soundPacks } from './sounds'
+import { State } from './types'
 
 export function getLocalStorage(
   key: string,
@@ -50,4 +52,20 @@ dataNameGroups.forEach(group => {
 
 export const dataNameValidator = (str: string) => {
   return validDataNames.has(str)
+}
+
+// save the state items to local storage when they are updated
+
+export function useLocalStorage(state: State) {
+  useEffect(() => {
+    setLocalStorage('dataName', state.dataName)
+  }, [state.dataName])
+
+  useEffect(() => {
+    setLocalStorage('soundEnabled', String(state.soundEnabled))
+  }, [state.soundEnabled])
+
+  useEffect(() => {
+    setLocalStorage('soundPack', state.soundPack)
+  }, [state.soundPack])
 }

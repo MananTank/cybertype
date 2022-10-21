@@ -10,6 +10,7 @@ import { DynamicIsland } from '../components/DynamicIsland'
 import { useData } from '../hooks/useData'
 import { useKeys } from '../hooks/useKeys'
 import { useTypingStarted } from '../hooks/useTyping'
+import { useLocalStorage } from '../lib/localStorage'
 
 const Home: NextPage = () => {
   const [state, dispatch] = useAppState()
@@ -25,6 +26,7 @@ const Home: NextPage = () => {
   useData(state.dataName, dispatch)
   useKeys(targetKey, dispatch, state.soundEnabled, state.soundPack, ignoreTyping)
   useTypingStarted(state.typingStarted)
+  useLocalStorage(state)
 
   return (
     <div className={styles.container}>

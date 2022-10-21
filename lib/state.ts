@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { useImmerReducer } from 'use-immer'
 import {
-  setLocalStorage,
   getLocalStorage,
   dataNameValidator,
   booleanValidator,
@@ -33,7 +32,6 @@ export function stateReducer(state: State, action: Action): void {
 
     case 'setSoundPack': {
       state.soundPack = action.data
-      setLocalStorage('soundPack', action.data)
       return
     }
 
@@ -44,7 +42,6 @@ export function stateReducer(state: State, action: Action): void {
 
     case 'setDataName': {
       state.dataName = action.data
-      setLocalStorage('dataName', action.data)
       return
     }
 
@@ -60,20 +57,13 @@ export function stateReducer(state: State, action: Action): void {
 
     case 'back': {
       if (action.alt) {
-        // const beforeCharIndex = state.progress.charIndex;
-
         if (state.progress.charIndex === 0) {
           if (state.progress.wordIndex === 0) return
           state.progress.wordIndex--
-          // state.progress.rawCharIndex -= state.words[state.progress.wordIndex].length;
-        } else {
-          // state.progress.rawCharIndex -= beforeCharIndex;
         }
 
         state.progress.charIndex = 0
       } else {
-        // state.progress.rawCharIndex--;
-
         if (state.progress.charIndex === 0) {
           if (state.progress.wordIndex === 0) return
           state.progress.charIndex = state.words[state.progress.wordIndex - 1].length - 1
@@ -98,13 +88,11 @@ export function stateReducer(state: State, action: Action): void {
 
     case 'setSoundEnabled': {
       state.soundEnabled = action.data
-      setLocalStorage('soundEnabled', String(action.data))
       return
     }
 
     case 'keydown': {
       const targetKey = state.words[state.progress.wordIndex][state.progress.charIndex]
-
       const now = performance.now()
 
       if (!state.typingStarted) {
@@ -164,14 +152,12 @@ function handleKeyDown(
 
   state.totalTimeTaken = state.totalTimeTaken + (keyDownTime - state.lastCharTypedTime)
 
-  // state.progress.rawCharIndex++;
-
   // word not fully typed, progress to next character
   if (state.progress.charIndex < state.words[state.progress.wordIndex].length - 1) {
     state.progress.charIndex++
   } else {
     // if word fully typed, progress to next word if there is a next word
-    // set progress to next worda
+    // set progress to next word
     state.progress.wordIndex++
     state.progress.charIndex = 0
   }
@@ -238,7 +224,6 @@ function reset(state: State) {
   state.progress = {
     wordIndex: 0,
     charIndex: 0
-    // rawCharIndex: 0,
   }
 
   // set new words
@@ -247,22 +232,30 @@ function reset(state: State) {
 }
 
 export function getInitialState(): State {
+  const soundPack = getLocalStorage(
+    'soundPack',
+    'nkCreams',
+    soundPackValidator
+  ) as SoundPack
+
+  const soundEnabled =
+    getLocalStorage('soundEnabled', 'true', booleanValidator) === 'false' ? false : true
+
+  const dataName = getLocalStorage(
+    'dataName',
+    'English 200',
+    dataNameValidator
+  ) as State['dataName']
+
   return {
-    soundPack: getLocalStorage('soundPack', 'nkCreams', soundPackValidator) as SoundPack,
+    soundPack,
     showDataSelector: false,
     showSoundSelector: false,
     showThemes: false,
-    soundEnabled:
-      getLocalStorage('soundEnabled', 'true', booleanValidator) === 'false'
-        ? false
-        : true,
+    soundEnabled,
     fetchingData: false,
     data: [],
-    dataName: getLocalStorage(
-      'dataName',
-      'English 200',
-      dataNameValidator
-    ) as State['dataName'],
+    dataName,
     totalErrors: 0,
     typingStarted: false,
     words: [],
