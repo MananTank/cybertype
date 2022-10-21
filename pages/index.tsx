@@ -28,22 +28,7 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title> cybertype </title>
-        <meta name="theme-color" content="#171212" />
-        <meta
-          name="description"
-          content="Fast and Minimal Typing App - Improve your typing speed."
-        />
-        <meta
-          name="keywords"
-          content="cybertype, typing app, practice typing, simple typing app, improve typing speed"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </Head>
-
-      {/* body  */}
-
+      {AppHead}
       <DynamicIsland state={state} dispatch={dispatch} />
 
       {/* if there is data to show and no other data is being fetched */}
@@ -69,5 +54,21 @@ const Home: NextPage = () => {
     </div>
   )
 }
+
+const AppHead = (
+  <Head>
+    <title> cybertype </title>
+    <meta name="theme-color" content="#171212" />
+    <meta
+      name="description"
+      content="Fast and Minimal Typing App - Improve your typing speed."
+    />
+    <meta
+      name="keywords"
+      content="cybertype, typing app, practice typing, simple typing app, improve typing speed"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </Head>
+)
 
 export default Home
