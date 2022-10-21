@@ -1,5 +1,12 @@
 import { useRef } from 'react'
 import { useImmerReducer } from 'use-immer'
+import {
+  setLocalStorage,
+  getLocalStorage,
+  dataNameValidator,
+  booleanValidator,
+  soundPackValidator
+} from './localStorage'
 import { SoundPack } from './sounds'
 import { State, Action, QuoteData } from './types'
 import { getRandomWords, createEmptyKeyStatRecord } from './utils'
@@ -239,33 +246,23 @@ function reset(state: State) {
   appendWords(state, initWords)
 }
 
-function getLocalStorage(key: string) {
-  try {
-    return localStorage.getItem(key)
-  } catch (error) {
-    console.error(error)
-    return undefined // in server side rendering or when local storage is disabled
-  }
-}
-
-function setLocalStorage(key: string, value: string) {
-  try {
-    localStorage.setItem(key, value)
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 export function getInitialState(): State {
   return {
-    soundPack: (getLocalStorage('soundPack') || 'nkCreams') as SoundPack,
+    soundPack: getLocalStorage('soundPack', 'nkCreams', soundPackValidator) as SoundPack,
     showDataSelector: false,
     showSoundSelector: false,
     showThemes: false,
-    soundEnabled: getLocalStorage('soundEnabled') === 'false' ? false : true,
+    soundEnabled:
+      getLocalStorage('soundEnabled', 'true', booleanValidator) === 'false'
+        ? false
+        : true,
     fetchingData: false,
     data: [],
-    dataName: (getLocalStorage('dataName') || 'english-200') as State['dataName'],
+    dataName: getLocalStorage(
+      'dataName',
+      'English 200',
+      dataNameValidator
+    ) as State['dataName'],
     totalErrors: 0,
     typingStarted: false,
     words: [],

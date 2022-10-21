@@ -2,7 +2,7 @@ import { Dispatch } from 'react'
 import { Action } from '../lib/types'
 import styles from '../styles/DataSelector.module.scss'
 
-const dataNameGroups = [
+export const dataNameGroups = [
   {
     group: 'English',
     values: [
