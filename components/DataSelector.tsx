@@ -27,7 +27,8 @@ export const dataNameGroups = [
       'Git',
       'Bash',
       'Python',
-      'Java'
+      'Java',
+      'NET'
     ]
   }
 ]
