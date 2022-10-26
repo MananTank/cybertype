@@ -2,6 +2,11 @@ import { useEffect } from 'react'
 import { loadedData } from '../lib/state'
 import { Action, State } from '../lib/types'
 
+function dataNameToFileName(dataName: string) {
+  if (dataName === 'C#') return 'csharp'
+  return dataName.toLowerCase().replace(/ /g, '-')
+}
+
 export function useData(dataName: State['dataName'], dispatch: React.Dispatch<Action>) {
   useEffect(() => {
     let isCancelled = false
@@ -15,7 +20,7 @@ export function useData(dataName: State['dataName'], dispatch: React.Dispatch<Ac
     } else {
       dispatch({ type: 'setFetchingData', data: true })
 
-      const fileName = dataName.toLowerCase().replace(/ /g, '-')
+      const fileName = dataNameToFileName(dataName)
 
       fetch(`/json/${fileName}.json`)
         .then(res => res.json())
