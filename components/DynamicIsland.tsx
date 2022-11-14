@@ -52,7 +52,13 @@ export function DynamicIsland({ state, dispatch }: Props) {
           show={state.showThemes}
           handleClose={closeThemeSwitcher}
           ratio={0.2}
-          render={close => <ThemeSwitcher handleClose={close} />}
+          render={close => (
+            <ThemeSwitcher
+              selectedKeyboardScheme={state.keyboardScheme}
+              handleClose={close}
+              dispatch={dispatch}
+            />
+          )}
         />
 
         <DynamicIslandExpander

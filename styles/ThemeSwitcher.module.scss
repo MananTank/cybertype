@@ -5,6 +5,7 @@
   max-height: calc(100vh - 220px);
   display: grid;
   grid-gap: 40px 30px;
+  padding-bottom: 36px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
   @media (max-width: 900px) {
@@ -33,6 +34,32 @@
 
 .theme {
   cursor: pointer;
+}
+
+.title {
+  padding-bottom: 12px;
+}
+
+.option {
+  padding: 14px;
+  color: var(--island-fg);
+  border: 1px solid;
+  cursor: pointer;
+  border-radius: 0.4em;
+  margin-bottom: 12px;
+  position: relative;
+
+  &[data-active='true'] {
+    background: var(--island-fg);
+    color: var(--island-bg);
+  }
+  width: 50%;
+}
+
+.options {
+  max-width: calc(100vw - 80px);
+  gap: 0.5em;
+  display: flex;
 }
 
 .palette {

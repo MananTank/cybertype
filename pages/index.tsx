@@ -11,6 +11,7 @@ import { useData } from '../hooks/useData'
 import { useKeys } from '../hooks/useKeys'
 import { useTypingStarted } from '../hooks/useTyping'
 import { useLocalStorage } from '../lib/localStorage'
+import { ClientOnly } from '../components/ClientOnly'
 
 const Home: NextPage = () => {
   const [state, dispatch] = useAppState()
@@ -46,7 +47,9 @@ const Home: NextPage = () => {
         <Loader />
       )}
 
-      <KeyStats keyStats={state.keyStats} />
+      <ClientOnly>
+        <KeyStats keyStats={state.keyStats} keyboardScheme={state.keyboardScheme} />
+      </ClientOnly>
 
       <div className={styles.tips}>
         <kbd>enter</kbd> to reset / change

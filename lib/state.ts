@@ -4,7 +4,8 @@ import {
   getLocalStorage,
   dataNameValidator,
   booleanValidator,
-  soundPackValidator
+  soundPackValidator,
+  keyboardSchemeValidator
 } from './localStorage'
 import { SoundPack } from './sounds'
 import { State, Action, QuoteData } from './types'
@@ -32,6 +33,11 @@ export function stateReducer(state: State, action: Action): void {
 
     case 'setSoundPack': {
       state.soundPack = action.data
+      return
+    }
+
+    case 'setKeyboardScheme': {
+      state.keyboardScheme = action.data
       return
     }
 
@@ -241,6 +247,12 @@ export function getInitialState(): State {
   const soundEnabled =
     getLocalStorage('soundEnabled', 'true', booleanValidator) === 'false' ? false : true
 
+  const keyboardScheme = getLocalStorage(
+    'keyboardScheme',
+    'qwerty',
+    keyboardSchemeValidator
+  ) as State['keyboardScheme']
+
   const dataName = getLocalStorage(
     'dataName',
     'English 200',
@@ -249,6 +261,7 @@ export function getInitialState(): State {
 
   return {
     soundPack,
+    keyboardScheme,
     showDataSelector: false,
     showSoundSelector: false,
     showThemes: false,

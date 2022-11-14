@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { dataNameGroups } from '../components/DataSelector'
 import { soundPacks } from './sounds'
+import { schemes } from './schemes'
 import { State } from './types'
 
 export function getLocalStorage(
@@ -34,8 +35,15 @@ export function setLocalStorage(key: string, value: string) {
 
 const validSoundPackIds = new Set(soundPacks.map(pack => pack.id)) as Set<string>
 
+const validKeyboardSchemesIds = new Set(schemes.map(scheme => scheme.id)) as Set<string>
+
 export const soundPackValidator = (str: string) => {
   return validSoundPackIds.has(str)
+}
+
+export const keyboardSchemeValidator = (str: string) => {
+  console.log('valid ? ', validKeyboardSchemesIds.has(str))
+  return validKeyboardSchemesIds.has(str)
 }
 
 export const booleanValidator = (str: string) => {
@@ -60,6 +68,10 @@ export function useLocalStorage(state: State) {
   useEffect(() => {
     setLocalStorage('dataName', state.dataName)
   }, [state.dataName])
+
+  useEffect(() => {
+    setLocalStorage('keyboardScheme', state.keyboardScheme)
+  }, [state.keyboardScheme])
 
   useEffect(() => {
     setLocalStorage('soundEnabled', String(state.soundEnabled))

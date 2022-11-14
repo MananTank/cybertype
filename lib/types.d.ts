@@ -16,6 +16,7 @@ export type ErrorLocations = Record<number, Record<number, boolean>> // { 0: { 1
 
 export type State = {
   soundPack: SoundPack
+  keyboardScheme: string
   showSoundSelector: boolean
   showDataSelector: boolean
   showThemes: boolean
@@ -69,6 +70,10 @@ export type Action =
   | {
       type: 'setSoundPack'
       data: SoundPack
+    }
+  | {
+      type: 'setKeyboardScheme'
+      data: string
     }
 
 export type QuoteData = {

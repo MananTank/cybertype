@@ -2,16 +2,15 @@ import styles from '../styles/Keyboard.module.scss'
 import { KeyStatRecord } from '../lib/types'
 import { memo, useEffect, useRef } from 'react'
 import { getSpeed } from '../lib/utils'
+import { schemes } from '../lib/schemes'
+import { State } from '../lib/types'
 
 type KeyStatsProps = {
   keyStats: KeyStatRecord
+  keyboardScheme: State['keyboardScheme']
 }
 
-const row1 = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']']
-const row2 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', `'`]
-const row3 = ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/']
-
-export function KeyStats({ keyStats }: KeyStatsProps) {
+export function KeyStats({ keyStats, keyboardScheme }: KeyStatsProps) {
   const mapper = (keys: string[]) =>
     keys.map(key => {
       return (
@@ -24,11 +23,12 @@ export function KeyStats({ keyStats }: KeyStatsProps) {
       )
     })
 
+  let currentScheme = schemes.find(scheme => scheme.id === keyboardScheme) || schemes[0]
   return (
     <div className={styles.keyboard}>
-      <div className={styles.row}>{mapper(row1)}</div>
-      <div className={styles.row}>{mapper(row2)}</div>
-      <div className={styles.row}>{mapper(row3)}</div>
+      <div className={styles.row}>{mapper(currentScheme.row1)}</div>
+      <div className={styles.row}>{mapper(currentScheme.row2)}</div>
+      <div className={styles.row}>{mapper(currentScheme.row3)}</div>
     </div>
   )
 }
