@@ -1,6 +1,7 @@
 import { Dispatch } from 'react'
 import { Action } from '../lib/types'
 import styles from '../styles/DataSelector.module.scss'
+import { DoneIcon } from './icons'
 
 export const dataNameGroups = [
   {
@@ -33,9 +34,9 @@ export const dataNameGroups = [
   }
 ]
 
-type Props = { dispatch: Dispatch<Action>; handleClose: () => void }
+type Props = { dispatch: Dispatch<Action>; handleClose: () => void; selectedData: string }
 
-export function DataSelector({ dispatch, handleClose }: Props) {
+export function DataSelector({ dispatch, handleClose, selectedData }: Props) {
   return (
     <div className={styles.dataSelector}>
       {dataNameGroups.map(dataNameGroup => (
@@ -46,12 +47,16 @@ export function DataSelector({ dispatch, handleClose }: Props) {
               <div
                 key={value}
                 className={styles.option}
+                data-active={selectedData === value}
                 onClick={() => {
                   handleClose()
                   dispatch({ type: 'setDataName', data: value })
                 }}
               >
                 {value}
+                {selectedData === value && (
+                  <span className={styles.done}> {DoneIcon} </span>
+                )}
               </div>
             ))}
           </div>

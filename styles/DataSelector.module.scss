@@ -19,6 +19,9 @@
 }
 
 .option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 14px;
   padding: 0.5em 1em;
   color: var(--island-fg);
@@ -32,5 +35,22 @@
 
   &:hover {
     transition: color 200ms ease, background-color 200ms ease;
+  }
+
+  &[data-active='true'] {
+    background: var(--island-fg);
+    color: var(--island-bg);
+  }
+}
+
+.done {
+  position: relative;
+  top: 1px;
+  margin-left: 8px;
+  --icon: var(--island-bg);
+
+  svg {
+    width: 18px;
+    height: 18px;
   }
 }

@@ -59,7 +59,13 @@ export function DynamicIsland({ state, dispatch }: Props) {
           handleClose={closeDataSelector}
           ratio={0.6}
           show={state.showDataSelector}
-          render={close => <DataSelector dispatch={dispatch} handleClose={close} />}
+          render={close => (
+            <DataSelector
+              dispatch={dispatch}
+              handleClose={close}
+              selectedData={state.dataName}
+            />
+          )}
         />
 
         <DynamicIslandExpander
