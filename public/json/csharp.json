@@ -76,7 +76,6 @@
     "void",
     "volatile",
     "while",
-
     "add",
     "and",
     "alias",
@@ -119,9 +118,7 @@
     "when",
     "where",
     "with",
-    "yield"
-    ,
-
+    "yield",
     "OrderBy",
     "OrderByDescending",
     "ThenBy",
@@ -142,26 +139,20 @@
     "Select",
     "SelectMany",
     "Zip",
-
     "Skip",
     "SkipWhile",
     "Take ",
     "TakeWhile",
     "Chunk",
-
     "Join",
     "GroupJoin",
-
     "GroupBy",
     "ToLookup",
-
     "DefaultIfEmpty",
     "Empty",
     "Range",
     "Repeat",
-
     "SequenceEqual",
-
     "ElementAt",
     "ElementAtOrDefault",
     "First",
@@ -170,7 +161,6 @@
     "LastOrDefault",
     "Single",
     "SingleOrDefault",
-
     "AsEnumerable",
     "AsQueryable",
     "Cast",
@@ -178,7 +168,6 @@
     "ToArray",
     "ToDictionary",
     "ToList",
-
     "Concat",
     "Aggregate",
     "Average",
