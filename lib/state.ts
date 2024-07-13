@@ -98,6 +98,16 @@ export function stateReducer(state: State, action: Action): void {
       if (!state.typingStarted) {
         handleFirstKeyDown(state, now)
       }
+      if (
+        action.key === ' ' &&
+        state.progress.charIndex !== 0 &&
+        state.words[state.progress.wordIndex].length - 1 !== state.progress.charIndex
+      ) {
+        handleIncorrectKeyDown(state)
+        state.progress.wordIndex++
+        state.progress.charIndex = 0
+        return
+      }
 
       const isCorrect = action.key === targetKey
 
