@@ -1,8 +1,8 @@
-# cybertype
+# cybertype.io
 
 A Fast and Minimal Typing App.
 
-[Try it out!](https://cybertype-session.vercel.app)
+[Try it out!](https://cybertype.io/)
 
 Practice typing in various modes such as common 1k, 5k, 10k English Words, most commonly misspelled words, Quotes or Programming Language keywords for various languages such as JavaScript, HTML, CSS, Rust, Python, C++ etc with Sweet Mechanical Keyboard Sounds.
 
