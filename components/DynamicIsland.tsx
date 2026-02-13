@@ -103,15 +103,11 @@ export function DynamicIsland({ state, dispatch }: Props) {
               <motion.div
                 key="pill"
                 layoutId="dynamic-island"
-                className="bg-island-bg text-island-fg flex justify-center items-center p-1 md:px-5 will-change-transform"
+                className="bg-island-bg text-island-fg flex justify-center items-center p-1 pr-5 will-change-transform"
                 transition={islandSpringClose}
                 style={{ borderRadius: 24 }}
               >
-                <Settings
-                  dispatch={dispatch}
-                  soundEnabled={state.soundEnabled}
-                  dataName={state.dataName}
-                />
+                <Settings dispatch={dispatch} soundEnabled={state.soundEnabled} />
               </motion.div>
             ) : (
               // Expanded state

@@ -3,7 +3,7 @@
 import { Words } from '../components/Words'
 import { KeyStats } from '../components/Keyboard'
 import { useAppState } from '../lib/state'
-import { Footer } from '../components/Nav'
+import { Footer, SocialLinks } from '../components/Nav'
 import { Loader } from '../components/Loader'
 import { DynamicIsland } from '../components/DynamicIsland'
 import { useData } from '../hooks/useData'
@@ -48,13 +48,6 @@ export default function Home() {
       )}
 
       <KeyStats keyStats={state.keyStats} />
-
-      <div className="show-when-typing -z-1 fixed bottom-5 flex items-center justify-center text-sm max-[1500px]:text-xs mt-auto text-secondary w-full transition-opacity duration-200 left-0 align-middle">
-        <kbd className="text-[0.9em] pt-[0.2em] pb-[0.4em] px-[0.8em] rounded-[0.2em] block mr-2.5 border border-secondary">
-          enter
-        </kbd>{' '}
-        to reset / change
-      </div>
 
       <Footer />
     </div>

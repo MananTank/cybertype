@@ -40,7 +40,7 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
   })
 
   return (
-    <div className="shrink grow outline-none flex justify-center relative max-h-[12em] max-[1200px]:max-h-[12em] leading-[1.3] mt-[150px] z-1 text-[40px] max-[1600px]:text-[34px] max-[1400px]:text-[30px] max-[1200px]:text-[24px] max-[600px]:text-[20px]">
+    <div className="shrink grow outline-none flex justify-center relative max-h-[12em] max-[1200px]:max-h-[12em] leading-[1.3] mt-[150px] z-1 text-[40px] max-[1600px]:text-[34px] max-[1400px]:text-[30px] max-[1200px]:text-[24px] max-[600px]:text-[20px] select-none">
       {/* Progressive blur on both top and bottom */}
       <div
         className="relative overflow-hidden"

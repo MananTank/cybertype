@@ -1,6 +1,6 @@
 import { Dispatch, memo, useState } from 'react'
 import { Action, State } from '../lib/types'
-import { Volume2, VolumeX, ChevronDown, Palette, Music, Download } from 'lucide-react'
+import { Volume2, VolumeX, Palette, Music, Download, Languages } from 'lucide-react'
 import { ClientOnly } from './ClientOnly'
 import { motion } from 'motion/react'
 import { IslandButton } from './IslandButton'
@@ -9,13 +9,11 @@ import { usePWAInstall } from './PWAInstallButton'
 type SettingsProps = {
   dispatch: Dispatch<Action>
   soundEnabled: boolean
-  dataName: State['dataName']
 }
 
 export const Settings = memo(function Settings({
   dispatch,
-  soundEnabled,
-  dataName
+  soundEnabled
 }: SettingsProps) {
   const iconClass = 'size-5'
   const [hoveredButton, setHoveredButton] = useState<string | null>(null)
@@ -23,15 +21,39 @@ export const Settings = memo(function Settings({
 
   return (
     <div className="flex items-center gap-0" onMouseLeave={() => setHoveredButton(null)}>
+      {/* app name */}
+      <motion.div
+        layout
+        transition={{
+          duration: 0.6,
+          type: 'spring',
+          bounce: 0.15
+        }}
+        exit={{
+          opacity: 0,
+          filter: 'blur(12px)'
+        }}
+        initial={{
+          opacity: 0,
+          filter: 'blur(12px)'
+        }}
+        animate={{
+          opacity: 1,
+          filter: 'blur(0px)'
+        }}
+        className="text-sm tracking-[0.2em] uppercase pl-5 pr-3 font-semibold"
+      >
+        <span>cybertype</span>
+      </motion.div>
+
       {/* data selector */}
       <IslandButton
-        className="text-sm flex gap-1.5 items-center px-4"
+        aria-label="Select language/data"
         onClick={() => dispatch({ type: 'setActivePanel', data: 'data' })}
         onMouseEnter={() => setHoveredButton('data')}
         isHovered={hoveredButton === 'data'}
       >
-        {dataName}
-        <ChevronDown className="size-4" />
+        <Languages className={iconClass} />
       </IslandButton>
 
       {/* theme switcher */}

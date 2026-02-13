@@ -352,6 +352,7 @@
   }
 }
 
+
 /* Keyboard speed colors */
 .color-fast {
   --color: var(--fast);
@@ -392,8 +393,4 @@ body.typing .island-container {
 }
 body:not(.typing) .stats-container {
   display: none;
-}
-body.typing .nav {
-  opacity: 0;
-  transition: opacity 200ms ease;
 }

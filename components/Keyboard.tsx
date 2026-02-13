@@ -24,16 +24,10 @@ export function KeyStats({ keyStats }: KeyStatsProps) {
     })
 
   return (
-    <div className="flex flex-col items-center py-16 gap-2">
-      <div className="flex justify-center gap-2 max-[600px]:mb-3.5 max-[600px]:gap-2">
-        {mapper(row1)}
-      </div>
-      <div className="flex justify-center gap-2 max-[600px]:mb-3.5 max-[600px]:gap-2">
-        {mapper(row2)}
-      </div>
-      <div className="flex justify-center gap-2 max-[600px]:mb-3.5 max-[600px]:gap-2">
-        {mapper(row3)}
-      </div>
+    <div className="flex flex-col items-center py-16 gap-1.5 md:gap-2">
+      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row1)}</div>
+      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row2)}</div>
+      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row3)}</div>
     </div>
   )
 }
@@ -76,7 +70,7 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
     >
       <div
         className={cn(
-          'select-none text-base md:text-sm lowercase w-[2em] h-[2em] rounded-md relative flex justify-center items-center cursor-pointer transition-[transform,background] duration-200 ease-out',
+          'select-none text-xs md:text-sm lowercase w-[2em] h-[2em] rounded-md relative flex justify-center items-center cursor-pointer transition-[transform,background] duration-200 ease-out',
           isNotTyped ? 'bg-tertiary/30' : 'bg-(--color)/15',
           !isNotTyped &&
             'group-hover:scale-110 group-hover:bg-(--color)/25 group-data-pressed:scale-110 group-data-pressed:bg-(--color)/25'
