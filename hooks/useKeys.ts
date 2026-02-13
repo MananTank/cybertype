@@ -26,7 +26,18 @@ export function useKeys(
       // ignore these key combos
       const controlOrMeta = event.metaKey || event.ctrlKey
       if (controlOrMeta) {
-        if (event.key === 'r' || event.key === '-' || event.key === '=') return
+        // Allow browser shortcuts and app shortcuts (Cmd+K for island focus)
+        if (event.key === 'r' || event.key === '-' || event.key === '=' || event.key === 'k') return
+      }
+
+      // Check if focus is on interactive element
+      const target = event.target as HTMLElement
+      const isInIsland = target.closest('.island-container')
+
+      // Allow navigation keys (Enter, Space, Arrows, Tab) to work on island elements
+      if (isInIsland) {
+        const navKeys = ['Enter', ' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Tab', 'Escape']
+        if (navKeys.includes(event.key)) return
       }
 
       event.preventDefault()

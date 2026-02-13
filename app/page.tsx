@@ -29,7 +29,7 @@ export default function Home() {
   useLocalStorage(state)
 
   return (
-    <div className="min-h-screen max-w-[1100px] max-[1600px]:max-w-[1000px] max-[1400px]:max-w-[900px] max-[1200px]:max-w-[800px] mx-auto flex flex-col px-5 h-screen">
+    <div className="min-h-screen max-w-[1100px] xl:max-w-[1000px] max-[1400px]:max-w-[900px] xl:max-w-[800px] mx-auto flex flex-col px-5 h-screen">
       <ClientOnly>
         <div className="animate-[slide-in-down_500ms_500ms_ease_backwards]">
           <DynamicIsland state={state} dispatch={dispatch} />

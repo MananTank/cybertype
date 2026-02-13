@@ -4,6 +4,7 @@ import { memo, useEffect, useRef } from 'react'
 import { cn } from '../lib/utils'
 import { ErrorLocations, Progress } from '../lib/types'
 import { SpaceIcon } from './icons'
+import { motion, LayoutGroup } from 'motion/react'
 
 type WordsProps = {
   words: string[]
@@ -40,7 +41,7 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
   })
 
   return (
-    <div className="shrink grow outline-none flex justify-center relative max-h-[12em] max-[1200px]:max-h-[12em] leading-[1.3] mt-[150px] z-1 text-[40px] max-[1600px]:text-[34px] max-[1400px]:text-[30px] max-[1200px]:text-[24px] max-[600px]:text-[20px] select-none">
+    <div className="shrink grow outline-none flex justify-center relative max-h-[12em] leading-[1.3] mt-[150px] z-1 text-[40px] max-[1600px]:text-[34px] max-[1400px]:text-[30px] max-[1200px]:text-[24px] max-[600px]:text-[20px] select-none">
       {/* Progressive blur on both top and bottom */}
       <div
         className="relative overflow-hidden"
@@ -67,26 +68,28 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
           }}
         />
 
-        <div
-          ref={wordsRef}
-          className="text-center will-change-transform transition-transform duration-500 ease-out"
-          style={{
-            ['--top-offset' as string]: '2em',
-            transform: 'translateY(calc(var(--depth, 0px) + var(--top-offset)))'
-          }}
-        >
-          {words.map((word, wordIndex) => (
-            <Word
-              key={wordIndex}
-              word={word}
-              isTyped={progress.wordIndex > wordIndex}
-              isCurrent={progress.wordIndex === wordIndex}
-              isUpcoming={progress.wordIndex < wordIndex}
-              activeCharIndex={progress.charIndex}
-              errorsInWord={errorLocations[wordIndex]}
-            />
-          ))}
-        </div>
+        <LayoutGroup>
+          <div
+            ref={wordsRef}
+            className="text-center will-change-transform transition-transform duration-500 ease-out"
+            style={{
+              ['--top-offset' as string]: '2em',
+              transform: 'translateY(calc(var(--depth, 0px) + var(--top-offset)))'
+            }}
+          >
+            {words.map((word, wordIndex) => (
+              <Word
+                key={wordIndex}
+                word={word}
+                isTyped={progress.wordIndex > wordIndex}
+                isCurrent={progress.wordIndex === wordIndex}
+                isUpcoming={progress.wordIndex < wordIndex}
+                activeCharIndex={progress.charIndex}
+                errorsInWord={errorLocations[wordIndex]}
+              />
+            ))}
+          </div>
+        </LayoutGroup>
       </div>
     </div>
   )
@@ -124,20 +127,32 @@ const Word = memo(function Word({
         return (
           <span
             key={characterIndex}
-            className={cn('p-[0.03em] block', {
+            className={cn('p-[0.03em] block relative', {
               // Error state
               'text-error [text-shadow:0_0_0.5em_var(--error)]': isError,
-              // Current character animation
-              'animate-[cursor_500ms_ease_infinite]': isCurrentChar && !isError,
-              'animate-[cursor-error_200ms_ease_infinite]': isCurrentChar && isError,
-              // Active word characters (not error)
-              'text-primary': isCurrent && !isError,
-              // Typed word characters (not error)
-              'text-tertiary': isTypedChar && !isCurrent && !isError,
+              // Active word characters (not yet typed)
+              'text-primary': isCurrent && !isTypedChar && !isError,
+              // Typed characters (current word or past words)
+              'text-tertiary': isTypedChar && !isError,
               // Upcoming words (all words after current)
               'text-secondary': isUpcoming && !isError
             })}
           >
+            {/* Animated cursor line */}
+            {isCurrentChar && (
+              <motion.span
+                layoutId="typing-cursor"
+                className={cn(
+                  'absolute left-0 -translate-x-1 top-[0.2em] bottom-[0.2em] w-1 rounded-full animate-blink',
+                  isError ? 'bg-error' : 'bg-primary'
+                )}
+                transition={{
+                  type: 'spring',
+                  stiffness: 500,
+                  damping: 30
+                }}
+              />
+            )}
             {character === ' ' ? (
               <SpaceIcon
                 className={cn(

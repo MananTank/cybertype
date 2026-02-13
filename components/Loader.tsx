@@ -1,6 +1,6 @@
 export function Loader() {
   return (
-    <div className="h-[400px] max-[1600px]:h-[340px] max-[1400px]:h-[300px] max-[600px]:h-[240px] flex items-center justify-center text-3xl opacity-0 animate-[fade-in_400ms_200ms_ease_forwards] mt-[150px] mb-10">
+    <div className="h-[400px] xl:h-[340px] max-[1400px]:h-[300px] max-[600px]:h-[240px] flex items-center justify-center text-3xl opacity-0 animate-[fade-in_400ms_200ms_ease_forwards] mt-[150px] mb-10">
       <div className="inline-block relative w-20 h-20">
         <LoaderRing delay="-0.45s" />
         <LoaderRing delay="-0.3s" />

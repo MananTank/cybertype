@@ -30,7 +30,7 @@ function Stat(props: StatProps) {
   const { unit, value, className } = props
   return (
     <div className={className}>
-      <div className="flex gap-[0.1em] tracking-[1px] items-center text-[40px] max-[1600px]:text-[30px] text-primary">
+      <div className="flex gap-[0.1em] tracking-[1px] items-center text-[40px] xl:text-[30px] text-primary">
         <span> {value} </span>
         <span className="text-[0.5em] opacity-70">{unit}</span>
       </div>

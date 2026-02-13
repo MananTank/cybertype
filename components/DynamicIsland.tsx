@@ -30,11 +30,44 @@ const contentTransition = {
   ease: [0.25, 0.46, 0.45, 0.94] as const // ease-out-quad - gentle deceleration
 }
 
+// Map panel names to button aria-labels for refocusing
+const panelToButtonLabel: Record<string, string> = {
+  data: 'Select language/data',
+  themes: 'Change Theme',
+  sound: 'Select key sound'
+}
+
 export function DynamicIsland({ state, dispatch }: Props) {
   const closePanel = () => dispatch({ type: 'setActivePanel', data: null })
   const islandRef = useRef<HTMLDivElement>(null)
+  const previousPanelRef = useRef<string | null>(null)
 
   const isModalOpen = state.activePanel !== null
+
+  // Track previous panel for refocusing
+  useEffect(() => {
+    if (state.activePanel) {
+      previousPanelRef.current = state.activePanel
+    }
+  }, [state.activePanel])
+
+  // Refocus button when panel closes
+  useEffect(() => {
+    if (!isModalOpen && previousPanelRef.current) {
+      const label = panelToButtonLabel[previousPanelRef.current]
+      if (label) {
+        // Small delay to let the pill render
+        setTimeout(() => {
+          const button = document.querySelector(
+            `.island-container button[aria-label="${label}"]`
+          ) as HTMLElement
+          if (button) {
+            button.focus()
+          }
+        }, 100)
+      }
+    }
+  }, [isModalOpen])
 
   // Determine which expander content to show
   const expanderContent =
@@ -54,15 +87,39 @@ export function DynamicIsland({ state, dispatch }: Props) {
       />
     ) : null
 
-  // Close on Escape key or outside click
+  // Cmd+K to focus island, Escape to close
   useEffect(() => {
-    if (!isModalOpen) return
-
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
+      // Cmd+K or Ctrl+K to focus island buttons
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        if (isModalOpen) {
+          closePanel()
+        } else {
+          // Focus first button in the island
+          const firstButton = document.querySelector(
+            '.island-container button'
+          ) as HTMLElement
+          if (firstButton) {
+            firstButton.focus()
+          }
+        }
+        return
+      }
+
+      // Escape to close
+      if (e.key === 'Escape' && isModalOpen) {
         closePanel()
       }
     }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isModalOpen])
+
+  // Close on outside click
+  useEffect(() => {
+    if (!isModalOpen) return
 
     function handleClick(e: MouseEvent) {
       if (islandRef.current && !islandRef.current.contains(e.target as Node)) {
@@ -70,13 +127,8 @@ export function DynamicIsland({ state, dispatch }: Props) {
       }
     }
 
-    window.addEventListener('keydown', handleKeyDown)
     document.body.addEventListener('click', handleClick)
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-      document.body.removeEventListener('click', handleClick)
-    }
+    return () => document.body.removeEventListener('click', handleClick)
   }, [isModalOpen])
 
   return (
@@ -89,7 +141,7 @@ export function DynamicIsland({ state, dispatch }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 backdrop-blur-md bg-black/20 pointer-events-none"
+            className="fixed inset-0 z-40 backdrop-blur-md bg-bg/60 pointer-events-none"
           />
         )}
       </AnimatePresence>
@@ -103,7 +155,7 @@ export function DynamicIsland({ state, dispatch }: Props) {
               <motion.div
                 key="pill"
                 layoutId="dynamic-island"
-                className="bg-island-bg text-island-fg flex justify-center items-center p-1 pr-5 will-change-transform"
+                className="bg-secondary/20 text-secondary flex justify-center items-center p-1 pr-5 will-change-transform "
                 transition={islandSpringClose}
                 style={{ borderRadius: 24 }}
               >
@@ -115,7 +167,7 @@ export function DynamicIsland({ state, dispatch }: Props) {
                 ref={islandRef}
                 key="expander"
                 layoutId="dynamic-island"
-                className="bg-island-bg text-island-fg relative max-w-[calc(100vw-40px)] will-change-transform overflow-hidden"
+                className="bg-secondary/20  text-secondary relative max-w-[calc(100vw-40px)] will-change-transform overflow-hidden "
                 transition={islandSpringOpen}
                 style={{ borderRadius: 24 }}
               >

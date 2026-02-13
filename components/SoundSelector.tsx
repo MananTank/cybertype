@@ -2,7 +2,8 @@ import { SoundPack, soundPacks } from '../lib/sounds'
 import { Action } from '../lib/types'
 import { cn } from '../lib/utils'
 import { Check } from 'lucide-react'
-import { motion } from 'motion/react'
+import { useEffect, useRef } from 'react'
+import { useArrowNavigation } from '../hooks/useArrowNavigation'
 
 export type Props = {
   handleClose: () => void
@@ -11,8 +12,25 @@ export type Props = {
 }
 
 export function SoundSelector(props: Props) {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  // Focus current sound pack button on mount
+  useEffect(() => {
+    const currentIndex = soundPacks.findIndex(sp => sp.id === props.selectedSoundPack)
+    const buttons = containerRef.current?.querySelectorAll('button')
+    if (buttons && buttons[currentIndex]) {
+      buttons[currentIndex].focus()
+    }
+  }, [props.selectedSoundPack])
+
+  // Arrow key navigation
+  useArrowNavigation(containerRef)
+
   return (
-    <div className="max-w-[350px] w-[calc(100vw-80px)] flex flex-col gap-3 p-3">
+    <div
+      ref={containerRef}
+      className="max-w-[350px] w-[calc(100vw-80px)] flex flex-col gap-3 p-3"
+    >
       {soundPacks.map(soundPack => {
         const isActive = props.selectedSoundPack === soundPack.id
         return (
@@ -21,15 +39,21 @@ export function SoundSelector(props: Props) {
             data-active={isActive}
             className={cn(
               'group relative text-left p-4 rounded-xl cursor-pointer',
-              'transition-all duration-150 ease-out',
-              'outline-none focus-visible:ring-2 focus-visible:ring-island-fg focus-visible:ring-offset-2 focus-visible:ring-offset-island-bg',
+              'transition-all duration-150 ease-out outline-none',
               isActive
-                ? 'bg-island-fg text-island-bg'
-                : 'bg-island-fg/10 text-island-fg hover:bg-island-fg/20'
+                ? 'bg-bg text-primary'
+                : 'bg-secondary/10 text-secondary hover:bg-secondary/30 focus-visible:bg-secondary/30 hover:text-primary focus-visible:text-primary'
             )}
             onClick={() => {
               props.dispatch({ type: 'setSoundPack', data: soundPack.id })
               props.handleClose()
+            }}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                props.dispatch({ type: 'setSoundPack', data: soundPack.id })
+                props.handleClose()
+              }
             }}
           >
             {isActive && (
@@ -37,10 +61,10 @@ export function SoundSelector(props: Props) {
                 <Check className="w-6 h-6 text-island-bg" />
               </div>
             )}
-            <motion.h3 className="text-sm font-medium mb-1.5 tracking-wide">
-              {soundPack.name}
-            </motion.h3>
-            <motion.p className="text-xs opacity-70">{soundPack.type}</motion.p>
+            <h3 className="text-lg font-semibold mb-1.5 ">{soundPack.name}</h3>
+            <p className="text-xs font-medium opacity-70 uppercase tracking-widest">
+              {soundPack.type}
+            </p>
           </button>
         )
       })}
