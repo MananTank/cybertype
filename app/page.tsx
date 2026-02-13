@@ -3,7 +3,7 @@
 import { Words } from '../components/Words'
 import { KeyStats } from '../components/Keyboard'
 import { useAppState } from '../lib/state'
-import { Footer, SocialLinks } from '../components/Nav'
+import { Footer } from '../components/Nav'
 import { Loader } from '../components/Loader'
 import { DynamicIsland } from '../components/DynamicIsland'
 import { useData } from '../hooks/useData'
