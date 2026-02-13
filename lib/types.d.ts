@@ -14,11 +14,11 @@ export type KeyStatRecord = Record<string, KeyStat>
 
 export type ErrorLocations = Record<number, Record<number, boolean>> // { 0: { 1: true, 3: true  }}
 
+export type ActivePanel = 'themes' | 'data' | 'sound' | null
+
 export type State = {
   soundPack: SoundPack
-  showSoundSelector: boolean
-  showDataSelector: boolean
-  showThemes: boolean
+  activePanel: ActivePanel
   soundEnabled: boolean
   fetchingData: boolean
   data: string[]
@@ -42,34 +42,10 @@ export type Action =
   | { type: 'back'; alt: boolean }
   | { type: 'setData'; dataName: State['dataName']; data: State['data'] }
   | { type: 'setDataName'; data: State['dataName'] }
-  | {
-      type: 'setFetchingData'
-      data: boolean
-    }
-  | {
-      type: 'setSoundEnabled'
-      data: boolean
-    }
-  | {
-      type: 'setShowThemes'
-      data: boolean
-    }
-  | {
-      type: 'setShowTips'
-      data: boolean
-    }
-  | {
-      type: 'setShowDataSelector'
-      data: boolean
-    }
-  | {
-      type: 'setShowSoundSelector'
-      data: boolean
-    }
-  | {
-      type: 'setSoundPack'
-      data: SoundPack
-    }
+  | { type: 'setFetchingData'; data: boolean }
+  | { type: 'setSoundEnabled'; data: boolean }
+  | { type: 'setActivePanel'; data: ActivePanel }
+  | { type: 'setSoundPack'; data: SoundPack }
 
 export type QuoteData = {
   text: string

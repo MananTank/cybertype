@@ -1,49 +1,36 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BeforeInstallPromptEvent } from '../lib/types'
-import styles from '../styles/PWAInstallButton.module.scss'
-import { InstallIcon } from './icons'
-
-const showPWAClass = 'show-pwa-install'
-
-export function PWAInstallButton() {
-  useEffect(pwaInstallPrompt, [])
-
-  return (
-    <button onClick={HideInstallPrompt} className={styles.button}>
-      {InstallIcon}
-    </button>
-  )
-}
 
 // Initialize deferredPrompt for use later to show browser install prompt.
-let deferredPrompt: BeforeInstallPromptEvent | null
+let deferredPrompt: BeforeInstallPromptEvent | null = null
 
-async function HideInstallPrompt() {
-  // Hide the app provided install promotion
-  document.body.classList.remove(showPWAClass)
+export function usePWAInstall() {
+  const [showInstall, setShowInstall] = useState(false)
 
-  if (!deferredPrompt) return
+  useEffect(() => {
+    function handleBeforeInstallPrompt(event: Event) {
+      // Prevent the mini-info bar from appearing on mobile
+      event.preventDefault()
+      // Stash the event so it can be triggered later.
+      deferredPrompt = event as BeforeInstallPromptEvent
+      // Show the install button
+      setShowInstall(true)
+    }
 
-  // Show the install prompt
-  deferredPrompt.prompt()
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+  }, [])
 
-  // Optionally, send analytics event with outcome of user choice
-  // Wait for the user to respond to the prompt
-  // const { outcome } = await deferredPrompt.userChoice;
+  async function handleInstall() {
+    if (!deferredPrompt) return
 
-  // We've used the prompt, and can't use it again, throw it away
-  deferredPrompt = null
-}
+    // Show the install prompt
+    deferredPrompt.prompt()
 
-export function pwaInstallPrompt() {
-  window.addEventListener('beforeinstallprompt', event => {
-    // Prevent the mini-info bar from appearing on mobile
-    event.preventDefault()
-    // Stash the event so it can be triggered later.
-    deferredPrompt = event as BeforeInstallPromptEvent
-    // Update UI notify the user they can install the PWA
-    document.body.classList.add(showPWAClass)
+    // We've used the prompt, and can't use it again, throw it away
+    deferredPrompt = null
+    setShowInstall(false)
+  }
 
-    // Optionally, send analytics event that PWA install promo was shown.
-  })
+  return { showInstall, handleInstall }
 }

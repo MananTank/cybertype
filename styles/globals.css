@@ -1,286 +1,403 @@
-body {
-  background: var(--bg);
+@import 'tailwindcss';
+
+/* Default theme colors (Serendipity) */
+:root {
+  --bg: oklch(25% 0 0);
+  --secondary: oklch(62% 0.01 140);
+  --tertiary: oklch(38% 0 0);
+  --primary: oklch(78% 0.18 85);
+  --error: oklch(85% 0.06 90);
+  --fast: oklch(100% 0 0);
+  --normal: oklch(78% 0.18 85);
+  --slow: oklch(62% 0.25 25);
+  --island-bg: oklch(78% 0.18 85);
+  --island-fg: oklch(25% 0 0);
 }
 
-/* custom scroll bar styles  */
-
-body::-webkit-scrollbar {
-  width: 6px;
+/* Define theme colors that reference CSS variables - inline keeps var() at runtime */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-error: var(--error);
+  --color-fast: var(--fast);
+  --color-normal: var(--normal);
+  --color-slow: var(--slow);
+  --color-island-bg: var(--island-bg);
+  --color-island-fg: var(--island-fg);
 }
 
-/* Track */
-body::-webkit-scrollbar-track {
-  background: var(--bodybg);
+/* Base styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: var(--tertiary);
+  }
+
+  body::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+  }
 }
 
-/* Handle */
-body::-webkit-scrollbar-thumb {
-  background: var(--tertiary);
-}
+/* Theme overrides - all values explicit (no var() for island colors to avoid circular refs) */
 
-/* Handle on hover */
-body::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* Espresso */
+/* Espresso - warm coffee tones */
 [data-theme='0'] {
-  --bg: hsl(0deg 12% 8%);
-  --secondary: hsl(27deg 31% 70%);
-  --tertiary: hsl(0deg 11% 24%);
-  --primary: hsl(39deg 100% 61%);
-  --error: hsl(4deg 96% 52%);
-
-  --fast: hsl(39deg 100% 86%);
-  --normal: hsl(39deg 100% 61%);
-  --slow: hsl(4deg 96% 52%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+  --bg: oklch(15% 0.02 30);
+  --secondary: oklch(75% 0.08 55);
+  --tertiary: oklch(30% 0.03 30);
+  --primary: oklch(80% 0.2 75);
+  --error: oklch(60% 0.28 25);
+  --fast: oklch(92% 0.12 75);
+  --normal: oklch(80% 0.2 75);
+  --slow: oklch(60% 0.28 25);
+  --island-bg: oklch(80% 0.2 75);
+  --island-fg: oklch(15% 0.02 30);
 }
 
-/* Campfire */
+/* Campfire - cozy orange warmth */
 [data-theme='1'] {
-  --bg: hsl(216deg 5% 21%);
-  --tertiary: hsl(216deg 5% 36%);
-  --secondary: hsl(24deg 100% 78%);
-  --primary: hsl(13deg 85% 64%);
-  --error: hsl(0deg 85% 64%);
-
-  --fast: hsl(0deg 0% 60%);
-  --normal: hsl(24deg 100% 78%);
-  --slow: hsl(13deg 85% 64%);
-
-  --island-bg: hsl(13deg 85% 64%);
-  --island-fg: hsl(216deg 5% 21%);
+  --bg: oklch(28% 0.02 250);
+  --tertiary: oklch(42% 0.02 250);
+  --secondary: oklch(85% 0.15 55);
+  --primary: oklch(72% 0.2 35);
+  --error: oklch(62% 0.26 25);
+  --fast: oklch(65% 0.02 0);
+  --normal: oklch(85% 0.15 55);
+  --slow: oklch(72% 0.2 35);
+  --island-bg: oklch(72% 0.2 35);
+  --island-fg: oklch(28% 0.02 250);
 }
 
-/* Classic */
+/* Classic - vintage paper */
 [data-theme='2'] {
-  --bg: hsl(57deg 14% 67%);
-  --tertiary: hsl(60deg 14% 76%);
-  --secondary: hsl(69deg 8% 10%);
-  --primary: hsl(60deg 33% 91%);
-  --error: hsl(4deg 64% 52%);
-
-  --fast: hsl(0deg 0% 100%);
-  --normal: hsl(60deg 100% 77%);
-  --slow: hsl(4deg 100% 50%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--secondary);
+  --bg: oklch(75% 0.04 95);
+  --tertiary: oklch(82% 0.04 95);
+  --secondary: oklch(20% 0.02 110);
+  --primary: oklch(94% 0.06 100);
+  --error: oklch(55% 0.22 25);
+  --fast: oklch(100% 0 0);
+  --normal: oklch(90% 0.18 100);
+  --slow: oklch(55% 0.28 25);
+  --island-bg: oklch(94% 0.06 100);
+  --island-fg: oklch(20% 0.02 110);
 }
 
-/* halloween */
+/* Halloween - spooky neon */
 [data-theme='3'] {
-  --bg: hsl(311deg 38% 6%);
-  --tertiary: hsl(319deg 38% 18%);
-  --secondary: hsl(26deg 100% 50%);
-  --primary: hsl(76deg 99% 61%);
-  --error: hsl(274deg 99% 56%);
-
-  --fast: hsl(76deg 99% 61%);
-  --normal: hsl(274deg 100% 81%);
-  --slow: hsl(26deg 100% 50%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+  --bg: oklch(12% 0.08 320);
+  --tertiary: oklch(25% 0.1 320);
+  --secondary: oklch(70% 0.22 50);
+  --primary: oklch(88% 0.28 125);
+  --error: oklch(60% 0.3 300);
+  --fast: oklch(88% 0.28 125);
+  --normal: oklch(82% 0.2 300);
+  --slow: oklch(70% 0.22 50);
+  --island-bg: oklch(88% 0.28 125);
+  --island-fg: oklch(12% 0.08 320);
 }
 
-/* effervescent */
+/* Effervescent - bubbly purple */
 [data-theme='4'] {
-  --bg: hsl(260deg 73% 66%);
-  --tertiary: hsl(287deg 100% 80%);
-  --secondary: hsl(263deg 35% 7%);
-  --primary: hsl(95deg 100% 78%);
-  --error: hsl(55deg 100% 65%);
-
-  --fast: hsl(95deg 100% 74%);
-  --normal: hsl(55deg 100% 50%);
-  --slow: hsl(336deg 100% 85%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--secondary);
+  --bg: oklch(60% 0.2 290);
+  --tertiary: oklch(82% 0.22 310);
+  --secondary: oklch(15% 0.08 290);
+  --primary: oklch(90% 0.28 140);
+  --error: oklch(85% 0.22 95);
+  --fast: oklch(88% 0.26 140);
+  --normal: oklch(82% 0.28 95);
+  --slow: oklch(88% 0.2 350);
+  --island-bg: oklch(90% 0.28 140);
+  --island-fg: oklch(15% 0.08 290);
 }
 
-/* Blackhole */
+/* Blackhole - deep space */
 [data-theme='5'] {
-  --bg: hsl(220deg 20% 3%);
-  --tertiary: hsl(220deg 29% 13%);
-  --secondary: hsl(221deg 20% 35%);
-  --primary: hsl(221deg 100% 92%);
-  --error: hsl(0deg 100% 50%);
-
-  --fast: hsl(0deg 0% 100%);
-  --normal: hsl(221deg 19% 48%);
-  --slow: hsl(0deg 100% 50%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+  --bg: oklch(8% 0.02 250);
+  --tertiary: oklch(20% 0.04 250);
+  --secondary: oklch(42% 0.06 250);
+  --primary: oklch(95% 0.08 250);
+  --error: oklch(55% 0.3 25);
+  --fast: oklch(100% 0 0);
+  --normal: oklch(55% 0.06 250);
+  --slow: oklch(55% 0.3 25);
+  --island-bg: oklch(95% 0.08 250);
+  --island-fg: oklch(8% 0.02 250);
 }
 
-/* Serendipity */
+/* Serendipity - golden glow */
 [data-theme='6'] {
-  --bg: hsl(0deg 0% 16%);
-  --tertiary: hsl(0deg 0% 28%);
-  --secondary: hsl(118deg 2% 56%);
-  --primary: hsl(47deg 84% 48%);
-  --error: hsl(51deg 24% 79%);
-
-  --fast: hsl(0deg 0% 100%);
-  --normal: hsl(47deg 84% 48%);
-  --slow: hsl(0deg 92% 56%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+  --bg: oklch(25% 0 0);
+  --tertiary: oklch(38% 0 0);
+  --secondary: oklch(62% 0.01 140);
+  --primary: oklch(78% 0.18 85);
+  --error: oklch(85% 0.06 90);
+  --fast: oklch(100% 0 0);
+  --normal: oklch(78% 0.18 85);
+  --slow: oklch(62% 0.25 25);
+  --island-bg: oklch(78% 0.18 85);
+  --island-fg: oklch(25% 0 0);
 }
 
-/* Elixir */
+/* Elixir - magical purple-orange */
 [data-theme='7'] {
-  --bg: hsl(243deg 55% 14%);
-  --tertiary: hsl(257deg 50% 25%);
-  --secondary: hsl(236deg 78% 62%);
-  --primary: hsl(23deg 97% 54%);
-  --error: hsl(82deg 97% 61%);
-
-  --fast: hsl(82deg 97% 61%);
-  --normal: hsl(236deg 81% 76%);
-  --slow: hsl(23deg 97% 54%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+  --bg: oklch(18% 0.12 280);
+  --tertiary: oklch(32% 0.12 285);
+  --secondary: oklch(60% 0.2 265);
+  --primary: oklch(72% 0.22 45);
+  --error: oklch(85% 0.26 130);
+  --fast: oklch(85% 0.26 130);
+  --normal: oklch(78% 0.15 265);
+  --slow: oklch(72% 0.22 45);
+  --island-bg: oklch(72% 0.22 45);
+  --island-fg: oklch(18% 0.12 280);
 }
 
-/* Eudaemonia */
+/* Eudaemonia - warm cream & crimson */
 [data-theme='8'] {
-  --bg: hsl(53deg 7% 75%);
-  --tertiary: hsl(53deg 7% 60%);
-  --secondary: hsl(195deg 5% 15%);
-  --primary: hsl(344deg 98% 33%);
-  --error: hsl(0deg 0% 100%);
-
-  --fast: hsl(53deg 100% 76%);
-  --normal: hsl(0deg 0% 100%);
-  --slow: hsl(344deg 98% 33%);
-
-  --island-bg: var(--primary);
-  --island-fg: hsl(53deg 7% 90%);
+  --bg: oklch(80% 0.03 95);
+  --tertiary: oklch(68% 0.03 95);
+  --secondary: oklch(22% 0.02 220);
+  --primary: oklch(45% 0.22 15);
+  --error: oklch(100% 0 0);
+  --fast: oklch(88% 0.18 100);
+  --normal: oklch(100% 0 0);
+  --slow: oklch(45% 0.22 15);
+  --island-bg: oklch(45% 0.22 15);
+  --island-fg: oklch(92% 0.02 95);
 }
 
-/* Tranquillity */
+/* Tranquillity - soft lavender */
 [data-theme='9'] {
-  --bg: hsl(270deg 3% 85%);
-  --tertiary: hsl(0deg 0% 100%);
-  --secondary: hsl(209deg 10% 50%);
-  --primary: hsl(320deg 9% 7%);
-  --error: hsl(19deg 97% 57%);
-
-  --fast: hsl(0deg 0% 100%);
-  --normal: hsl(209deg 10% 80%);
-  --slow: hsl(19deg 97% 57%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+  --bg: oklch(88% 0.01 290);
+  --tertiary: oklch(100% 0 0);
+  --secondary: oklch(55% 0.04 240);
+  --primary: oklch(18% 0.02 340);
+  --error: oklch(72% 0.2 45);
+  --fast: oklch(100% 0 0);
+  --normal: oklch(85% 0.04 240);
+  --slow: oklch(72% 0.2 45);
+  --island-bg: oklch(18% 0.02 340);
+  --island-fg: oklch(88% 0.01 290);
 }
 
-/* aesthete */
+/* Aesthete - matrix green */
 [data-theme='10'] {
-  --bg: hsl(0deg 0% 13%);
-  --tertiary: hsl(0deg 0% 25%);
-  --secondary: hsl(20deg 3% 79%);
-  --primary: hsl(129deg 57% 39%);
-  --error: hsl(5deg 72% 43%);
-
-  --fast: hsl(129deg 73% 44%);
-  --normal: hsl(0deg 0% 100%);
-  --slow: hsl(5deg 77% 53%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+  --bg: oklch(18% 0 0);
+  --tertiary: oklch(32% 0 0);
+  --secondary: oklch(82% 0.02 50);
+  --primary: oklch(55% 0.2 145);
+  --error: oklch(50% 0.2 25);
+  --fast: oklch(62% 0.24 145);
+  --normal: oklch(100% 0 0);
+  --slow: oklch(58% 0.22 25);
+  --island-bg: oklch(55% 0.2 145);
+  --island-fg: oklch(18% 0 0);
 }
 
-/* Sunlit */
+/* Sunlit - bright ocean */
 [data-theme='11'] {
-  --bg: hsl(210deg 100% 30%);
-  --tertiary: hsl(210deg 64% 43%);
-  --secondary: hsl(210deg 64% 75%);
-  --primary: hsl(58deg 95% 61%);
-  --error: hsl(182deg 100% 70%);
-
-  --fast: hsl(170deg 100% 62%);
-  --normal: hsl(0deg 0% 100%);
-  --slow: hsl(63deg 95% 61%);
-
-  --island-bg: var(--primary);
-  --island-fg: hsl(210deg 100% 25%);
+  --bg: oklch(42% 0.15 250);
+  --tertiary: oklch(52% 0.12 250);
+  --secondary: oklch(78% 0.1 250);
+  --primary: oklch(90% 0.22 100);
+  --error: oklch(85% 0.18 195);
+  --fast: oklch(85% 0.2 175);
+  --normal: oklch(100% 0 0);
+  --slow: oklch(90% 0.22 105);
+  --island-bg: oklch(90% 0.22 100);
+  --island-fg: oklch(35% 0.15 250);
 }
 
-/* witch craft */
+/* Witch Craft - mystical teal */
 [data-theme='12'] {
-  --bg: hsl(205deg 37% 8%);
-  --tertiary: hsl(180deg 41% 17%);
-  --secondary: hsl(19deg 75% 57%);
-  --primary: hsl(179deg 31% 62%);
-  --error: hsl(0deg 0% 100%);
-
-  --fast: hsl(157deg 16% 58%);
-  --normal: hsl(0deg 0% 100%);
-  --slow: hsl(19deg 75% 57%);
-
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+  --bg: oklch(15% 0.06 210);
+  --tertiary: oklch(28% 0.08 190);
+  --secondary: oklch(68% 0.16 45);
+  --primary: oklch(70% 0.1 190);
+  --error: oklch(100% 0 0);
+  --fast: oklch(65% 0.06 170);
+  --normal: oklch(100% 0 0);
+  --slow: oklch(68% 0.16 45);
+  --island-bg: oklch(70% 0.1 190);
+  --island-fg: oklch(15% 0.06 210);
 }
 
-/* mechanical */
+/* Mechanical - industrial red */
 [data-theme='13'] {
-  --bg: hsl(210deg 11% 15%);
-  --tertiary: hsl(210deg 10% 23%);
-  --secondary: hsl(208deg 7% 46%);
-  --primary: hsl(359deg 77% 56%);
-  --error: hsl(0deg 0% 100%);
-
-  --fast: hsl(0deg 0% 100%);
-  --normal: hsl(210deg 5% 52%);
-  --slow: hsl(359deg 100% 70%);
-
-  --island-bg: var(--secondary);
-  --island-fg: white;
+  --bg: oklch(22% 0.02 240);
+  --tertiary: oklch(30% 0.02 240);
+  --secondary: oklch(52% 0.02 240);
+  --primary: oklch(60% 0.24 25);
+  --error: oklch(100% 0 0);
+  --fast: oklch(100% 0 0);
+  --normal: oklch(58% 0.02 240);
+  --slow: oklch(70% 0.28 25);
+  --island-bg: oklch(52% 0.02 240);
+  --island-fg: oklch(100% 0 0);
 }
 
-/* Night Owl */
+/* Night Owl - electric indigo */
 [data-theme='14'] {
-  --bg: hsl(258deg 53% 7%);
-  --tertiary: hsl(241deg 47% 29%);
-  --secondary: hsl(232deg 69% 54%);
-  --primary: hsl(11deg 89% 62%);
-  --error: hsl(46deg 100% 50%);
-
-  --fast: hsl(232deg 87% 69%);
-  --normal: hsl(46deg 100% 50%);
-  --slow: hsl(11deg 89% 62%);
-
-  --island-bg: var(--secondary);
-  --island-fg: hsl(0deg 0% 100%);
+  --bg: oklch(12% 0.1 280);
+  --tertiary: oklch(35% 0.12 270);
+  --secondary: oklch(55% 0.2 265);
+  --primary: oklch(72% 0.22 35);
+  --error: oklch(85% 0.22 95);
+  --fast: oklch(70% 0.2 265);
+  --normal: oklch(85% 0.22 95);
+  --slow: oklch(72% 0.22 35);
+  --island-bg: oklch(55% 0.2 265);
+  --island-fg: oklch(100% 0 0);
 }
 
-/* Forest */
+/* Forest - deep teal */
 [data-theme='15'] {
-  --bg: hsl(198deg 100% 8%);
-  --tertiary: hsl(195deg 100% 18%);
-  --secondary: hsl(198deg 10% 55%);
-  --primary: hsl(43deg 100% 71%);
-  --error: hsl(0deg 100% 64%);
+  --bg: oklch(15% 0.08 220);
+  --tertiary: oklch(30% 0.1 200);
+  --secondary: oklch(60% 0.03 220);
+  --primary: oklch(85% 0.18 90);
+  --error: oklch(65% 0.28 25);
+  --fast: oklch(50% 0.15 200);
+  --normal: oklch(100% 0 0);
+  --slow: oklch(85% 0.18 90);
+  --island-bg: oklch(85% 0.18 90);
+  --island-fg: oklch(15% 0.08 220);
+}
 
-  --fast: hsl(195deg 100% 34%);
-  --normal: hsl(0deg 0% 100%);
-  --slow: hsl(43deg 100% 71%);
+/* Keyframes */
+@keyframes cursor {
+  0%,
+  60% {
+    background: var(--primary);
+    color: var(--bg);
+  }
+  70%,
+  100% {
+    background: var(--bg);
+    color: var(--primary);
+  }
+}
 
-  --island-bg: var(--primary);
-  --island-fg: var(--bg);
+@keyframes cursor-error {
+  0%,
+  60% {
+    background: var(--error);
+    color: var(--bg);
+  }
+  70%,
+  100% {
+    background: var(--bg);
+    color: var(--error);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-down {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  from {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  to {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* Keyboard speed colors */
+
+.color-unknown {
+  --color: var(--secondary);
+  --anim-duration: 2s;
+}
+
+.color-fast {
+  --color: var(--fast);
+  --anim-duration: 2s;
+}
+.color-normal {
+  --color: var(--normal);
+  --anim-duration: 2.5s;
+}
+.color-slow {
+  --color: var(--slow);
+  --anim-duration: 3s;
+}
+
+/* Visibility states */
+body:not(.typing) .hide-when-not-typing {
+  pointer-events: none;
+  opacity: 0;
+}
+body.typing .hide-when-tyasping {
+  opacity: 0;
+  transition: opacity 200ms ease, filter 200ms ease;
+}
+body:not(.typing) .show-when-typing {
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Dynamic Island */
+.island-container {
+  transition: opacity 200ms cubic-bezier(0.666, 0, 0.4, 1),
+    transform 200ms cubic-bezier(0.666, 0, 0.4, 1);
+}
+body.typing .island-container {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+body:not(.typing) .stats-container {
+  display: none;
 }

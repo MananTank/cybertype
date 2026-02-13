@@ -7,36 +7,38 @@ import { useState } from 'react'
 // if nothing works - set bg anyway
 
 export const themes = [
-  { name: 'Espresso', bar: 'hsl(0deg 12% 8%)' }, // 0 - bg works
-  { name: 'Campfire', bar: 'hsl(216deg 5% 21%)' }, // 1 - secondary
-  { name: 'Classic', bar: 'hsl(57deg 14% 67%)' }, // 2 - secondary
-  { name: 'Halloween', bar: 'hsl(311deg 38% 6%)' }, // 3 - none worked - bg
-  { name: 'Effervescent', bar: 'hsl(260deg 73% 66%)' }, // 4 - none worked - bg
-  { name: 'Blackhole', bar: 'hsl(220deg 20% 3%)' }, // 5 - none worked, bg
-  { name: 'Serendipity', bar: 'hsl(0deg 0% 16%)' }, // 6 - none worked, bg
-  { name: 'Elixir', bar: 'hsl(243deg 55% 14%)' }, // 7 - none worked, bg
-  { name: 'Eudaemonia', bar: 'hsl(53deg 7% 75%)' }, // 8 - none worked, bg
-  { name: 'Tranquillity', bar: 'hsl(270deg 3% 85%)' }, // 9 - none worked, bg
-  { name: 'Aesthete', bar: 'hsl(0deg 0% 13%)' }, // 10 - none worked, bg
-  { name: 'Sunlit', bar: 'hsl(210deg 100% 30%)' }, // 11 - none worked, bg
-  { name: 'Witchcraft', bar: 'hsl(205deg 37% 8%)' }, // 12
-  { name: 'Mechanical', bar: 'hsl(210deg 11% 15%)' }, // 13
-  { name: 'Night Owl', bar: 'hsl(258deg 53% 7%)' }, //  14 - none worked, bg
-  { name: 'Forest', bar: 'hsl(198deg 100% 8%)' } // 15
+  { name: 'Espresso', bar: 'oklch(15% 0.02 30)' },
+  { name: 'Campfire', bar: 'oklch(28% 0.02 250)' },
+  { name: 'Classic', bar: 'oklch(75% 0.04 95)' },
+  { name: 'Halloween', bar: 'oklch(12% 0.08 320)' },
+  { name: 'Effervescent', bar: 'oklch(60% 0.2 290)' },
+  { name: 'Blackhole', bar: 'oklch(8% 0.02 250)' },
+  { name: 'Serendipity', bar: 'oklch(25% 0 0)' },
+  { name: 'Elixir', bar: 'oklch(18% 0.12 280)' },
+  { name: 'Eudaemonia', bar: 'oklch(80% 0.03 95)' },
+  { name: 'Tranquillity', bar: 'oklch(88% 0.01 290)' },
+  { name: 'Aesthete', bar: 'oklch(18% 0 0)' },
+  { name: 'Sunlit', bar: 'oklch(42% 0.15 250)' },
+  { name: 'Witchcraft', bar: 'oklch(15% 0.06 210)' },
+  { name: 'Mechanical', bar: 'oklch(22% 0.02 240)' },
+  { name: 'Night Owl', bar: 'oklch(12% 0.1 280)' },
+  { name: 'Forest', bar: 'oklch(15% 0.08 220)' }
 ]
 
+const DEFAULT_THEME = 6 // Serendipity
+
 function getInitialTheme() {
-  if (typeof window === 'undefined') return 0
+  if (typeof window === 'undefined') return DEFAULT_THEME
 
   const valueFromLocalStorage = localStorage.getItem('theme')
-  if (!valueFromLocalStorage) return 0
+  if (!valueFromLocalStorage) return DEFAULT_THEME
 
   const index = Number(valueFromLocalStorage)
 
   // if something weird is set - fix it
-  if (typeof index !== 'number' || isNaN(index) || !index) {
-    localStorage.setItem('theme', '0') // fix it if wrong
-    return 0
+  if (typeof index !== 'number' || isNaN(index)) {
+    localStorage.setItem('theme', String(DEFAULT_THEME))
+    return DEFAULT_THEME
   }
 
   return index

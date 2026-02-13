@@ -1,5 +1,7 @@
 import { heatmapKeys } from './keys'
 import { KeyStatRecord } from './types'
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
 
 export function getSpeed(words: number, time: number) {
   return words === 0 || time === 0 ? 0 : Math.round((words / time) * 60 * 1000)
@@ -28,4 +30,8 @@ export function getRandomWords(data: string[], count: number) {
   }
 
   return words
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }

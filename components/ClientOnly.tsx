@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ReactNode } from 'react'
 
 type Props = {
-  children: JSX.Element | JSX.Element[]
-  ssr?: JSX.Element
+  children: ReactNode
+  ssr?: ReactNode
 }
 
 // wrap stuff with ClientOnly that is browser specific or is customized to the client ( using localStorage, etc )
