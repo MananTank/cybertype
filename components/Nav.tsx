@@ -1,11 +1,40 @@
+'use client'
+
 import { CornerDownLeft, ArrowRight } from 'lucide-react'
 import { GithubIcon, TwitterIcon } from './icons'
+import { useEffect, useRef } from 'react'
 
 export function Footer() {
+  const kbdRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Enter' && kbdRef.current) {
+        kbdRef.current.setAttribute('data-pressed', '')
+      }
+    }
+
+    function handleKeyUp(e: KeyboardEvent) {
+      if (e.key === 'Enter' && kbdRef.current) {
+        kbdRef.current.removeAttribute('data-pressed')
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keyup', handleKeyUp)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('keyup', handleKeyUp)
+    }
+  }, [])
+
   return (
     <div className="flex items-center justify-center mt-auto py-5 gap-5">
       <div className="flex items-center gap-2.5 text-secondary text-sm max-[1500px]:text-xs">
-        <kbd className="flex items-center gap-1.5 text-[0.9em] py-1 px-2.5 rounded bg-tertiary/40 font-mono tracking-wide">
+        <kbd
+          ref={kbdRef}
+          className="flex items-center gap-1.5 text-[0.9em] py-1 px-2.5 rounded bg-tertiary/40 font-mono tracking-wide transition-transform duration-100 data-pressed:scale-90 data-pressed:bg-tertiary/60"
+        >
           <CornerDownLeft className="size-3" />
           enter
         </kbd>

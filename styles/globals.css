@@ -38,6 +38,8 @@
 
   body {
     background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   body::-webkit-scrollbar {
@@ -351,7 +353,6 @@
     transform: translate(-50%, -50%) scale(1.2);
   }
 }
-
 
 /* Keyboard speed colors */
 .color-fast {

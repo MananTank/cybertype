@@ -71,30 +71,32 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
       <div
         className={cn(
           'select-none text-xs md:text-sm lowercase w-[2em] h-[2em] rounded-md relative flex justify-center items-center cursor-pointer transition-[transform,background] duration-200 ease-out',
-          isNotTyped ? 'bg-tertiary/30' : 'bg-(--color)/15',
-          !isNotTyped &&
-            'group-hover:scale-110 group-hover:bg-(--color)/25 group-data-pressed:scale-110 group-data-pressed:bg-(--color)/25'
+          'group-hover:scale-110 group-hover:bg-(--color)/25 group-data-pressed:scale-110 group-data-pressed:bg-(--color)/25',
+          isNotTyped ? 'bg-tertiary/30' : 'bg-(--color)/15'
         )}
         style={{
           color: 'var(--color, var(--secondary))'
         }}
       >
         <span
-          className="absolute w-full h-full left-1/2 top-1/2 rounded-full -z-1 blur-lg animate-[glow_var(--anim-duration)_ease_infinite_alternate] "
+          className="absolute w-full h-full left-1/2 top-1/2 rounded-full -z-1 blur-md animate-[glow_var(--anim-duration)_ease_infinite_alternate] "
           style={{ background: 'var(--color)' }}
         />
         {keyName}
       </div>
+
+      {/* tooltip */}
       <div
-        className="absolute backdrop-blur-[20px] bg-white/5 border-b z-2 py-2.5 px-[30px] pointer-events-none invisible opacity-0 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-70 transition-[transform,opacity] duration-100 ease-out group-hover:visible group-hover:opacity-100 group-hover:-translate-y-[150%] group-hover:scale-100 max-[600px]:fixed max-[600px]:top-1/2 max-[600px]:left-1/2"
+        className={cn(
+          'absolute backdrop-blur-2xl bg-(--color)/25 z-2 p-6 rounded-lg pointer-events-none invisible opacity-0 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-70 transition-[transform,opacity] duration-100 ease-out group-hover:visible group-hover:opacity-100 group-hover:-translate-y-[150%] group-hover:scale-100 max-[600px]:fixed max-[600px]:top-1/2 max-[600px]:left-1/2'
+        )}
         style={{
-          color: 'var(--color, var(--secondary))',
-          borderColor: 'var(--color, var(--secondary))'
+          color: 'var(--color, var(--secondary))'
         }}
       >
-        <div className="text-[40px] flex items-center gap-2.5 whitespace-nowrap">
+        <div className="text-5xl font-semibold flex items-baseline gap-2.5 whitespace-nowrap">
           {keySpeed || 'N/A'}
-          <span className="text-xl">WPM</span>
+          <span className="text-3xl font-medium">wpm</span>
         </div>
       </div>
     </div>
