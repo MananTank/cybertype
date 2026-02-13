@@ -10,11 +10,6 @@ import { SoundPack } from './sounds'
 import { State, Action, QuoteData } from './types'
 import { getRandomWords, createEmptyKeyStatRecord } from './utils'
 
-type LoadedData = Record<State['dataName'], State['data'] | undefined>
-
-// key-value store of all the data loaded from network
-export const loadedData = {} as LoadedData
-
 const initWords = 500
 
 // new words will be appended if less than bufferWords are left to be typed
@@ -23,7 +18,6 @@ const bufferWords = 100
 export function stateReducer(state: State, action: Action): void {
   switch (action.type) {
     case 'setData': {
-      loadedData[state.dataName] = action.data
       state.data = action.data
       // need to reset when setting new data
       reset(state)
@@ -71,10 +65,6 @@ export function stateReducer(state: State, action: Action): void {
       return
     }
 
-    case 'setFetchingData': {
-      state.fetchingData = action.data
-      return
-    }
 
     case 'setSoundEnabled': {
       state.soundEnabled = action.data
@@ -241,7 +231,6 @@ export function getInitialState(): State {
     soundPack,
     activePanel: null,
     soundEnabled,
-    fetchingData: false,
     data: [],
     dataName,
     totalErrors: 0,

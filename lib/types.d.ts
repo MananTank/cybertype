@@ -20,7 +20,6 @@ export type State = {
   soundPack: SoundPack
   activePanel: ActivePanel
   soundEnabled: boolean
-  fetchingData: boolean
   data: string[]
   dataName: string
   typingStarted: boolean
@@ -42,7 +41,6 @@ export type Action =
   | { type: 'back'; alt: boolean }
   | { type: 'setData'; dataName: State['dataName']; data: State['data'] }
   | { type: 'setDataName'; data: State['dataName'] }
-  | { type: 'setFetchingData'; data: boolean }
   | { type: 'setSoundEnabled'; data: boolean }
   | { type: 'setActivePanel'; data: ActivePanel }
   | { type: 'setSoundPack'; data: SoundPack }

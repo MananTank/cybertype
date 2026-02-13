@@ -29,7 +29,7 @@ export function Footer() {
   }, [])
 
   return (
-    <div className="flex items-center justify-center mt-auto py-5 gap-5">
+    <div className="flex items-center justify-center py-5 gap-5">
       <div className="flex items-center gap-2.5 text-secondary text-sm max-[1500px]:text-xs">
         <kbd
           ref={kbdRef}

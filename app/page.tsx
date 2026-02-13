@@ -29,27 +29,26 @@ export default function Home() {
   useLocalStorage(state)
 
   return (
-    <div className="min-h-screen max-w-[1100px] xl:max-w-[1000px] max-[1400px]:max-w-[900px] xl:max-w-[800px] mx-auto flex flex-col px-5 h-screen">
+    <div className="min-h-screen max-w-5xl mx-auto flex flex-col px-5 h-screen">
       <ClientOnly>
-        <div className="animate-[slide-in-down_500ms_500ms_ease_backwards]">
+        <div className="animate-[slide-in-down_500ms_500ms_ease_backwards] z-10">
           <DynamicIsland state={state} dispatch={dispatch} />
         </div>
       </ClientOnly>
 
-      {/* if there is data to show and no other data is being fetched */}
-      {state.data.length && !state.fetchingData ? (
+      {/* if there is data to show */}
+      <div className="grow flex flex-col justify-center">
         <Words
           words={state.words}
           progress={state.progress}
           errorLocations={state.errorLocations}
         />
-      ) : (
-        <Loader />
-      )}
+      </div>
 
-      <KeyStats keyStats={state.keyStats} />
-
-      <Footer />
+      <div className="mt-auto">
+        <KeyStats keyStats={state.keyStats} />
+        <Footer />
+      </div>
     </div>
   )
 }
