@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@number-flow/react": "^0.5.11",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/jest": "^29.1.1",
     "classnames": "^2.3.2",

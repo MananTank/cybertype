@@ -1,3 +1,4 @@
+import NumberFlow from '@number-flow/react'
 import { getSpeed } from '../lib/utils'
 
 type StatsProps = {
@@ -14,7 +15,7 @@ export function Stats(props: StatsProps) {
 
   return (
     <div className="stats-container flex justify-center gap-10 absolute w-[300px] top-[30px] left-1/2 -translate-x-1/2 animate-[fade-in_500ms_ease]">
-      <Stat unit="wpm" value={wpmSpeed} />
+      <Stat unit="wpm" value={Number(wpmSpeed)} />
       <Stat unit="%" value={accuracy} />
     </div>
   )
@@ -22,7 +23,7 @@ export function Stats(props: StatsProps) {
 
 type StatProps = {
   unit: string
-  value: string | number
+  value: number
   className?: string
 }
 
@@ -30,9 +31,9 @@ function Stat(props: StatProps) {
   const { unit, value, className } = props
   return (
     <div className={className}>
-      <div className="flex gap-[0.1em] tracking-[1px] items-center text-[40px] xl:text-[30px] text-primary">
-        <span> {value} </span>
-        <span className="text-[0.5em] opacity-70">{unit}</span>
+      <div className="flex gap-[0.1em] items-center text-4xl text-primary font-medium">
+        <NumberFlow value={value} />
+        <span className="text-[0.8em] opacity-50">{unit}</span>
       </div>
     </div>
   )
