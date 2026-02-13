@@ -2,7 +2,7 @@ import { Settings } from './Settings'
 import { Stats } from './Stats'
 import { State, Action } from '../lib/types'
 import { ThemeSwitcher } from './ThemeSwitcher'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { DataSelector } from './DataSelector'
 import { SoundSelector } from './SoundSelector'
 import { motion, AnimatePresence, LayoutGroup, type Transition } from 'motion/react'
@@ -32,27 +32,29 @@ const contentTransition = {
 
 export function DynamicIsland({ state, dispatch }: Props) {
   const closePanel = () => dispatch({ type: 'setActivePanel', data: null })
+  const islandRef = useRef<HTMLDivElement>(null)
 
   const isModalOpen = state.activePanel !== null
 
   // Determine which expander content to show
-  const expanderContent = state.activePanel === 'themes' ? (
-    <ThemeSwitcher handleClose={closePanel} />
-  ) : state.activePanel === 'data' ? (
-    <DataSelector
-      dispatch={dispatch}
-      handleClose={closePanel}
-      currentDataName={state.dataName}
-    />
-  ) : state.activePanel === 'sound' ? (
-    <SoundSelector
-      handleClose={closePanel}
-      dispatch={dispatch}
-      selectedSoundPack={state.soundPack}
-    />
-  ) : null
+  const expanderContent =
+    state.activePanel === 'themes' ? (
+      <ThemeSwitcher handleClose={closePanel} />
+    ) : state.activePanel === 'data' ? (
+      <DataSelector
+        dispatch={dispatch}
+        handleClose={closePanel}
+        currentDataName={state.dataName}
+      />
+    ) : state.activePanel === 'sound' ? (
+      <SoundSelector
+        handleClose={closePanel}
+        dispatch={dispatch}
+        selectedSoundPack={state.soundPack}
+      />
+    ) : null
 
-  // Close on Escape key
+  // Close on Escape key or outside click
   useEffect(() => {
     if (!isModalOpen) return
 
@@ -62,8 +64,19 @@ export function DynamicIsland({ state, dispatch }: Props) {
       }
     }
 
+    function handleClick(e: MouseEvent) {
+      if (islandRef.current && !islandRef.current.contains(e.target as Node)) {
+        closePanel()
+      }
+    }
+
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    document.body.addEventListener('click', handleClick)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      document.body.removeEventListener('click', handleClick)
+    }
   }, [isModalOpen])
 
   return (
@@ -76,8 +89,7 @@ export function DynamicIsland({ state, dispatch }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 backdrop-blur-md bg-black/20"
-            onClick={closePanel}
+            className="fixed inset-0 z-40 backdrop-blur-md bg-black/20 pointer-events-none"
           />
         )}
       </AnimatePresence>
@@ -91,7 +103,7 @@ export function DynamicIsland({ state, dispatch }: Props) {
               <motion.div
                 key="pill"
                 layoutId="dynamic-island"
-                className="bg-island-bg text-island-fg flex justify-center items-center px-1 md:px-6 py-1 will-change-transform"
+                className="bg-island-bg text-island-fg flex justify-center items-center p-1 md:px-5 will-change-transform"
                 transition={islandSpringClose}
                 style={{ borderRadius: 24 }}
               >
@@ -104,12 +116,12 @@ export function DynamicIsland({ state, dispatch }: Props) {
             ) : (
               // Expanded state
               <motion.div
+                ref={islandRef}
                 key="expander"
                 layoutId="dynamic-island"
                 className="bg-island-bg text-island-fg relative max-w-[calc(100vw-40px)] will-change-transform overflow-hidden"
                 transition={islandSpringOpen}
                 style={{ borderRadius: 24 }}
-                onClick={(e) => e.stopPropagation()}
               >
                 {/* Content fade - quick and subtle */}
                 <motion.div

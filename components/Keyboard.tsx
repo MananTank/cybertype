@@ -24,14 +24,14 @@ export function KeyStats({ keyStats }: KeyStatsProps) {
     })
 
   return (
-    <div className="flex flex-col items-center py-16">
-      <div className="flex justify-center gap-3 mb-3 max-[600px]:mb-3.5 max-[600px]:gap-2">
+    <div className="flex flex-col items-center py-16 gap-2">
+      <div className="flex justify-center gap-2 max-[600px]:mb-3.5 max-[600px]:gap-2">
         {mapper(row1)}
       </div>
-      <div className="flex justify-center gap-3 mb-3 max-[600px]:mb-3.5 max-[600px]:gap-2">
+      <div className="flex justify-center gap-2 max-[600px]:mb-3.5 max-[600px]:gap-2">
         {mapper(row2)}
       </div>
-      <div className="flex justify-center gap-3 mb-3 max-[600px]:mb-3.5 max-[600px]:gap-2">
+      <div className="flex justify-center gap-2 max-[600px]:mb-3.5 max-[600px]:gap-2">
         {mapper(row3)}
       </div>
     </div>
@@ -76,35 +76,33 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
     >
       <div
         className={cn(
-          'text-base max-[1600px]:text-xs w-[2em] h-[2em] rounded-[4px] relative flex justify-center items-center cursor-pointer transition-[transform,border] duration-200 ease-out',
+          'select-none text-base md:text-sm lowercase w-[2em] h-[2em] rounded-md relative flex justify-center items-center cursor-pointer transition-[transform,background] duration-200 ease-out',
+          isNotTyped ? 'bg-tertiary/30' : 'bg-(--color)/15',
           !isNotTyped &&
-            'group-hover:scale-110 group-hover:border group-hover:border-[var(--color)] group-data-[pressed]:scale-110 group-data-[pressed]:border group-data-[pressed]:border-[var(--color)]'
+            'group-hover:scale-110 group-hover:bg-(--color)/25 group-data-pressed:scale-110 group-data-pressed:bg-(--color)/25'
         )}
         style={{
-          color: 'var(--color, var(--secondary))',
-          boxShadow: '0 0 0.15em var(--color, var(--tertiary))'
+          color: 'var(--color, var(--secondary))'
         }}
       >
         <span
-          className="absolute w-full h-full left-1/2 top-1/2 rounded-full -z-1 blur-[16px] animate-[glow_var(--anim-duration)_ease_infinite_alternate]"
+          className="absolute w-full h-full left-1/2 top-1/2 rounded-full -z-1 blur-lg animate-[glow_var(--anim-duration)_ease_infinite_alternate] "
           style={{ background: 'var(--color)' }}
         />
         {keyName}
       </div>
-      {keySpeed !== 0 && (
-        <div
-          className="absolute backdrop-blur-[20px] bg-white/5 border-b z-2 py-2.5 px-[30px] pointer-events-none invisible opacity-0 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-70 transition-[transform,opacity] duration-100 ease-out group-hover:visible group-hover:opacity-100 group-hover:-translate-y-[150%] group-hover:scale-100 max-[600px]:fixed max-[600px]:top-1/2 max-[600px]:left-1/2"
-          style={{
-            color: 'var(--color)',
-            borderColor: 'var(--color)'
-          }}
-        >
-          <div className="text-[40px] flex items-center gap-2.5 whitespace-nowrap">
-            {keySpeed}
-            <span className="text-xl">WPM</span>
-          </div>
+      <div
+        className="absolute backdrop-blur-[20px] bg-white/5 border-b z-2 py-2.5 px-[30px] pointer-events-none invisible opacity-0 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-70 transition-[transform,opacity] duration-100 ease-out group-hover:visible group-hover:opacity-100 group-hover:-translate-y-[150%] group-hover:scale-100 max-[600px]:fixed max-[600px]:top-1/2 max-[600px]:left-1/2"
+        style={{
+          color: 'var(--color, var(--secondary))',
+          borderColor: 'var(--color, var(--secondary))'
+        }}
+      >
+        <div className="text-[40px] flex items-center gap-2.5 whitespace-nowrap">
+          {keySpeed || 'N/A'}
+          <span className="text-xl">WPM</span>
         </div>
-      )}
+      </div>
     </div>
   )
 })

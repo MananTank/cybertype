@@ -31,7 +31,7 @@ type Props = {
 
 export function DataSelector({ dispatch, handleClose, currentDataName }: Props) {
   return (
-    <div className="max-w-[420px] w-[calc(100vw-80px)] flex flex-wrap gap-2 p-4">
+    <div className="max-w-[420px] w-[calc(100vw-80px)] flex flex-wrap gap-x-2 gap-y-2.5 p-4">
       {dataNames.map(value => {
         const isActive = currentDataName === value
         return (

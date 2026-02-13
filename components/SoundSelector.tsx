@@ -25,7 +25,7 @@ export function SoundSelector(props: Props) {
               'outline-none focus-visible:ring-2 focus-visible:ring-island-fg focus-visible:ring-offset-2 focus-visible:ring-offset-island-bg',
               isActive
                 ? 'bg-island-fg text-island-bg'
-                : 'bg-island-fg/10 text-island-fg hover:bg-island-fg/15 active:scale-[0.99]'
+                : 'bg-island-fg/10 text-island-fg hover:bg-island-fg/20'
             )}
             onClick={() => {
               props.dispatch({ type: 'setSoundPack', data: soundPack.id })
@@ -40,7 +40,7 @@ export function SoundSelector(props: Props) {
             <motion.h3 className="text-sm font-medium mb-1.5 tracking-wide">
               {soundPack.name}
             </motion.h3>
-            <motion.p className="text-xs opacity-60">{soundPack.type}</motion.p>
+            <motion.p className="text-xs opacity-70">{soundPack.type}</motion.p>
           </button>
         )
       })}
