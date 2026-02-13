@@ -355,6 +355,12 @@
 }
 
 /* Keyboard speed colors */
+
+.color-unknown {
+  --color: var(--secondary);
+  --anim-duration: 2s;
+}
+
 .color-fast {
   --color: var(--fast);
   --anim-duration: 2s;

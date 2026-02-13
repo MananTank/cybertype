@@ -70,7 +70,7 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
     >
       <div
         className={cn(
-          'select-none text-xs md:text-sm lowercase w-[2em] h-[2em] rounded-md relative flex justify-center items-center cursor-pointer transition-[transform,background] duration-200 ease-out',
+          'select-none text-xs md:text-sm lowercase font-medium w-[2em] h-[2em] rounded-md relative flex justify-center items-center cursor-pointer transition-[transform,background] duration-200 ease-out',
           'group-hover:scale-110 group-hover:bg-(--color)/25 group-data-pressed:scale-110 group-data-pressed:bg-(--color)/25',
           isNotTyped ? 'bg-tertiary/30' : 'bg-(--color)/15'
         )}
@@ -78,11 +78,11 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
           color: 'var(--color, var(--secondary))'
         }}
       >
-        <span
-          className="absolute w-full h-full left-1/2 top-1/2 rounded-full -z-1 blur-md animate-[glow_var(--anim-duration)_ease_infinite_alternate] "
-          style={{ background: 'var(--color)' }}
-        />
         {keyName}
+
+        {keySpeed !== 0 && (
+          <div className="absolute bg-(--color)/70  w-full h-full left-1/2 top-1/2 rounded-full -z-1 blur-md animate-[glow_var(--anim-duration)_ease_infinite_alternate] " />
+        )}
       </div>
 
       {/* tooltip */}
@@ -104,7 +104,7 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
 })
 
 export const getSpeedClass = (speed: number) => {
-  if (speed === 0) return ''
+  if (speed === 0) return 'color-unknown'
   if (speed >= 100) return 'color-fast'
   if (speed < 60) return 'color-slow'
   return 'color-normal'
