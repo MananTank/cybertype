@@ -10,7 +10,7 @@ export function useKeys(
   soundPack: SoundPack,
   ignore: boolean
 ) {
-  const soundsRef = useRef<Sounds>()
+  const soundsRef = useRef<Sounds | undefined>(undefined)
 
   if (!soundsRef.current && typeof window !== 'undefined') {
     soundsRef.current = getSounds()

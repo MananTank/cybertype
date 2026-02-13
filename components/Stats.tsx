@@ -1,4 +1,3 @@
-import styles from '../styles/Stats.module.scss'
 import { getSpeed } from '../lib/utils'
 
 type StatsProps = {
@@ -14,7 +13,7 @@ export function Stats(props: StatsProps) {
   const accuracy = charsTyped === 0 ? 0 : Math.max(Math.round(100 - errorRate), 0)
 
   return (
-    <div className={styles.statsContainer}>
+    <div className="stats-container flex justify-center gap-10 absolute w-[300px] top-[30px] left-1/2 -translate-x-1/2 animate-[fade-in_500ms_ease]">
       <Stat unit="wpm" value={wpmSpeed} />
       <Stat unit="%" value={accuracy} />
     </div>
@@ -30,10 +29,10 @@ type StatProps = {
 function Stat(props: StatProps) {
   const { unit, value, className } = props
   return (
-    <div className={`${styles.stat} ${className || ''}`}>
-      <div className={styles.value}>
+    <div className={className}>
+      <div className="flex gap-[0.1em] tracking-[1px] items-center text-[40px] max-[1600px]:text-[30px] text-primary">
         <span> {value} </span>
-        <span className={styles.unit}>{unit}</span>
+        <span className="text-[0.5em] opacity-70">{unit}</span>
       </div>
     </div>
   )

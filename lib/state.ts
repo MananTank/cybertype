@@ -35,23 +35,13 @@ export function stateReducer(state: State, action: Action): void {
       return
     }
 
-    case 'setShowDataSelector': {
-      state.showDataSelector = action.data
+    case 'setActivePanel': {
+      state.activePanel = action.data
       return
     }
 
     case 'setDataName': {
       state.dataName = action.data
-      return
-    }
-
-    case 'setShowSoundSelector': {
-      state.showSoundSelector = action.data
-      return
-    }
-
-    case 'setShowThemes': {
-      state.showThemes = action.data
       return
     }
 
@@ -249,9 +239,7 @@ export function getInitialState(): State {
 
   return {
     soundPack,
-    showDataSelector: false,
-    showSoundSelector: false,
-    showThemes: false,
+    activePanel: null,
     soundEnabled,
     fetchingData: false,
     data: [],

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { BeforeInstallPromptEvent } from '../lib/types'
-import styles from '../styles/PWAInstallButton.module.scss'
-import { InstallIcon } from './icons'
+import { Download } from 'lucide-react'
+import { IslandButton } from './IslandButton'
 
 const showPWAClass = 'show-pwa-install'
 
@@ -9,9 +9,13 @@ export function PWAInstallButton() {
   useEffect(pwaInstallPrompt, [])
 
   return (
-    <button onClick={HideInstallPrompt} className={styles.button}>
-      {InstallIcon}
-    </button>
+    <IslandButton
+      onClick={HideInstallPrompt}
+      className="pwa-install-btn"
+      aria-label="Install PWA"
+    >
+      <Download className="size-5 text-island-fg" />
+    </IslandButton>
   )
 }
 

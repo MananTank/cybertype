@@ -1,15 +1,10 @@
 import { Dispatch, memo } from 'react'
 import { Action, State } from '../lib/types'
-import {
-  SoundDisabled,
-  SoundEnabledIcon,
-  ChevronIcon,
-  ThemeIcon,
-  SoundIcon
-} from './icons'
-import styles from '../styles/Settings.module.scss'
+import { Volume2, VolumeX, ChevronDown, Palette, Music } from 'lucide-react'
 import { ClientOnly } from './ClientOnly'
 import { PWAInstallButton } from './PWAInstallButton'
+import { motion } from 'motion/react'
+import { IslandButton } from './IslandButton'
 
 type SettingsProps = {
   dispatch: Dispatch<Action>
@@ -22,49 +17,49 @@ export const Settings = memo(function Settings({
   soundEnabled,
   dataName
 }: SettingsProps) {
+  const iconClass = 'size-5 text-island-fg'
+
   return (
-    <div className={styles.settings}>
-      {/* data selector - client only because it is personalized  */}
-      <ClientOnly>
-        <div
-          className={styles.dataSelector}
-          onClick={() => {
-            dispatch({ type: 'setShowDataSelector', data: true })
-          }}
-        >
-          {dataName}
-          {ChevronIcon}
-        </div>
-      </ClientOnly>
+    <div className="flex items-center gap-3">
+      {/* data selector */}
+      <IslandButton
+        className="text-sm flex gap-1.5 items-center px-3"
+        onClick={() => dispatch({ type: 'setActivePanel', data: 'data' })}
+      >
+        {dataName}
+        <ChevronDown className="text-island-fg size-4" />
+      </IslandButton>
 
-      <div className={styles.icons}>
+      <div className="flex items-center gap-0">
         {/* theme switcher */}
-        <button
+        <IslandButton
           aria-label="Change Theme"
-          onClick={() => dispatch({ type: 'setShowThemes', data: true })}
+          onClick={() => dispatch({ type: 'setActivePanel', data: 'themes' })}
         >
-          {ThemeIcon}
-        </button>
+          <Palette className={iconClass} />
+        </IslandButton>
 
-        {/* sound */}
-        <button
-          className={styles.sound}
-          onClick={() => {
-            dispatch({ type: 'setSoundEnabled', data: !soundEnabled })
-          }}
+        {/* sound toggle */}
+        <IslandButton
+          onClick={() => dispatch({ type: 'setSoundEnabled', data: !soundEnabled })}
           aria-label="toggle sound effects"
         >
-          <ClientOnly ssr={SoundEnabledIcon}>
-            {soundEnabled ? SoundEnabledIcon : SoundDisabled}
+          <ClientOnly ssr={<Volume2 className={iconClass} />}>
+            {soundEnabled ? (
+              <Volume2 className={iconClass} />
+            ) : (
+              <VolumeX className={iconClass} />
+            )}
           </ClientOnly>
-        </button>
+        </IslandButton>
 
-        <button
-          onClick={() => dispatch({ type: 'setShowSoundSelector', data: true })}
+        {/* sound selector */}
+        <IslandButton
+          onClick={() => dispatch({ type: 'setActivePanel', data: 'sound' })}
           aria-label="select key sound"
         >
-          {SoundIcon}
-        </button>
+          <Music className={iconClass} />
+        </IslandButton>
 
         <PWAInstallButton />
       </div>

@@ -25,18 +25,20 @@ export const themes = [
   { name: 'Forest', bar: 'hsl(198deg 100% 8%)' } // 15
 ]
 
+const DEFAULT_THEME = 6 // Serendipity
+
 function getInitialTheme() {
-  if (typeof window === 'undefined') return 0
+  if (typeof window === 'undefined') return DEFAULT_THEME
 
   const valueFromLocalStorage = localStorage.getItem('theme')
-  if (!valueFromLocalStorage) return 0
+  if (!valueFromLocalStorage) return DEFAULT_THEME
 
   const index = Number(valueFromLocalStorage)
 
   // if something weird is set - fix it
-  if (typeof index !== 'number' || isNaN(index) || !index) {
-    localStorage.setItem('theme', '0') // fix it if wrong
-    return 0
+  if (typeof index !== 'number' || isNaN(index)) {
+    localStorage.setItem('theme', String(DEFAULT_THEME))
+    return DEFAULT_THEME
   }
 
   return index

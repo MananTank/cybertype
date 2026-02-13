@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { dataNameGroups } from '../components/DataSelector'
+import { dataNames } from '../components/DataSelector'
 import { soundPacks } from './sounds'
 import { State } from './types'
 
@@ -42,13 +42,7 @@ export const booleanValidator = (str: string) => {
   return str === 'false' || str === 'true'
 }
 
-const validDataNames: Set<string> = new Set()
-
-dataNameGroups.forEach(group => {
-  group.values.forEach(value => {
-    validDataNames.add(value)
-  })
-})
+const validDataNames = new Set(dataNames)
 
 export const dataNameValidator = (str: string) => {
   return validDataNames.has(str)

@@ -1,7 +1,6 @@
-import styles from '../styles/Keyboard.module.scss'
 import { KeyStatRecord } from '../lib/types'
 import { memo, useEffect, useRef } from 'react'
-import { getSpeed } from '../lib/utils'
+import { cn, getSpeed } from '../lib/utils'
 
 type KeyStatsProps = {
   keyStats: KeyStatRecord
@@ -25,10 +24,16 @@ export function KeyStats({ keyStats }: KeyStatsProps) {
     })
 
   return (
-    <div className={styles.keyboard}>
-      <div className={styles.row}>{mapper(row1)}</div>
-      <div className={styles.row}>{mapper(row2)}</div>
-      <div className={styles.row}>{mapper(row3)}</div>
+    <div className="flex flex-col items-center py-16">
+      <div className="flex justify-center gap-3 mb-3 max-[600px]:mb-3.5 max-[600px]:gap-2">
+        {mapper(row1)}
+      </div>
+      <div className="flex justify-center gap-3 mb-3 max-[600px]:mb-3.5 max-[600px]:gap-2">
+        {mapper(row2)}
+      </div>
+      <div className="flex justify-center gap-3 mb-3 max-[600px]:mb-3.5 max-[600px]:gap-2">
+        {mapper(row3)}
+      </div>
     </div>
   )
 }
@@ -41,8 +46,9 @@ type KeyStatProps = {
 
 const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProps) {
   const keySpeed = totalTime === 0 ? 0 : getSpeed(count, totalTime * 5)
-  const label = getSpeedLabel(keySpeed)
+  const speedClass = getSpeedClass(keySpeed)
   const elRef = useRef<HTMLDivElement>(null)
+  const isNotTyped = keySpeed === 0
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -59,14 +65,43 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [keyName])
 
+  // Hide certain keys on mobile
+  const hideOnMobile = ['[', ']', "'"].includes(keyName)
+
   return (
-    <div className={`${styles.key} ${label}`} ref={elRef} data-key={keyName}>
-      <div className={styles.keyLabel}>{keyName}</div>
+    <div
+      className={cn('group relative', speedClass, hideOnMobile && 'max-[600px]:hidden')}
+      ref={elRef}
+      data-key={keyName}
+    >
+      <div
+        className={cn(
+          'text-base max-[1600px]:text-xs w-[2em] h-[2em] rounded-[4px] relative flex justify-center items-center cursor-pointer transition-[transform,border] duration-200 ease-out',
+          !isNotTyped &&
+            'group-hover:scale-110 group-hover:border group-hover:border-[var(--color)] group-data-[pressed]:scale-110 group-data-[pressed]:border group-data-[pressed]:border-[var(--color)]'
+        )}
+        style={{
+          color: 'var(--color, var(--secondary))',
+          boxShadow: '0 0 0.15em var(--color, var(--tertiary))'
+        }}
+      >
+        <span
+          className="absolute w-full h-full left-1/2 top-1/2 rounded-full -z-1 blur-[16px] animate-[glow_var(--anim-duration)_ease_infinite_alternate]"
+          style={{ background: 'var(--color)' }}
+        />
+        {keyName}
+      </div>
       {keySpeed !== 0 && (
-        <div className={styles.keyStat}>
-          <div className={styles.speed}>
+        <div
+          className="absolute backdrop-blur-[20px] bg-white/5 border-b z-2 py-2.5 px-[30px] pointer-events-none invisible opacity-0 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-70 transition-[transform,opacity] duration-100 ease-out group-hover:visible group-hover:opacity-100 group-hover:-translate-y-[150%] group-hover:scale-100 max-[600px]:fixed max-[600px]:top-1/2 max-[600px]:left-1/2"
+          style={{
+            color: 'var(--color)',
+            borderColor: 'var(--color)'
+          }}
+        >
+          <div className="text-[40px] flex items-center gap-2.5 whitespace-nowrap">
             {keySpeed}
-            <span className={styles.unit}>WPM</span>
+            <span className="text-xl">WPM</span>
           </div>
         </div>
       )}
@@ -74,9 +109,9 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
   )
 })
 
-export const getSpeedLabel = (speed: number) => {
+export const getSpeedClass = (speed: number) => {
   if (speed === 0) return ''
-  if (speed >= 100) return styles.fast
-  if (speed < 60) return styles.slow
-  return styles.normal
+  if (speed >= 100) return 'color-fast'
+  if (speed < 60) return 'color-slow'
+  return 'color-normal'
 }
