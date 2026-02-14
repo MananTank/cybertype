@@ -33,9 +33,7 @@ export async function getAllCustomTexts(): Promise<CustomText[]> {
   const allKeys = await keys<string>()
   const customTextKeys = allKeys.filter(k => k.startsWith(KEY_PREFIX))
 
-  const texts = await Promise.all(
-    customTextKeys.map(k => get<CustomText>(k))
-  )
+  const texts = await Promise.all(customTextKeys.map(k => get<CustomText>(k)))
 
   return texts.filter((t): t is CustomText => t !== undefined)
 }

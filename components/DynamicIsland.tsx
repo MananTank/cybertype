@@ -153,10 +153,9 @@ export function DynamicIsland({ state, dispatch }: Props) {
         {isModalOpen && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 backdrop-blur-md bg-bg/60 pointer-events-none"
+            animate={{ opacity: 1, transition: { duration: 0.3 } }}
+            exit={{ opacity: 0, transition: { duration: 0.8 } }}
+            className="fixed inset-0 z-40 backdrop-blur-sm bg-bg/60 pointer-events-none"
           />
         )}
       </AnimatePresence>
@@ -193,9 +192,9 @@ export function DynamicIsland({ state, dispatch }: Props) {
               >
                 {/* Content fade - quick and subtle */}
                 <motion.div
-                  initial={{ opacity: 0, filter: 'blur(4px)' }}
+                  initial={{ opacity: 0, filter: 'blur(8px)' }}
                   animate={{ opacity: 1, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, filter: 'blur(4px)' }}
+                  exit={{ opacity: 0, filter: 'blur(8px)' }}
                   transition={contentTransition}
                 >
                   {expanderContent}

@@ -28,43 +28,42 @@ export const Settings = memo(function Settings({
   useArrowNavigation(containerRef)
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
       className="flex items-center gap-0"
       onMouseLeave={() => setActiveButton(null)}
+      exit={{
+        opacity: 0,
+        filter: 'blur(8px)',
+        transition: {
+          duration: 0.3
+        }
+      }}
+      initial={{
+        opacity: 0,
+        filter: 'blur(8px)'
+      }}
+      animate={{
+        opacity: 1,
+        filter: 'blur(0px)',
+        transition: {
+          // delay: 0.1,
+          duration: 0.3
+        }
+        // filter: 'blur(0px)'
+      }}
     >
       {/* app name */}
-      <motion.div
+      <div
         // layout
         // transition={{
         //   bounce: 0
         // }}
 
-        exit={{
-          opacity: 0,
-          // filter: 'blur(4px)',
-          transition: {
-            duration: 0
-          }
-          // filter: 'blur(12px)'
-        }}
-        initial={{
-          opacity: 0,
-          filter: 'blur(4px)'
-        }}
-        animate={{
-          opacity: 1,
-          filter: 'blur(0px)',
-          transition: {
-            delay: 0.1,
-            duration: 0.4
-          }
-          // filter: 'blur(0px)'
-        }}
         className="text-sm tracking-[0.3em] uppercase pl-5 pr-3 font-semibold text-primary"
       >
         cybertype
-      </motion.div>
+      </div>
 
       {/* data selector */}
       <IslandButton
@@ -136,6 +135,6 @@ export const Settings = memo(function Settings({
           <Download className={iconClass} />
         </IslandButton>
       )}
-    </div>
+    </motion.div>
   )
 })

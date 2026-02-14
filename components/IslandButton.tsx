@@ -18,28 +18,28 @@ export function IslandButton({
   const showBackground = isHovered || isFocused
 
   return (
-    <motion.button
+    <button
       // type="button"
       // layout
 
-      exit={{
-        opacity: 0,
-        transition: {
-          duration: 0
-        }
-      }}
-      initial={{
-        opacity: 0,
-        filter: 'blur(4px)'
-      }}
-      animate={{
-        opacity: 1,
-        filter: 'blur(0px)',
-        transition: {
-          delay: 0.1,
-          duration: 0.3
-        }
-      }}
+      // exit={{
+      //   opacity: 0,
+      //   transition: {
+      //     duration: 0
+      //   }
+      // }}
+      // initial={{
+      //   opacity: 0,
+      //   filter: 'blur(4px)'
+      // }}
+      // animate={{
+      //   opacity: 1,
+      //   filter: 'blur(0px)',
+      //   transition: {
+      //     delay: 0.1,
+      //     duration: 0.3
+      //   }
+      // }}
       {...props}
       className={cn(
         'relative p-2 text-secondary rounded-full cursor-pointer shrink-0 whitespace-nowrap z-0 font-medium outline-none',
@@ -59,6 +59,6 @@ export function IslandButton({
         />
       )}
       {children}
-    </motion.button>
+    </button>
   )
 }
