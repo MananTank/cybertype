@@ -2,9 +2,10 @@ import { Settings } from './Settings'
 import { Stats } from './Stats'
 import { State, Action } from '../lib/types'
 import { ThemeSwitcher } from './ThemeSwitcher'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { DataSelector } from './DataSelector'
 import { SoundSelector } from './SoundSelector'
+import { CustomTextForm } from './CustomTextForm'
 import { motion, AnimatePresence, LayoutGroup, type Transition } from 'motion/react'
 
 export type Props = {
@@ -34,15 +35,22 @@ const contentTransition = {
 const panelToButtonLabel: Record<string, string> = {
   data: 'Select language/data',
   themes: 'Change Theme',
-  sound: 'Select key sound'
+  sound: 'Select key sound',
+  customText: 'Select language/data'
 }
 
 export function DynamicIsland({ state, dispatch }: Props) {
   const closePanel = () => dispatch({ type: 'setActivePanel', data: null })
   const islandRef = useRef<HTMLDivElement>(null)
   const previousPanelRef = useRef<string | null>(null)
+  const [customTextsKey, setCustomTextsKey] = useState(0)
 
   const isModalOpen = state.activePanel !== null
+
+  // Callback to refresh custom texts list when a new one is saved
+  const handleCustomTextSaved = useCallback(() => {
+    setCustomTextsKey(k => k + 1)
+  }, [])
 
   // Track previous panel for refocusing
   useEffect(() => {
@@ -75,6 +83,7 @@ export function DynamicIsland({ state, dispatch }: Props) {
       <ThemeSwitcher handleClose={closePanel} />
     ) : state.activePanel === 'data' ? (
       <DataSelector
+        key={customTextsKey}
         dispatch={dispatch}
         handleClose={closePanel}
         currentDataName={state.dataName}
@@ -84,6 +93,12 @@ export function DynamicIsland({ state, dispatch }: Props) {
         handleClose={closePanel}
         dispatch={dispatch}
         selectedSoundPack={state.soundPack}
+      />
+    ) : state.activePanel === 'customText' ? (
+      <CustomTextForm
+        dispatch={dispatch}
+        handleClose={closePanel}
+        onSaved={handleCustomTextSaved}
       />
     ) : null
 

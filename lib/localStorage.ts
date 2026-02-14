@@ -45,7 +45,9 @@ export const booleanValidator = (str: string) => {
 const validDataNames = new Set(dataNames)
 
 export const dataNameValidator = (str: string) => {
-  return validDataNames.has(str)
+  // Accept built-in names, or any non-empty string for custom texts
+  // Custom text existence is validated at load time in useData
+  return validDataNames.has(str) || str.length > 0
 }
 
 // save the state items to local storage when they are updated
