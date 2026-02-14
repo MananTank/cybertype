@@ -35,27 +35,35 @@ export const Settings = memo(function Settings({
     >
       {/* app name */}
       <motion.div
-        layout
-        transition={{
-          duration: 0.6,
-          type: 'spring',
-          bounce: 0.15
-        }}
+        // layout
+        // transition={{
+        //   bounce: 0
+        // }}
+
         exit={{
           opacity: 0,
-          filter: 'blur(12px)'
+          // filter: 'blur(4px)',
+          transition: {
+            duration: 0
+          }
+          // filter: 'blur(12px)'
         }}
         initial={{
           opacity: 0,
-          filter: 'blur(12px)'
+          filter: 'blur(4px)'
         }}
         animate={{
           opacity: 1,
-          filter: 'blur(0px)'
+          filter: 'blur(0px)',
+          transition: {
+            delay: 0.1,
+            duration: 0.4
+          }
+          // filter: 'blur(0px)'
         }}
         className="text-sm tracking-[0.3em] uppercase pl-5 pr-3 font-semibold text-primary"
       >
-        <span>cybertype</span>
+        cybertype
       </motion.div>
 
       {/* data selector */}

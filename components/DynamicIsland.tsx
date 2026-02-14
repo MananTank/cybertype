@@ -185,12 +185,17 @@ export function DynamicIsland({ state, dispatch }: Props) {
                 className="bg-secondary/20  text-secondary relative max-w-[calc(100vw-40px)] will-change-transform overflow-hidden "
                 transition={islandSpringOpen}
                 style={{ borderRadius: 24 }}
+                exit={
+                  {
+                    // opacity: 0
+                  }
+                }
               >
                 {/* Content fade - quick and subtle */}
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, filter: 'blur(4px)' }}
+                  animate={{ opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, filter: 'blur(4px)' }}
                   transition={contentTransition}
                 >
                   {expanderContent}

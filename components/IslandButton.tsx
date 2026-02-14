@@ -19,24 +19,26 @@ export function IslandButton({
 
   return (
     <motion.button
-      type="button"
-      layout
-      transition={{
-        duration: 0.6,
-        type: 'spring',
-        bounce: 0.15
-      }}
+      // type="button"
+      // layout
+
       exit={{
         opacity: 0,
-        filter: 'blur(12px)'
+        transition: {
+          duration: 0
+        }
       }}
       initial={{
         opacity: 0,
-        filter: 'blur(12px)'
+        filter: 'blur(4px)'
       }}
       animate={{
         opacity: 1,
-        filter: 'blur(0px)'
+        filter: 'blur(0px)',
+        transition: {
+          delay: 0.1,
+          duration: 0.3
+        }
       }}
       {...props}
       className={cn(
