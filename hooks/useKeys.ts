@@ -27,7 +27,13 @@ export function useKeys(
       const controlOrMeta = event.metaKey || event.ctrlKey
       if (controlOrMeta) {
         // Allow browser shortcuts and app shortcuts (Cmd+K for island focus)
-        if (event.key === 'r' || event.key === '-' || event.key === '=' || event.key === 'k') return
+        if (
+          event.key === 'r' ||
+          event.key === '-' ||
+          event.key === '=' ||
+          event.key === 'k'
+        )
+          return
       }
 
       // Check if focus is on interactive element
@@ -36,7 +42,16 @@ export function useKeys(
 
       // Allow navigation keys (Enter, Space, Arrows, Tab) to work on island elements
       if (isInIsland) {
-        const navKeys = ['Enter', ' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Tab', 'Escape']
+        const navKeys = [
+          'Enter',
+          ' ',
+          'ArrowUp',
+          'ArrowDown',
+          'ArrowLeft',
+          'ArrowRight',
+          'Tab',
+          'Escape'
+        ]
         if (navKeys.includes(event.key)) return
       }
 

@@ -20,22 +20,22 @@ import csharp from '../public/json/csharp.json'
 
 // Map data names to their data arrays
 export const allData: Record<string, unknown[]> = {
-  'Quotes': quotes,
+  Quotes: quotes,
   'English 200': english200,
   'English 1K': english1k,
   'English 5K': english5k,
   'English 10K': english10k,
-  'Wordle': wordle,
+  Wordle: wordle,
   'Commonly Misspelled': commonlyMisspelled,
-  'JavaScript': javascript,
-  'Rust': rust,
-  'HTML': html,
-  'CSS': css,
+  JavaScript: javascript,
+  Rust: rust,
+  HTML: html,
+  CSS: css,
   'C++': cpp,
-  'SQL': sql,
-  'Git': git,
-  'Bash': bash,
-  'Python': python,
-  'Java': java,
+  SQL: sql,
+  Git: git,
+  Bash: bash,
+  Python: python,
+  Java: java,
   'C#': csharp
 }

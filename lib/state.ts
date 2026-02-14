@@ -65,7 +65,6 @@ export function stateReducer(state: State, action: Action): void {
       return
     }
 
-
     case 'setSoundEnabled': {
       state.soundEnabled = action.data
       return

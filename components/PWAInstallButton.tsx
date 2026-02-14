@@ -18,7 +18,8 @@ export function usePWAInstall() {
     }
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    return () =>
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
   }, [])
 
   async function handleInstall() {

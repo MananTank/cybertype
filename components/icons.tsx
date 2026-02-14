@@ -26,11 +26,7 @@ export function TwitterIcon({ className }: { className?: string }) {
 // GitHub logo
 export function GithubIcon({ className }: { className?: string }) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 98 96"
-      className={className}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98 96" className={className}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
