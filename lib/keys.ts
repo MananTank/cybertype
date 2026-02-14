@@ -41,7 +41,7 @@ export const row3Shift = [':', '"']
 export const row4 = [',', `.`, '/']
 export const row4Shift = ['<', '>', '?']
 
-export const others = [' ', 'Enter', 'Backspace', 'ArrowLeft', 'ArrowRight']
+export const others = [' ', 'Backspace', 'ArrowLeft', 'ArrowRight']
 
 // heat map is generated for these keys
 export const heatmapKeys = [...lowerCaseAlpha, ...row2, ...row3, ...row4, ' ']

@@ -1,16 +1,18 @@
 'use client'
 
+import React from 'react'
 import { Words } from '../components/Words'
 import { KeyStats } from '../components/Keyboard'
 import { useAppState } from '../lib/state'
 import { Footer } from '../components/Nav'
-import { Loader } from '../components/Loader'
 import { DynamicIsland } from '../components/DynamicIsland'
 import { useData } from '../hooks/useData'
 import { useKeys } from '../hooks/useKeys'
 import { useTypingStarted } from '../hooks/useTyping'
 import { useLocalStorage } from '../lib/localStorage'
 import { ClientOnly } from '../components/ClientOnly'
+import { RotateCcw } from 'lucide-react'
+import { motion, useAnimate } from 'motion/react'
 
 export default function Home() {
   const [state, dispatch] = useAppState()
@@ -45,10 +47,60 @@ export default function Home() {
         />
       </div>
 
+      {/* Reset button */}
+      <ResetButton onReset={() => dispatch({ type: 'reset' })} />
+
       <div className="mt-auto">
         <KeyStats keyStats={state.keyStats} />
         <Footer />
       </div>
+    </div>
+  )
+}
+
+function ResetButton({ onReset }: { onReset: () => void }) {
+  const [scope, animate] = useAnimate()
+  const rotationRef = React.useRef(0)
+
+  const spin = React.useCallback(() => {
+    rotationRef.current -= 360
+    animate(
+      scope.current,
+      { rotate: rotationRef.current },
+      { duration: 0.5, type: 'spring', bounce: 0.15 }
+    )
+  }, [animate, scope])
+
+  const handleClick = () => {
+    onReset()
+    spin()
+  }
+
+  // Listen for Shift+Enter to trigger spin animation
+  React.useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Enter' && e.shiftKey) {
+        spin()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [spin])
+
+  return (
+    <div className="flex justify-center py-4">
+      <motion.button
+        ref={scope}
+        type="button"
+        onClick={handleClick}
+        className="p-2 outline-none rounded-full text-secondary/50 hover:text-secondary hover:bg-tertiary/30 focus-visible:text-primary focus-visible:bg-tertiary/30 transition-colors cursor-pointer"
+        aria-label="Reset and shuffle (Shift+Enter)"
+        title="Reset and shuffle (Shift+Enter)"
+        whileTap={{ scale: 0.95 }}
+      >
+        <RotateCcw className="size-5" />
+      </motion.button>
     </div>
   )
 }

@@ -21,6 +21,13 @@ export function useKeys(
 
     function handleKeyDown(event: KeyboardEvent) {
       if (ignore) return
+
+      // Shift+Enter to reset and shuffle (check before shouldIgnore since Enter is ignored)
+      if (event.key === 'Enter' && event.shiftKey) {
+        event.preventDefault()
+        return dispatch({ type: 'reset' })
+      }
+
       if (shouldIgnore(event.key)) return
 
       // ignore these key combos
@@ -40,11 +47,10 @@ export function useKeys(
       const target = event.target as HTMLElement
       const isInIsland = target.closest('.island-container')
 
-      // Allow navigation keys (Enter, Space, Arrows, Tab) to work on island elements
+      // Allow certain navigation keys to work on island elements, but NOT space
+      // (space is used for typing and should always be captured)
       if (isInIsland) {
         const navKeys = [
-          'Enter',
-          ' ',
           'ArrowUp',
           'ArrowDown',
           'ArrowLeft',
@@ -57,8 +63,9 @@ export function useKeys(
 
       event.preventDefault()
 
-      if (event.key === 'Enter') {
-        return dispatch({ type: 'reset' })
+      // Blur island buttons when typing starts so they don't interfere
+      if (isInIsland && target.tagName === 'BUTTON') {
+        target.blur()
       }
 
       if (event.key === 'Backspace' || event.key === 'ArrowLeft') {

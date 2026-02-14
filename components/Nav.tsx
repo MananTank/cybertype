@@ -1,15 +1,15 @@
 'use client'
 
-import { CornerDownLeft, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { GithubIcon, TwitterIcon } from './icons'
 import { useEffect, useRef } from 'react'
 
 export function Footer() {
-  const kbdRef = useRef<HTMLElement>(null)
+  const kbdRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Enter' && kbdRef.current) {
+      if (e.key === 'Enter' && e.shiftKey && kbdRef.current) {
         kbdRef.current.setAttribute('data-pressed', '')
       }
     }
@@ -31,13 +31,14 @@ export function Footer() {
   return (
     <div className="flex items-center justify-center py-5 gap-5">
       <div className="flex items-center gap-2.5 text-secondary text-sm max-[1500px]:text-xs">
-        <kbd
+        <div
           ref={kbdRef}
-          className="flex items-center gap-1.5 text-[0.9em] py-1 px-2.5 rounded bg-tertiary/40 font-mono tracking-wide transition-transform duration-100 data-pressed:scale-90 data-pressed:bg-tertiary/60"
+          className="flex items-center gap-1 text-[0.9em] py-1 px-2.5 rounded bg-tertiary/40 font-mono tracking-wide transition-transform duration-100 data-pressed:scale-90 data-pressed:bg-tertiary/60"
         >
-          <CornerDownLeft className="size-3" />
-          enter
-        </kbd>
+          <kbd className="text-[0.85em]">shift</kbd>
+          <span className="text-secondary/50">+</span>
+          <kbd className="text-[0.85em]">enter</kbd>
+        </div>
         <ArrowRight className="size-3" />
         <div className="flex items-center gap-1.5 bg-tertiary/40 rounded-full px-3 py-1">
           <span className="text-[0.85em] tracking-wide">reset</span>
