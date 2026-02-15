@@ -48,6 +48,7 @@ export default function Home() {
           words={state.words}
           progress={state.progress}
           errorLocations={state.errorLocations}
+          shuffleKey={state.shuffleKey}
         />
       </div>
 
@@ -110,7 +111,7 @@ function ResetButton({ onReset }: { onReset: () => void }) {
         ref={scope}
         type="button"
         onClick={handleClick}
-        className="p-2 outline-none cursor-pointer rounded-full text-secondary hover:text-secondary hover:bg-tertiary/30 focus-visible:text-primary focus-visible:bg-tertiary/30 transition-colors cursor-pointer"
+        className="p-2 outline-none  rounded-full text-secondary hover:text-secondary hover:bg-tertiary/30 focus-visible:text-primary focus-visible:bg-tertiary/30 transition-colors cursor-pointer"
         aria-label="Reset and shuffle (Shift+Enter)"
         title="Reset and shuffle (Shift+Enter)"
         whileTap={{ scale: 0.9 }}

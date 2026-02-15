@@ -18,9 +18,10 @@ const bufferWords = 100
 export function stateReducer(state: State, action: Action): void {
   switch (action.type) {
     case 'setData': {
+      // If words already exist, this is a data change (not initial load) - trigger shuffle animation
+      const isDataChange = state.words.length > 0
       state.data = action.data
-      // need to reset when setting new data
-      reset(state)
+      reset(state, isDataChange)
       return
     }
 
@@ -61,7 +62,7 @@ export function stateReducer(state: State, action: Action): void {
     }
 
     case 'reset': {
-      reset(state)
+      reset(state, true)
       return
     }
 
@@ -189,7 +190,7 @@ function appendWords(state: State, count = 200) {
   }
 }
 
-function reset(state: State) {
+function reset(state: State, incrementShuffleKey: boolean) {
   // reset progress
   state.totalErrors = 0
   state.typingStarted = false
@@ -203,6 +204,9 @@ function reset(state: State) {
   state.progress = {
     wordIndex: 0,
     charIndex: 0
+  }
+  if (incrementShuffleKey) {
+    state.shuffleKey = state.shuffleKey + 1
   }
 
   // set new words
@@ -245,7 +249,8 @@ export function getInitialState(): State {
     progress: {
       wordIndex: 0,
       charIndex: 0
-    }
+    },
+    shuffleKey: 0
   }
 }
 

@@ -4,15 +4,16 @@ import { memo, useEffect, useRef } from 'react'
 import { cn } from '../lib/utils'
 import { ErrorLocations, Progress } from '../lib/types'
 import { SpaceIcon } from './icons'
-import { motion, LayoutGroup } from 'motion/react'
+import { motion, LayoutGroup, AnimatePresence } from 'motion/react'
 
 type WordsProps = {
   words: string[]
   progress: Progress
   errorLocations: ErrorLocations
+  shuffleKey: number
 }
 
-export function Words({ words, progress, errorLocations }: WordsProps) {
+export function Words({ words, progress, errorLocations, shuffleKey }: WordsProps) {
   const wordsRef = useRef<HTMLDivElement>(null)
   const shouldScrollRef = useRef(true)
 
@@ -69,18 +70,36 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
             transform: 'translateY(calc(var(--depth, 0px) + var(--top-offset)))'
           }}
         >
-          {words.map((word, wordIndex) => (
-            <Word
-              key={wordIndex}
-              word={word}
-              index={wordIndex}
-              isTyped={progress.wordIndex > wordIndex}
-              isCurrent={progress.wordIndex === wordIndex}
-              isUpcoming={progress.wordIndex < wordIndex}
-              activeCharIndex={progress.charIndex}
-              errorsInWord={errorLocations[wordIndex]}
-            />
-          ))}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={shuffleKey}
+              initial={
+                shuffleKey > 0 ? { opacity: 0, scale: 0.95, filter: 'blur(10px)' } : false
+              }
+              animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, scale: 1.02, filter: 'blur(8px)' }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              onAnimationComplete={() => {
+                if (wordsRef.current) {
+                  wordsRef.current.style.setProperty('--depth', '0px')
+                }
+              }}
+            >
+              {words.map((word, wordIndex) => (
+                <Word
+                  key={wordIndex}
+                  word={word}
+                  index={wordIndex}
+                  isTyped={progress.wordIndex > wordIndex}
+                  isCurrent={progress.wordIndex === wordIndex}
+                  isUpcoming={progress.wordIndex < wordIndex}
+                  activeCharIndex={progress.charIndex}
+                  errorsInWord={errorLocations[wordIndex]}
+                  shuffleKey={shuffleKey}
+                />
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </LayoutGroup>
     </div>
@@ -103,20 +122,25 @@ const Word = memo(function Word({
   isTyped,
   isCurrent,
   isUpcoming,
-  index
-}: WordProps & { index: number }) {
+  index,
+  shuffleKey
+}: WordProps & { index: number; shuffleKey: number }) {
+  // On initial load (shuffleKey === 0): slow staggered entrance
+  // On shuffle (shuffleKey > 0): faster staggered entrance without initial delay
+  const isInitialLoad = shuffleKey === 0
+
   return (
     <motion.div
       data-word="true"
       data-current={isCurrent}
       data-typed={isTyped}
       className="mb-2.5 inline-flex"
-      initial={{ opacity: 0, filter: 'blur(8px)', y: 28 }}
+      initial={{ opacity: 0, filter: 'blur(10px)', y: isInitialLoad ? 24 : 12 }}
       animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
       transition={{
-        duration: 0.8,
+        duration: isInitialLoad ? 0.8 : 0.4,
         ease: [0.25, 0.1, 0.25, 1],
-        delay: 0.5 + index * 0.015
+        delay: isInitialLoad ? 0.5 + index * 0.015 : index * 0.006
       }}
     >
       {word.split('').map((character, characterIndex) => {

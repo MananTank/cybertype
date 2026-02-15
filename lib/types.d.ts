@@ -33,6 +33,7 @@ export type State = {
   progress: Progress
   lastWordTypedTime: number
   lastCharTypedTime: number
+  shuffleKey: number
 }
 
 export type Action =
