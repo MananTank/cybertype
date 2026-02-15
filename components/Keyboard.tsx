@@ -1,7 +1,7 @@
 import { KeyStatRecord } from '../lib/types'
-import { memo, useEffect, useRef } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import { cn, getSpeed } from '../lib/utils'
-import { motion } from 'motion/react'
+import { motion, LayoutGroup } from 'motion/react'
 
 type KeyStatsProps = {
   keyStats: KeyStatRecord
@@ -12,6 +12,8 @@ const row2 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', `'`]
 const row3 = ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/']
 
 export function KeyStats({ keyStats }: KeyStatsProps) {
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null)
+
   const mapper = (keys: string[], rowIndex: number) =>
     keys.map((key, keyIndex) => {
       return (
@@ -21,16 +23,21 @@ export function KeyStats({ keyStats }: KeyStatsProps) {
           count={keyStats[key].count}
           totalTime={keyStats[key].totalTime}
           animationDelay={1.5 + rowIndex * 0.08 + keyIndex * 0.025}
+          isHovered={hoveredKey === key}
+          onHover={() => setHoveredKey(key)}
+          onLeave={() => setHoveredKey(null)}
         />
       )
     })
 
   return (
-    <div className="flex flex-col items-center py-12 gap-1.5 md:gap-2 relative z-10">
-      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row1, 0)}</div>
-      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row2, 1)}</div>
-      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row3, 2)}</div>
-    </div>
+    <LayoutGroup>
+      <div className="flex flex-col items-center py-12 relative z-10">
+        <div className="flex justify-center">{mapper(row1, 0)}</div>
+        <div className="flex justify-center">{mapper(row2, 1)}</div>
+        <div className="flex justify-center">{mapper(row3, 2)}</div>
+      </div>
+    </LayoutGroup>
   )
 }
 
@@ -39,9 +46,20 @@ type KeyStatProps = {
   totalTime: number
   keyName: string
   animationDelay: number
+  isHovered: boolean
+  onHover: () => void
+  onLeave: () => void
 }
 
-const KeyStat = memo(function KeyStat({ keyName, count, totalTime, animationDelay }: KeyStatProps) {
+const KeyStat = memo(function KeyStat({
+  keyName,
+  count,
+  totalTime,
+  animationDelay,
+  isHovered,
+  onHover,
+  onLeave
+}: KeyStatProps) {
   const keySpeed = totalTime === 0 ? 0 : getSpeed(count, totalTime * 5)
   const speedClass = getSpeedClass(keySpeed)
   const elRef = useRef<HTMLDivElement>(null)
@@ -68,7 +86,7 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime, animationDela
   return (
     <motion.div
       className={cn(
-        'group relative text-(--color)',
+        'group relative text-(--color) p-[3px] md:p-1',
         speedClass,
         hideOnMobile && 'max-[600px]:hidden'
       )}
@@ -82,14 +100,23 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime, animationDela
         bounce: 0.1,
         delay: animationDelay
       }}
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
     >
       <div
         className={cn(
           'select-none text-xs md:text-sm lowercase font-medium w-[2em] h-[2em] rounded-md relative flex justify-center items-center cursor-pointer transition-all duration-200 ease-out',
-          'group-hover:scale-110 group-data-pressed:scale-120',
+          isHovered && 'scale-110',
+          'group-data-pressed:scale-120',
           isTyped
-            ? 'bg-(--color)/10 group-hover:bg-(--color)/25 group-data-pressed:bg-(--color)/30 '
-            : 'bg-muted-button-bg group-hover:bg-muted-button-bg-hover text-secondary'
+            ? cn(
+                'bg-(--color)/10 group-data-pressed:bg-(--color)/30',
+                isHovered && 'bg-(--color)/25'
+              )
+            : cn(
+                'bg-muted-button-bg text-secondary',
+                isHovered && 'bg-muted-button-bg-hover'
+              )
         )}
       >
         {keyName}
@@ -105,17 +132,28 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime, animationDela
       )}
 
       {/* tooltip */}
-      <div
-        className={cn(
-          'absolute backdrop-blur-xl z-50 p-6 rounded-lg pointer-events-none invisible opacity-0 top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-70 transition-[transform,opacity] duration-100 ease-out group-hover:visible group-hover:opacity-100 group-hover:-translate-y-[150%] group-hover:scale-100 max-[600px]:fixed max-[600px]:top-1/2 max-[600px]:left-1/2',
-          isTyped ? 'bg-(--color)/25' : 'bg-muted-button-bg/25'
-        )}
-      >
-        <div className="text-5xl font-medium flex items-baseline gap-2.5 whitespace-nowrap">
-          {keySpeed || 'N/A'}
-          <span className="text-3xl font-medium">wpm</span>
-        </div>
-      </div>
+      {isHovered && (
+        <motion.div
+          layoutId="keyboard-tooltip"
+          className={cn(
+            'absolute z-50 p-4 rounded-lg pointer-events-none top-0 left-1/2 -translate-x-1/2 -translate-y-[150%]',
+            isTyped
+              ? 'bg-(--color)/25 backdrop-blur-xl'
+              : 'bg-muted-button-bg/25 backdrop-blur-xl'
+          )}
+          transition={{
+            layout: { type: 'spring', stiffness: 500, damping: 30 }
+          }}
+        >
+          <div className="flex items-baseline gap-4 whitespace-nowrap">
+            <span className="text-5xl font-medium lowercase">{keyName}</span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-2xl font-medium">{keySpeed || 'N/A'}</span>
+              <span className="text-xl font-medium opacity-70">wpm</span>
+            </div>
+          </div>
+        </motion.div>
+      )}
     </motion.div>
   )
 })
