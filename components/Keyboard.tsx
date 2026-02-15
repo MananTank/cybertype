@@ -88,7 +88,7 @@ const KeyStat = memo(function KeyStat({ keyName, count, totalTime }: KeyStatProp
       {isTyped && (
         <div
           className={cn(
-            'absolute bg-(--color)/30 inset-0 rounded-full blur-sm -z-1 outline animate-[glow_var(--anim-duration)_ease_infinite_alternate]'
+            'absolute bg-(--color)/40 inset-0 rounded-full blur-md -z-1 outline animate-[glow_var(--anim-duration)_ease_infinite_alternate]'
           )}
         />
       )}
