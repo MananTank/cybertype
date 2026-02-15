@@ -177,3 +177,9 @@ body.typing .island-container {
 body:not(.typing) .stats-container {
   display: none;
 }
+
+/* Performance: skip rendering off-screen words (rendering-content-visibility) */
+[data-word='true'] {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1.5em;
+}

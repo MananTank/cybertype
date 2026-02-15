@@ -1,10 +1,15 @@
 'use client'
 
-import { memo, useEffect, useRef } from 'react'
+import { memo, useEffect, useRef, useMemo } from 'react'
 import { cn } from '../lib/utils'
 import { ErrorLocations, Progress } from '../lib/types'
 import { SpaceIcon } from './icons'
 import { motion, LayoutGroup, AnimatePresence } from 'motion/react'
+
+// Hoisted static JSX for transparent space icon (rendering-hoist-jsx)
+const transparentSpaceIcon = (
+  <SpaceIcon className="w-[0.6em] h-[0.6em] translate-y-[0.25em] inline-block align-baseline text-transparent" />
+)
 
 type WordsProps = {
   words: string[]
@@ -129,6 +134,10 @@ const Word = memo(function Word({
   // On shuffle (shuffleKey > 0): faster staggered entrance without initial delay
   const isInitialLoad = shuffleKey === 0
 
+  // Cache the split characters array (js-combine-iterations)
+  // Only recalculate when word changes
+  const characters = useMemo(() => word.split(''), [word])
+
   return (
     <motion.div
       data-word="true"
@@ -143,53 +152,76 @@ const Word = memo(function Word({
         delay: isInitialLoad ? 0.5 + index * 0.015 : index * 0.006
       }}
     >
-      {word.split('').map((character, characterIndex) => {
-        const isError = errorsInWord && errorsInWord[characterIndex] === true
-        const isCurrentChar = isCurrent && activeCharIndex === characterIndex
-        const isTypedChar = isCurrent ? characterIndex < activeCharIndex : isTyped
-
-        return (
-          <span
-            key={characterIndex}
-            className={cn('p-[0.03em] block relative', {
-              // Error state
-              'text-error [text-shadow:0_0_0.5em_var(--error)]': isError,
-              // Active word characters (not yet typed)
-              'text-primary': isCurrent && !isTypedChar && !isError,
-              // Typed characters (current word or past words)
-              'text-tertiary': isTypedChar && !isError,
-              // Upcoming words (all words after current)
-              'text-secondary': isUpcoming && !isError
-            })}
-          >
-            {/* Animated cursor line */}
-            {isCurrentChar && (
-              <motion.span
-                layoutId="typing-cursor"
-                className={cn(
-                  'absolute left-0 -translate-x-1 top-[0.2em] bottom-[0.2em] w-1 rounded-full animate-blink',
-                  isError ? 'bg-error' : 'bg-primary'
-                )}
-                transition={{
-                  type: 'tween',
-                  duration: 0.1,
-                  ease: 'circOut'
-                }}
-              />
-            )}
-            {character === ' ' ? (
-              <SpaceIcon
-                className={cn(
-                  'w-[0.6em] h-[0.6em] translate-y-[0.25em] inline-block align-baseline',
-                  isError ? 'text-error' : 'text-transparent'
-                )}
-              />
-            ) : (
-              character
-            )}
-          </span>
-        )
-      })}
+      {characters.map((character, characterIndex) => (
+        <Character
+          key={characterIndex}
+          character={character}
+          isError={errorsInWord?.[characterIndex] === true}
+          isCurrentChar={isCurrent && activeCharIndex === characterIndex}
+          isTypedChar={isCurrent ? characterIndex < activeCharIndex : isTyped}
+          isCurrent={isCurrent}
+          isUpcoming={isUpcoming}
+        />
+      ))}
     </motion.div>
+  )
+})
+
+// Memoized character component to prevent unnecessary re-renders (rerender-memo)
+type CharacterProps = {
+  character: string
+  isError: boolean
+  isCurrentChar: boolean
+  isTypedChar: boolean
+  isCurrent: boolean
+  isUpcoming: boolean
+}
+
+const Character = memo(function Character({
+  character,
+  isError,
+  isCurrentChar,
+  isTypedChar,
+  isCurrent,
+  isUpcoming
+}: CharacterProps) {
+  return (
+    <span
+      className={cn('p-[0.03em] block relative', {
+        // Error state
+        'text-error [text-shadow:0_0_0.5em_var(--error)]': isError,
+        // Active word characters (not yet typed)
+        'text-primary': isCurrent && !isTypedChar && !isError,
+        // Typed characters (current word or past words)
+        'text-tertiary': isTypedChar && !isError,
+        // Upcoming words (all words after current)
+        'text-secondary': isUpcoming && !isError
+      })}
+    >
+      {/* Animated cursor line */}
+      {isCurrentChar && (
+        <motion.span
+          layoutId="typing-cursor"
+          className={cn(
+            'absolute left-0 -translate-x-1 top-[0.2em] bottom-[0.2em] w-1 rounded-full animate-blink',
+            isError ? 'bg-error' : 'bg-primary'
+          )}
+          transition={{
+            type: 'tween',
+            duration: 0.1,
+            ease: 'circOut'
+          }}
+        />
+      )}
+      {character === ' ' ? (
+        isError ? (
+          <SpaceIcon className="w-[0.6em] h-[0.6em] translate-y-[0.25em] inline-block align-baseline text-error" />
+        ) : (
+          transparentSpaceIcon
+        )
+      ) : (
+        character
+      )}
+    </span>
   )
 })
