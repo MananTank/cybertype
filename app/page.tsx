@@ -33,9 +33,14 @@ export default function Home() {
   return (
     <div className="min-h-screen max-w-5xl mx-auto flex flex-col px-5 h-screen">
       <ClientOnly>
-        <div className="animate-[slide-in-down_500ms_500ms_ease_backwards] z-10">
+        <motion.div
+          className="z-10"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.5 }}
+        >
           <DynamicIsland state={state} dispatch={dispatch} />
-        </div>
+        </motion.div>
       </ClientOnly>
 
       {/* if there is data to show */}
@@ -48,12 +53,23 @@ export default function Home() {
       </div>
 
       {/* Reset button */}
-      <ResetButton onReset={() => dispatch({ type: 'reset' })} />
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 1 }}
+      >
+        <ResetButton onReset={() => dispatch({ type: 'reset' })} />
+      </motion.div>
 
-      <div className="mt-auto">
+      <motion.div
+        className="mt-auto"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 1 }}
+      >
         <KeyStats keyStats={state.keyStats} />
         <Footer />
-      </div>
+      </motion.div>
     </div>
   )
 }

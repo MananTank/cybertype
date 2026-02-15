@@ -73,6 +73,7 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
             <Word
               key={wordIndex}
               word={word}
+              index={wordIndex}
               isTyped={progress.wordIndex > wordIndex}
               isCurrent={progress.wordIndex === wordIndex}
               isUpcoming={progress.wordIndex < wordIndex}
@@ -101,14 +102,22 @@ const Word = memo(function Word({
   activeCharIndex,
   isTyped,
   isCurrent,
-  isUpcoming
-}: WordProps) {
+  isUpcoming,
+  index
+}: WordProps & { index: number }) {
   return (
-    <div
+    <motion.div
       data-word="true"
       data-current={isCurrent}
       data-typed={isTyped}
       className="mb-2.5 inline-flex"
+      initial={{ opacity: 0, filter: 'blur(8px)', y: 12 }}
+      animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+      transition={{
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1],
+        delay: index * 0.015
+      }}
     >
       {word.split('').map((character, characterIndex) => {
         const isError = errorsInWord && errorsInWord[characterIndex] === true
@@ -157,6 +166,6 @@ const Word = memo(function Word({
           </span>
         )
       })}
-    </div>
+    </motion.div>
   )
 })
