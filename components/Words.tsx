@@ -111,12 +111,12 @@ const Word = memo(function Word({
       data-current={isCurrent}
       data-typed={isTyped}
       className="mb-2.5 inline-flex"
-      initial={{ opacity: 0, filter: 'blur(8px)', y: 12 }}
+      initial={{ opacity: 0, filter: 'blur(8px)', y: 28 }}
       animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
       transition={{
         duration: 0.8,
         ease: [0.25, 0.1, 0.25, 1],
-        delay: index * 0.015
+        delay: 0.2 + index * 0.015
       }}
     >
       {word.split('').map((character, characterIndex) => {
@@ -147,9 +147,9 @@ const Word = memo(function Word({
                   isError ? 'bg-error' : 'bg-primary'
                 )}
                 transition={{
-                  type: 'spring',
-                  stiffness: 500,
-                  damping: 30
+                  type: 'tween',
+                  duration: 0.1,
+                  ease: 'circOut'
                 }}
               />
             )}

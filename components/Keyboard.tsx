@@ -1,6 +1,7 @@
 import { KeyStatRecord } from '../lib/types'
 import { memo, useEffect, useRef } from 'react'
 import { cn, getSpeed } from '../lib/utils'
+import { motion } from 'motion/react'
 
 type KeyStatsProps = {
   keyStats: KeyStatRecord
@@ -11,23 +12,34 @@ const row2 = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', `'`]
 const row3 = ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/']
 
 export function KeyStats({ keyStats }: KeyStatsProps) {
-  const mapper = (keys: string[]) =>
-    keys.map(key => {
+  const mapper = (keys: string[], rowIndex: number) =>
+    keys.map((key, keyIndex) => {
       return (
-        <KeyStat
+        <motion.div
           key={key}
-          keyName={key}
-          count={keyStats[key].count}
-          totalTime={keyStats[key].totalTime}
-        />
+          initial={{ opacity: 0, y: 24, scale: 0.7, filter: 'blur(8px)' }}
+          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+          transition={{
+            duration: 0.8,
+            type: 'spring',
+            bounce: 0.1,
+            delay: 1 + rowIndex * 0.08 + keyIndex * 0.025
+          }}
+        >
+          <KeyStat
+            keyName={key}
+            count={keyStats[key].count}
+            totalTime={keyStats[key].totalTime}
+          />
+        </motion.div>
       )
     })
 
   return (
     <div className="flex flex-col items-center py-12 gap-1.5 md:gap-2">
-      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row1)}</div>
-      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row2)}</div>
-      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row3)}</div>
+      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row1, 0)}</div>
+      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row2, 1)}</div>
+      <div className="flex justify-center gap-1.5 md:gap-2">{mapper(row3, 2)}</div>
     </div>
   )
 }

@@ -34,10 +34,9 @@ export default function Home() {
     <div className="min-h-screen max-w-5xl mx-auto flex flex-col px-5 h-screen">
       <ClientOnly>
         <motion.div
-          className="z-10"
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -80 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 0.5 }}
+          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1], delay: 1.7 }}
         >
           <DynamicIsland state={state} dispatch={dispatch} />
         </motion.div>
@@ -56,20 +55,21 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 1 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 2.5 }}
       >
         <ResetButton onReset={() => dispatch({ type: 'reset' })} />
       </motion.div>
 
-      <motion.div
-        className="mt-auto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 1 }}
-      >
+      <div className="mt-auto">
         <KeyStats keyStats={state.keyStats} />
-        <Footer />
-      </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 2.5 }}
+        >
+          <Footer />
+        </motion.div>
+      </div>
     </div>
   )
 }
@@ -110,10 +110,10 @@ function ResetButton({ onReset }: { onReset: () => void }) {
         ref={scope}
         type="button"
         onClick={handleClick}
-        className="p-2 outline-none rounded-full text-secondary hover:text-secondary hover:bg-tertiary/30 focus-visible:text-primary focus-visible:bg-tertiary/30 transition-colors cursor-pointer"
+        className="p-2 outline-none cursor-pointer rounded-full text-secondary hover:text-secondary hover:bg-tertiary/30 focus-visible:text-primary focus-visible:bg-tertiary/30 transition-colors cursor-pointer"
         aria-label="Reset and shuffle (Shift+Enter)"
         title="Reset and shuffle (Shift+Enter)"
-        whileTap={{ scale: 0.95 }}
+        whileTap={{ scale: 0.9 }}
       >
         <RotateCcw className="size-5" />
       </motion.button>
