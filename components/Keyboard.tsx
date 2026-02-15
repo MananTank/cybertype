@@ -23,7 +23,7 @@ export function KeyStats({ keyStats }: KeyStatsProps) {
             duration: 0.8,
             type: 'spring',
             bounce: 0.1,
-            delay: 1 + rowIndex * 0.08 + keyIndex * 0.025
+            delay: 1.5 + rowIndex * 0.08 + keyIndex * 0.025
           }}
         >
           <KeyStat
