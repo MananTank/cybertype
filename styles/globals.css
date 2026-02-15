@@ -1,19 +1,5 @@
 @import 'tailwindcss';
 
-/* Default theme colors (Serendipity) */
-:root {
-  --bg: oklch(25% 0 0);
-  --secondary: oklch(62% 0.01 140);
-  --tertiary: oklch(38% 0 0);
-  --primary: oklch(78% 0.18 85);
-  --error: oklch(85% 0.06 90);
-  --fast: oklch(100% 0 0);
-  --normal: oklch(78% 0.18 85);
-  --slow: oklch(62% 0.25 25);
-  --island-bg: oklch(78% 0.18 85);
-  --island-fg: oklch(25% 0 0);
-}
-
 /* Define theme colors that reference CSS variables - inline keeps var() at runtime */
 @theme inline {
   --color-bg: var(--bg);
@@ -27,6 +13,10 @@
   --color-island-bg: var(--island-bg);
   --color-island-fg: var(--island-fg);
   --animate-blink: blink 1s step-end infinite;
+  --color-island-button-bg: var(--island-button-bg);
+  --color-island-button-hover-bg: var(--island-button-hover-bg);
+  --color-muted-button-bg: var(--muted-button-bg);
+  --color-muted-button-bg-hover: var(--muted-button-bg-hover);
 }
 
 /* Base styles */
@@ -58,232 +48,6 @@
   body::-webkit-scrollbar-thumb:hover {
     background: var(--secondary);
   }
-}
-
-/* Theme overrides - all values explicit (no var() for island colors to avoid circular refs) */
-
-/* Espresso - warm coffee tones */
-[data-theme='0'] {
-  --bg: oklch(15% 0.02 30);
-  --secondary: oklch(75% 0.08 55);
-  --tertiary: oklch(30% 0.03 30);
-  --primary: oklch(80% 0.2 75);
-  --error: oklch(60% 0.28 25);
-  --fast: oklch(92% 0.12 75);
-  --normal: oklch(80% 0.2 75);
-  --slow: oklch(60% 0.28 25);
-  --island-bg: oklch(80% 0.2 75);
-  --island-fg: oklch(15% 0.02 30);
-}
-
-/* Campfire - cozy orange warmth */
-[data-theme='1'] {
-  --bg: oklch(28% 0.02 250);
-  --tertiary: oklch(42% 0.02 250);
-  --secondary: oklch(85% 0.15 55);
-  --primary: oklch(72% 0.2 35);
-  --error: oklch(62% 0.26 25);
-  --fast: oklch(65% 0.02 0);
-  --normal: oklch(85% 0.15 55);
-  --slow: oklch(72% 0.2 35);
-  --island-bg: oklch(72% 0.2 35);
-  --island-fg: oklch(28% 0.02 250);
-}
-
-/* Classic - vintage paper */
-[data-theme='2'] {
-  --bg: oklch(75% 0.04 95);
-  --tertiary: oklch(82% 0.04 95);
-  --secondary: oklch(20% 0.02 110);
-  --primary: oklch(94% 0.06 100);
-  --error: oklch(55% 0.22 25);
-  --fast: oklch(100% 0 0);
-  --normal: oklch(90% 0.18 100);
-  --slow: oklch(55% 0.28 25);
-  --island-bg: oklch(94% 0.06 100);
-  --island-fg: oklch(20% 0.02 110);
-}
-
-/* Halloween - spooky neon */
-[data-theme='3'] {
-  --bg: oklch(12% 0.08 320);
-  --tertiary: oklch(25% 0.1 320);
-  --secondary: oklch(70% 0.22 50);
-  --primary: oklch(88% 0.28 125);
-  --error: oklch(60% 0.3 300);
-  --fast: oklch(88% 0.28 125);
-  --normal: oklch(82% 0.2 300);
-  --slow: oklch(70% 0.22 50);
-  --island-bg: oklch(88% 0.28 125);
-  --island-fg: oklch(12% 0.08 320);
-}
-
-/* Effervescent - bubbly purple */
-[data-theme='4'] {
-  --bg: oklch(60% 0.2 290);
-  --tertiary: oklch(82% 0.22 310);
-  --secondary: oklch(15% 0.08 290);
-  --primary: oklch(90% 0.28 140);
-  --error: oklch(85% 0.22 95);
-  --fast: oklch(88% 0.26 140);
-  --normal: oklch(82% 0.28 95);
-  --slow: oklch(88% 0.2 350);
-  --island-bg: oklch(90% 0.28 140);
-  --island-fg: oklch(15% 0.08 290);
-}
-
-/* Blackhole - deep space */
-[data-theme='5'] {
-  --bg: oklch(8% 0.02 250);
-  --tertiary: oklch(20% 0.04 250);
-  --secondary: oklch(42% 0.06 250);
-  --primary: oklch(95% 0.08 250);
-  --error: oklch(55% 0.3 25);
-  --fast: oklch(100% 0 0);
-  --normal: oklch(55% 0.06 250);
-  --slow: oklch(55% 0.3 25);
-  --island-bg: oklch(95% 0.08 250);
-  --island-fg: oklch(8% 0.02 250);
-}
-
-/* Serendipity - golden glow */
-[data-theme='6'] {
-  --bg: oklch(25% 0 0);
-  --tertiary: oklch(38% 0 0);
-  --secondary: oklch(62% 0.01 140);
-  --primary: oklch(78% 0.18 85);
-  --error: oklch(85% 0.06 90);
-  --fast: oklch(100% 0 0);
-  --normal: oklch(78% 0.18 85);
-  --slow: oklch(62% 0.25 25);
-  --island-bg: oklch(78% 0.18 85);
-  --island-fg: oklch(25% 0 0);
-}
-
-/* Elixir - magical purple-orange */
-[data-theme='7'] {
-  --bg: oklch(18% 0.12 280);
-  --tertiary: oklch(32% 0.12 285);
-  --secondary: oklch(60% 0.2 265);
-  --primary: oklch(72% 0.22 45);
-  --error: oklch(85% 0.26 130);
-  --fast: oklch(85% 0.26 130);
-  --normal: oklch(78% 0.15 265);
-  --slow: oklch(72% 0.22 45);
-  --island-bg: oklch(72% 0.22 45);
-  --island-fg: oklch(18% 0.12 280);
-}
-
-/* Eudaemonia - warm cream & crimson */
-[data-theme='8'] {
-  --bg: oklch(80% 0.03 95);
-  --tertiary: oklch(68% 0.03 95);
-  --secondary: oklch(22% 0.02 220);
-  --primary: oklch(45% 0.22 15);
-  --error: oklch(100% 0 0);
-  --fast: oklch(88% 0.18 100);
-  --normal: oklch(100% 0 0);
-  --slow: oklch(45% 0.22 15);
-  --island-bg: oklch(45% 0.22 15);
-  --island-fg: oklch(92% 0.02 95);
-}
-
-/* Tranquillity - soft lavender */
-[data-theme='9'] {
-  --bg: oklch(88% 0.01 290);
-  --tertiary: oklch(100% 0 0);
-  --secondary: oklch(55% 0.04 240);
-  --primary: oklch(18% 0.02 340);
-  --error: oklch(72% 0.2 45);
-  --fast: oklch(100% 0 0);
-  --normal: oklch(85% 0.04 240);
-  --slow: oklch(72% 0.2 45);
-  --island-bg: oklch(18% 0.02 340);
-  --island-fg: oklch(88% 0.01 290);
-}
-
-/* Aesthete - matrix green */
-[data-theme='10'] {
-  --bg: oklch(18% 0 0);
-  --tertiary: oklch(32% 0 0);
-  --secondary: oklch(82% 0.02 50);
-  --primary: oklch(55% 0.2 145);
-  --error: oklch(50% 0.2 25);
-  --fast: oklch(62% 0.24 145);
-  --normal: oklch(100% 0 0);
-  --slow: oklch(58% 0.22 25);
-  --island-bg: oklch(55% 0.2 145);
-  --island-fg: oklch(18% 0 0);
-}
-
-/* Sunlit - bright ocean */
-[data-theme='11'] {
-  --bg: oklch(42% 0.15 250);
-  --tertiary: oklch(52% 0.12 250);
-  --secondary: oklch(78% 0.1 250);
-  --primary: oklch(90% 0.22 100);
-  --error: oklch(85% 0.18 195);
-  --fast: oklch(85% 0.2 175);
-  --normal: oklch(100% 0 0);
-  --slow: oklch(90% 0.22 105);
-  --island-bg: oklch(90% 0.22 100);
-  --island-fg: oklch(35% 0.15 250);
-}
-
-/* Witch Craft - mystical teal */
-[data-theme='12'] {
-  --bg: oklch(15% 0.06 210);
-  --tertiary: oklch(28% 0.08 190);
-  --secondary: oklch(68% 0.16 45);
-  --primary: oklch(70% 0.1 190);
-  --error: oklch(100% 0 0);
-  --fast: oklch(65% 0.06 170);
-  --normal: oklch(100% 0 0);
-  --slow: oklch(68% 0.16 45);
-  --island-bg: oklch(70% 0.1 190);
-  --island-fg: oklch(15% 0.06 210);
-}
-
-/* Mechanical - industrial red */
-[data-theme='13'] {
-  --bg: oklch(22% 0.02 240);
-  --tertiary: oklch(30% 0.02 240);
-  --secondary: oklch(52% 0.02 240);
-  --primary: oklch(60% 0.24 25);
-  --error: oklch(100% 0 0);
-  --fast: oklch(100% 0 0);
-  --normal: oklch(58% 0.02 240);
-  --slow: oklch(70% 0.28 25);
-  --island-bg: oklch(52% 0.02 240);
-  --island-fg: oklch(100% 0 0);
-}
-
-/* Night Owl - electric indigo */
-[data-theme='14'] {
-  --bg: oklch(12% 0.1 280);
-  --tertiary: oklch(35% 0.12 270);
-  --secondary: oklch(55% 0.2 265);
-  --primary: oklch(72% 0.22 35);
-  --error: oklch(85% 0.22 95);
-  --fast: oklch(70% 0.2 265);
-  --normal: oklch(85% 0.22 95);
-  --slow: oklch(72% 0.22 35);
-  --island-bg: oklch(55% 0.2 265);
-  --island-fg: oklch(100% 0 0);
-}
-
-/* Forest - deep teal */
-[data-theme='15'] {
-  --bg: oklch(15% 0.08 220);
-  --tertiary: oklch(30% 0.1 200);
-  --secondary: oklch(60% 0.03 220);
-  --primary: oklch(85% 0.18 90);
-  --error: oklch(65% 0.28 25);
-  --fast: oklch(50% 0.15 200);
-  --normal: oklch(100% 0 0);
-  --slow: oklch(85% 0.18 90);
-  --island-bg: oklch(85% 0.18 90);
-  --island-fg: oklch(15% 0.08 220);
 }
 
 /* Keyframes */
@@ -358,11 +122,11 @@
 @keyframes glow {
   from {
     opacity: 0.2;
-    transform: translate(-50%, -50%) scale(0.7);
+    transform: scale(0.7);
   }
   to {
     opacity: 0.5;
-    transform: translate(-50%, -50%) scale(1.2);
+    transform: scale(1.2);
   }
 }
 

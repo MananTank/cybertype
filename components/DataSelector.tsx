@@ -4,6 +4,7 @@ import { Action } from '../lib/types'
 import { cn } from '../lib/utils'
 import { useArrowNavigation } from '../hooks/useArrowNavigation'
 import { getAllCustomTexts, deleteCustomText, CustomText } from '../lib/customTexts'
+import { useMotionSquircle } from '../lib/squircle'
 
 export const dataNames = [
   'Quotes',
@@ -24,6 +25,7 @@ type Props = {
 export function DataSelector({ dispatch, handleClose, currentDataName }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [customTexts, setCustomTexts] = useState<CustomText[]>([])
+  const squircle = useMotionSquircle()
 
   // Load custom texts on mount
   useEffect(() => {
@@ -62,7 +64,7 @@ export function DataSelector({ dispatch, handleClose, currentDataName }: Props) 
   return (
     <div
       ref={containerRef}
-      className="max-w-[420px] w-[calc(100vw-80px)] flex flex-wrap gap-x-2 gap-y-2.5 p-4"
+      className="max-w-[420px] w-[calc(100vw-80px)] flex flex-wrap gap-2 p-4 pb-8"
     >
       {allNames.map(value => {
         const isActive = currentDataName === value
@@ -71,13 +73,14 @@ export function DataSelector({ dispatch, handleClose, currentDataName }: Props) 
           <button
             key={value}
             data-active={isActive}
+            style={squircle(16)}
             className={cn(
-              'group relative text-sm py-2 px-4 rounded-full cursor-pointer select-none',
+              'group relative text-sm py-2 px-4 cursor-pointer select-none',
               'transition-all duration-150 ease-out outline-none',
               isCustom && 'pr-8',
               isActive
-                ? 'bg-bg text-primary'
-                : 'bg-secondary/10 text-secondary hover:bg-secondary/30 focus-visible:bg-secondary/30 active:scale-[0.99] hover:text-primary focus-visible:text-primary'
+                ? 'bg-bg'
+                : 'bg-island-button-bg hover:bg-island-button-hover-bg focus-visible:bg-island-button-hover-bg active:scale-[0.99]'
             )}
             onClick={() => {
               if (!isActive) {
@@ -109,7 +112,7 @@ export function DataSelector({ dispatch, handleClose, currentDataName }: Props) 
                     handleDelete(value, e as unknown as React.MouseEvent)
                   }
                 }}
-                className="absolute right-1.5 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-error/20 text-secondary hover:text-error transition-colors"
+                className="absolute rounded-full right-1.5 top-1/2 -translate-y-1/2 p-1 hover:bg-error/20 hover:text-error transition-colors"
               >
                 <X className="size-3" />
               </span>
@@ -121,14 +124,16 @@ export function DataSelector({ dispatch, handleClose, currentDataName }: Props) 
       {/* Add custom text button */}
       <button
         type="button"
+        style={squircle(16)}
         onClick={() => dispatch({ type: 'setActivePanel', data: 'customText' })}
         className={cn(
-          'group relative text-sm py-2 px-3 rounded-full cursor-pointer select-none',
+          'group relative text-sm py-2 px-3 cursor-pointer select-none flex items-center gap-1.5',
           'transition-all duration-150 ease-out outline-none',
-          'bg-secondary/10 text-secondary hover:bg-secondary/30 focus-visible:bg-secondary/30 active:scale-[0.99] hover:text-primary focus-visible:text-primary'
+          'bg-island-button-bg hover:bg-island-button-hover-bg focus-visible:bg-island-button-hover-bg active:scale-[0.99]'
         )}
       >
         <Plus className="size-4" />
+        Add
       </button>
     </div>
   )

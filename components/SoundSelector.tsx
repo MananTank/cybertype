@@ -4,6 +4,7 @@ import { cn } from '../lib/utils'
 import { Check } from 'lucide-react'
 import { useEffect, useRef } from 'react'
 import { useArrowNavigation } from '../hooks/useArrowNavigation'
+import { useMotionSquircle } from '../lib/squircle'
 
 export type Props = {
   handleClose: () => void
@@ -13,6 +14,7 @@ export type Props = {
 
 export function SoundSelector(props: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const squircle = useMotionSquircle()
 
   // Focus current sound pack button on mount
   useEffect(() => {
@@ -38,12 +40,13 @@ export function SoundSelector(props: Props) {
             key={soundPack.id}
             data-active={isActive}
             className={cn(
-              'group relative text-left p-4 rounded-xl cursor-pointer',
+              'group relative text-left p-4 cursor-pointer',
               'transition-all duration-150 ease-out outline-none',
               isActive
-                ? 'bg-bg text-primary'
-                : 'bg-secondary/10 text-secondary hover:bg-secondary/30 focus-visible:bg-secondary/30 hover:text-primary focus-visible:text-primary'
+                ? 'bg-bg'
+                : 'bg-island-button-bg hover:bg-island-button-hover-bg focus-visible:bg-island-button-hover-bg'
             )}
+            style={squircle(12)}
             onClick={() => {
               props.dispatch({ type: 'setSoundPack', data: soundPack.id })
               props.handleClose()
@@ -58,11 +61,11 @@ export function SoundSelector(props: Props) {
           >
             {isActive && (
               <div className="absolute top-1/2 -translate-y-1/2 right-4">
-                <Check className="w-6 h-6 text-island-bg" />
+                <Check className="w-6 h-6" />
               </div>
             )}
-            <h3 className="text-lg font-semibold mb-1.5 ">{soundPack.name}</h3>
-            <p className="text-xs font-medium opacity-70 uppercase tracking-widest">
+            <h3 className="text-base font-medium mb-1.5 ">{soundPack.name}</h3>
+            <p className="text-xs font-medium opacity-70 uppercase tracking-wider">
               {soundPack.type}
             </p>
           </button>

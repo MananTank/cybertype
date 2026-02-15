@@ -41,7 +41,7 @@ export function Words({ words, progress, errorLocations }: WordsProps) {
   })
 
   return (
-    <div className="flex justify-center relative overflow-hidden h-[16em] leading-[1.3] py-20 z-1 text-2xl md:text-4xl select-none pointer-events-none">
+    <div className="flex justify-center relative overflow-hidden h-[500px] leading-[1.3] py-20 z-1 text-2xl md:text-4xl select-none pointer-events-none">
       {/* top shadow */}
       <div
         className="h-[6em] w-full absolute top-0 right-0 left-0 z-10 "

@@ -7,6 +7,7 @@ import { DataSelector } from './DataSelector'
 import { SoundSelector } from './SoundSelector'
 import { CustomTextForm } from './CustomTextForm'
 import { motion, AnimatePresence, LayoutGroup, type Transition } from 'motion/react'
+import { useMotionSquircle } from '../lib/squircle'
 
 export type Props = {
   state: State
@@ -42,8 +43,8 @@ const panelToButtonLabel: Record<string, string> = {
 export function DynamicIsland({ state, dispatch }: Props) {
   const closePanel = () => dispatch({ type: 'setActivePanel', data: null })
   const islandRef = useRef<HTMLDivElement>(null)
-  const previousPanelRef = useRef<string | null>(null)
   const [customTextsKey, setCustomTextsKey] = useState(0)
+  const squircle = useMotionSquircle()
 
   const isModalOpen = state.activePanel !== null
 
@@ -51,31 +52,6 @@ export function DynamicIsland({ state, dispatch }: Props) {
   const handleCustomTextSaved = useCallback(() => {
     setCustomTextsKey(k => k + 1)
   }, [])
-
-  // Track previous panel for refocusing
-  useEffect(() => {
-    if (state.activePanel) {
-      previousPanelRef.current = state.activePanel
-    }
-  }, [state.activePanel])
-
-  // Refocus button when panel closes
-  useEffect(() => {
-    if (!isModalOpen && previousPanelRef.current) {
-      const label = panelToButtonLabel[previousPanelRef.current]
-      if (label) {
-        // Small delay to let the pill render
-        setTimeout(() => {
-          const button = document.querySelector(
-            `.island-container button[aria-label="${label}"]`
-          ) as HTMLElement
-          if (button) {
-            button.focus()
-          }
-        }, 100)
-      }
-    }
-  }, [isModalOpen])
 
   // Determine which expander content to show
   const expanderContent =
@@ -154,8 +130,11 @@ export function DynamicIsland({ state, dispatch }: Props) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { duration: 0.3 } }}
-            exit={{ opacity: 0, transition: { duration: 0.8 } }}
-            className="fixed inset-0 z-40 backdrop-blur-sm bg-bg/60 pointer-events-none"
+            exit={{ opacity: 0, transition: { duration: 0.6 } }}
+            style={{
+              backdropFilter: 'blur(14px)'
+            }}
+            className="fixed inset-0 z-40 bg-bg/20 pointer-events-none"
           />
         )}
       </AnimatePresence>
@@ -169,9 +148,9 @@ export function DynamicIsland({ state, dispatch }: Props) {
               <motion.div
                 key="pill"
                 layoutId="dynamic-island"
-                className="bg-secondary/20 text-secondary flex justify-center items-center p-1 pr-5 will-change-transform "
+                className="bg-island-bg text-island-fg flex justify-center items-center p-1.5 pr-6 will-change-transform backdrop-blur-lg"
                 transition={islandSpringClose}
-                style={{ borderRadius: 24 }}
+                style={squircle(24)}
               >
                 <Settings dispatch={dispatch} soundEnabled={state.soundEnabled} />
               </motion.div>
@@ -181,9 +160,9 @@ export function DynamicIsland({ state, dispatch }: Props) {
                 ref={islandRef}
                 key="expander"
                 layoutId="dynamic-island"
-                className="bg-secondary/20  text-secondary relative max-w-[calc(100vw-40px)] will-change-transform overflow-hidden "
+                className="bg-island-bg text-island-fg relative max-w-[calc(100vw-40px)] will-change-transform overflow-hidden "
                 transition={islandSpringOpen}
-                style={{ borderRadius: 24 }}
+                style={squircle(24)}
                 exit={
                   {
                     // opacity: 0

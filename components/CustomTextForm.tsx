@@ -67,7 +67,7 @@ export function CustomTextForm({ dispatch, handleClose, onSaved }: Props) {
           setError('')
         }}
         placeholder="Name (required)"
-        className="w-full px-3 py-2 rounded-lg bg-secondary/10 text-primary placeholder:text-secondary/50 outline-none text-sm"
+        className="w-full px-3 py-2 rounded-lg bg-island-button-bg hover:bg-island-button-hover-bg focus-visible:bg-island-button-hover-bg active:scale-[0.99] text-sm outline-none"
         autoFocus
       />
 
@@ -79,7 +79,7 @@ export function CustomTextForm({ dispatch, handleClose, onSaved }: Props) {
           setError('')
         }}
         placeholder="Paste your text here..."
-        className="w-full px-3 py-2 rounded-lg bg-secondary/10 text-primary placeholder:text-secondary/50 outline-none text-sm resize-none h-32"
+        className="w-full px-3 py-2 rounded-lg bg-island-button-bg hover:bg-island-button-hover-bg focus-visible:bg-island-button-hover-bg active:scale-[0.99] outline-none text-sm resize-none h-32"
       />
 
       {/* Error message */}
@@ -92,7 +92,7 @@ export function CustomTextForm({ dispatch, handleClose, onSaved }: Props) {
           onClick={() => {
             dispatch({ type: 'setActivePanel', data: 'data' })
           }}
-          className="flex-1 py-2 px-4 rounded-lg bg-secondary/10 text-secondary text-sm font-medium hover:bg-secondary/20 transition-colors"
+          className="flex-1 py-2 px-4 rounded-lg bg-island-button-bg hover:bg-island-button-hover-bg focus-visible:bg-island-button-hover-bg active:scale-[0.99] text-sm font-medium transition-colors"
         >
           Cancel
         </button>
@@ -100,7 +100,7 @@ export function CustomTextForm({ dispatch, handleClose, onSaved }: Props) {
           type="button"
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="flex-1 py-2 px-4 rounded-lg bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+          className="flex-1 p-3 text-sm rounded-lg bg-island-button-bg hover:bg-island-button-hover-bg focus-visible:bg-island-button-hover-bg active:scale-[0.99] font-medium transition-colors"
         >
           {isSubmitting ? 'Saving...' : 'Save'}
         </button>

@@ -89,12 +89,12 @@ function ResetButton({ onReset }: { onReset: () => void }) {
   }, [spin])
 
   return (
-    <div className="flex justify-center py-4">
+    <div className="flex justify-center pt-4">
       <motion.button
         ref={scope}
         type="button"
         onClick={handleClick}
-        className="p-2 outline-none rounded-full text-secondary/50 hover:text-secondary hover:bg-tertiary/30 focus-visible:text-primary focus-visible:bg-tertiary/30 transition-colors cursor-pointer"
+        className="p-2 outline-none rounded-full text-secondary hover:text-secondary hover:bg-tertiary/30 focus-visible:text-primary focus-visible:bg-tertiary/30 transition-colors cursor-pointer"
         aria-label="Reset and shuffle (Shift+Enter)"
         title="Reset and shuffle (Shift+Enter)"
         whileTap={{ scale: 0.95 }}

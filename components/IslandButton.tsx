@@ -42,16 +42,15 @@ export function IslandButton({
       // }}
       {...props}
       className={cn(
-        'relative p-2 text-secondary rounded-full cursor-pointer shrink-0 whitespace-nowrap z-0 font-medium outline-none',
-        className,
-        isHovered && 'text-primary'
+        'relative p-2 text-island-fg rounded-full cursor-pointer shrink-0 whitespace-nowrap z-0 font-medium outline-none',
+        className
       )}
     >
       {/* Animated hover/focus background */}
       {showBackground && (
         <motion.span
           layoutId="island-button-hover"
-          className="absolute inset-0 bg-secondary/20 rounded-full -z-10"
+          className="absolute inset-0 bg-island-button-hover-bg rounded-full -z-10"
           transition={{
             type: 'spring',
             duration: 0.2

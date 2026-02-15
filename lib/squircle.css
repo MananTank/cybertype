@@ -1,0 +1,9 @@
+:root {
+  --radius-multiplier: 1;
+}
+
+@supports (corner-shape: squircle) {
+  :root {
+    --radius-multiplier: 2;
+  }
+}

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import '../styles/globals.css'
+import { generateThemeScript } from '../lib/themes'
 
 export const metadata: Metadata = {
   title: 'cybertype',
@@ -42,8 +43,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Theme initialization script - must run before body renders to prevent FOUC */}
+        <script dangerouslySetInnerHTML={{ __html: generateThemeScript() }} />
         {/* Critical Font CSS */}
         <style
           dangerouslySetInnerHTML={{
@@ -63,18 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body suppressHydrationWarning>
-        {/* Theme initialization script - runs before React hydration */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              const theme = localStorage.getItem('theme');
-              if (theme) {
-                document.body.setAttribute('data-theme', theme);
-              }
-            `
-          }}
-        />
+      <body>
         {children}
       </body>
     </html>

@@ -60,7 +60,7 @@ export const Settings = memo(function Settings({
         //   bounce: 0
         // }}
 
-        className="text-sm tracking-[0.3em] uppercase pl-5 pr-3 font-semibold text-primary"
+        className="text-sm tracking-[0.3em] uppercase pl-5 pr-3 font-semibold text-island-fg"
       >
         cybertype
       </div>
