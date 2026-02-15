@@ -18,18 +18,13 @@ export const Settings = memo(function Settings({
   const iconClass = 'size-5'
   const [activeButton, setActiveButton] = useState<string | null>(null)
   const { showInstall, handleInstall } = usePWAInstall()
-  const containerRef = useRef<HTMLDivElement>(null)
 
   const handleMouseEnter = (id: string) => setActiveButton(id)
   const handleFocus = (id: string) => setActiveButton(id)
   const handleBlur = () => setActiveButton(null)
 
-  // Arrow key navigation for island buttons
-  useArrowNavigation(containerRef)
-
   return (
     <motion.div
-      ref={containerRef}
       className="flex items-center gap-0"
       onMouseLeave={() => setActiveButton(null)}
       exit={{

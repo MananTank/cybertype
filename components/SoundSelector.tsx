@@ -13,26 +13,10 @@ export type Props = {
 }
 
 export function SoundSelector(props: Props) {
-  const containerRef = useRef<HTMLDivElement>(null)
   const squircle = useMotionSquircle()
 
-  // Focus current sound pack button on mount
-  useEffect(() => {
-    const currentIndex = soundPacks.findIndex(sp => sp.id === props.selectedSoundPack)
-    const buttons = containerRef.current?.querySelectorAll('button')
-    if (buttons && buttons[currentIndex]) {
-      buttons[currentIndex].focus()
-    }
-  }, [props.selectedSoundPack])
-
-  // Arrow key navigation
-  useArrowNavigation(containerRef)
-
   return (
-    <div
-      ref={containerRef}
-      className="max-w-[350px] w-[calc(100vw-80px)] flex flex-col gap-3 p-3"
-    >
+    <div className="max-w-[350px] w-[calc(100vw-80px)] flex flex-col gap-3 p-3">
       {soundPacks.map(soundPack => {
         const isActive = props.selectedSoundPack === soundPack.id
         return (
@@ -50,12 +34,14 @@ export function SoundSelector(props: Props) {
             onClick={() => {
               props.dispatch({ type: 'setSoundPack', data: soundPack.id })
               props.handleClose()
+              document.body.focus()
             }}
             onKeyDown={e => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
                 props.dispatch({ type: 'setSoundPack', data: soundPack.id })
                 props.handleClose()
+                document.body.focus()
               }
             }}
           >

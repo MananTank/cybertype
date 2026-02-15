@@ -129,8 +129,8 @@ export function DynamicIsland({ state, dispatch }: Props) {
         {isModalOpen && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.3 } }}
-            exit={{ opacity: 0, transition: { duration: 0.6 } }}
+            animate={{ opacity: 1, transition: { duration: 0.2 } }}
+            exit={{ opacity: 0, transition: { duration: 0.4 } }}
             style={{
               backdropFilter: 'blur(14px)'
             }}
@@ -144,11 +144,10 @@ export function DynamicIsland({ state, dispatch }: Props) {
         <LayoutGroup>
           <AnimatePresence mode="popLayout" initial={false}>
             {!isModalOpen ? (
-              // Collapsed pill state
               <motion.div
                 key="pill"
                 layoutId="dynamic-island"
-                className="bg-island-bg text-island-fg flex justify-center items-center p-1.5 pr-6 will-change-transform backdrop-blur-lg"
+                className="bg-island-bg text-island-fg flex justify-center items-center p-1 pr-6 will-change-transform backdrop-blur-lg"
                 transition={islandSpringClose}
                 style={squircle(24)}
               >
@@ -163,11 +162,6 @@ export function DynamicIsland({ state, dispatch }: Props) {
                 className="bg-island-bg text-island-fg relative max-w-[calc(100vw-40px)] will-change-transform overflow-hidden "
                 transition={islandSpringOpen}
                 style={squircle(24)}
-                exit={
-                  {
-                    // opacity: 0
-                  }
-                }
               >
                 {/* Content fade - quick and subtle */}
                 <motion.div

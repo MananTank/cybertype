@@ -6,24 +6,12 @@ import { useMotionSquircle } from '../lib/squircle'
 
 export function ThemeSwitcher({ handleClose }: { handleClose: () => void }) {
   const [themeIndex, setThemeIndex] = useThemeIndex()
-  const containerRef = useRef<HTMLDivElement>(null)
   const squircle = useMotionSquircle()
-
-  // Focus current theme button on mount
-  useEffect(() => {
-    const buttons = containerRef.current?.querySelectorAll('button')
-    if (buttons && buttons[themeIndex]) {
-      buttons[themeIndex].focus()
-    }
-  }, [themeIndex])
-
-  // Arrow key navigation
-  useArrowNavigation(containerRef)
 
   return (
     <div
-      ref={containerRef}
-      className="max-h-[calc(100vh-200px)] px-6 pt-8 pb-12 w-[800px] max-w-[calc(100vw-40px)] grid gap-6 md:gap-10 md:grid-cols-4 grid-cols-2 overflow-y-auto"
+      tabIndex={-1}
+      className="max-h-[calc(100vh-200px)] px-6 pt-8 pb-12 w-[800px] max-w-[calc(100vw-40px)] grid gap-6 md:gap-10 md:grid-cols-4 grid-cols-2 overflow-y-auto outline-none"
     >
       {themes.map((theme, i) => {
         const isSelected = themeIndex === i
@@ -35,11 +23,13 @@ export function ThemeSwitcher({ handleClose }: { handleClose: () => void }) {
             onClick={() => {
               setThemeIndex(i)
               handleClose()
+              document.body.focus()
             }}
             onKeyDown={e => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
                 setThemeIndex(i)
+                document.body.focus()
                 handleClose()
               }
             }}
@@ -53,7 +43,7 @@ export function ThemeSwitcher({ handleClose }: { handleClose: () => void }) {
             <div
               className="grid grid-cols-[repeat(5,1fr)] h-8"
               style={{
-                ...squircle(12),
+                ...squircle(8),
                 background: `linear-gradient(to right, ${colors.bg} 0 25%, ${colors.tertiary} 0 50%, ${colors.secondary} 0 75%, ${colors.primary} 0 100%)`
               }}
             />
