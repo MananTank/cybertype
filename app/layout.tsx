@@ -27,11 +27,8 @@ export const metadata: Metadata = {
     images: ['https://cybertype.app/og.png']
   },
   icons: {
-    icon: [
-      { url: '/icons/icon.svg', type: 'image/svg+xml' },
-      { url: '/icons/favicon-32x32.png', type: 'image/png', sizes: '32x32' }
-    ],
-    apple: '/icons/favicon-32x32.png'
+    icon: { url: '/icons/icon.svg', type: 'image/svg+xml' },
+    apple: '/icons/icon.svg'
   },
   manifest: '/manifest.json'
 }
