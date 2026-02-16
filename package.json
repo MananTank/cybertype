@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -15,6 +15,7 @@
     "@number-flow/react": "^0.5.11",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/jest": "^29.1.1",
+    "@vercel/analytics": "^1.6.1",
     "classnames": "^2.3.2",
     "clsx": "^2.1.1",
     "howler": "^2.2.3",

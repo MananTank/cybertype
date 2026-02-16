@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import '../styles/globals.css'
 import { generateThemeScript } from '../lib/themes'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'cybertype',
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
+        <Analytics />
       </body>
     </html>
   )
