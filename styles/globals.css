@@ -182,4 +182,7 @@ body:not(.typing) .stats-container {
 [data-word='true'] {
   content-visibility: auto;
   contain-intrinsic-size: auto 1.5em;
+  /* Add left padding to make room for cursor that extends outside first character */
+  padding-left: 0.25em;
+  margin-left: -0.25em;
 }
