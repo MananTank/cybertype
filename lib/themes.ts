@@ -27,27 +27,83 @@ export interface Theme {
 
 export const themes: Theme[] = [
   {
-    name: 'Earth',
+    name: 'Macintosh',
     colors: {
-      bg: 'oklch(22.3% 0.037 91)',
-      primary: 'oklch(89.2% 0.108 91)',
-      secondary: 'oklch(58.8% 0.183 91)',
-      tertiary: 'oklch(40% 0.1 91)',
-      error: 'oklch(62% 0.22 25)',
+      bg: 'oklch(44% 0.04 95)',
+      primary: 'oklch(98% 0.08 100)',
+      secondary: 'oklch(74% 0.05 100)',
+      tertiary: 'oklch(60% 0.04 100)',
+      error: 'oklch(85% 0.14 55)',
       fast: 'oklch(75% 0.14 145)',
-      normal: 'oklch(85% 0.14 55)',
-      slow: 'oklch(62% 0.22 25)',
-      islandBg: 'oklch(43.1% 0.14 91 / 30%)',
-      islandFg: 'oklch(65% 0.183 91)',
-      islandButtonBg: 'oklch(64% 0.14 71 / 20%)',
-      islandButtonHoverBg: 'oklch(64% 0.14 71 / 30%)',
-      mutedButtonBg: 'oklch(49.8% 0.161 91 / 20%)',
-      mutedButtonBgHover: 'oklch(49.8% 0.161 91 / 30%)'
+      normal: 'oklch(98% 0.08 100)',
+      slow: 'oklch(85% 0.14 55)',
+      islandBg: 'oklch(98% 0.08 100 / 22%)',
+      islandFg: 'oklch(98% 0.08 100)',
+      islandButtonBg: 'oklch(98% 0.08 100 / 14%)',
+      islandButtonHoverBg: 'oklch(98% 0.08 100 / 30%)',
+      mutedButtonBg: 'oklch(74% 0.05 100 / 10%)',
+      mutedButtonBgHover: 'oklch(74% 0.05 100 / 28%)'
     }
   },
-
   {
-    name: 'Caramel',
+    name: 'Dusk',
+    colors: {
+      bg: 'oklch(52% 0.03 145)',
+      primary: 'oklch(90% 0.06 70)',
+      secondary: 'oklch(76% 0.05 75)',
+      tertiary: 'oklch(66% 0.04 70)',
+      error: 'oklch(85% 0.14 55)',
+      fast: 'oklch(75% 0.14 145)',
+      normal: 'oklch(98% 0.08 100)',
+      slow: 'oklch(85% 0.14 55)',
+      islandBg: 'oklch(90% 0.06 70 / 22%)',
+      islandFg: 'oklch(90% 0.06 70)',
+      islandButtonBg: 'oklch(90% 0.06 70 / 14%)',
+      islandButtonHoverBg: 'oklch(90% 0.06 70 / 30%)',
+      mutedButtonBg: 'oklch(76% 0.05 75 / 15%)',
+      mutedButtonBgHover: 'oklch(76% 0.05 75 / 28%)'
+    }
+  },
+  {
+    name: 'Paper',
+    colors: {
+      bg: 'oklch(75% 0.04 95)',
+      primary: 'oklch(20% 0.02 110)',
+      secondary: 'oklch(52% 0.04 95)',
+      tertiary: 'oklch(82% 0.04 95)',
+      error: 'oklch(55% 0.28 25)',
+      fast: 'oklch(0.91 0.12 165.27)',
+      normal: 'oklch(0.91 0.12 101.95)',
+      slow: 'oklch(60% 0.25 25)',
+      islandBg: 'oklch(94% 0.06 100 / 35%)',
+      islandFg: 'oklch(20% 0.02 110)',
+      islandButtonBg: 'oklch(94% 0.06 100 / 25%)',
+      islandButtonHoverBg: 'oklch(94% 0.06 100 / 55%)',
+      mutedButtonBg: 'oklch(94% 0.06 100 / 15%)',
+      mutedButtonBgHover: 'oklch(94% 0.06 100 / 35%)'
+    }
+  },
+  {
+    name: 'Sand',
+    colors: {
+      bg: 'oklch(55% 0.06 95)',
+      primary: 'oklch(93% 0.07 91.19)',
+      secondary: 'oklch(80% 0.06 91.78)',
+      tertiary: 'oklch(65% 0.05 95)',
+      error: 'oklch(85% 0.14 55)',
+      fast: 'oklch(75% 0.14 145)',
+      normal: 'oklch(98% 0.08 100)',
+      slow: 'oklch(85% 0.14 55)',
+      islandBg: 'oklch(41% 0.06 90.85 / 70%)',
+      islandFg: 'oklch(0.99 0.07 107.65)',
+      islandButtonBg: 'oklch(0.99 0.07 107.65 / 8%)',
+      islandButtonHoverBg: 'oklch(0.99 0.07 107.65 / 15%)',
+      mutedButtonBg: 'oklch(80% 0.06 91.78 / 10%)',
+      mutedButtonBgHover: 'oklch(80% 0.06 91.78 / 25%)'
+    }
+  },
+  {
+    name: 'Chocolate',
     colors: {
       bg: 'oklch(25% 0.06 55)',
       primary: 'oklch(85% 0.14 55)',
@@ -61,18 +117,18 @@ export const themes: Theme[] = [
       islandFg: 'oklch(85% 0.14 55)',
       islandButtonBg: 'oklch(85% 0.14 55 / 12%)',
       islandButtonHoverBg: 'oklch(85% 0.14 55 / 26%)',
-      mutedButtonBg: 'oklch(85% 0.14 55 / 12%)',
+      mutedButtonBg: 'oklch(85% 0.14 55 / 5%)',
       mutedButtonBgHover: 'oklch(85% 0.14 55 / 20%)'
     }
   },
   {
-    name: 'Copper',
+    name: 'Amber',
     colors: {
       bg: 'oklch(35% 0.08 55)',
       primary: 'oklch(85% 0.1 75)',
       secondary: 'oklch(68% 0.12 60)',
       tertiary: 'oklch(52% 0.1 60)',
-      error: 'oklch(60% 0.2 25)',
+      error: 'oklch(0.62 0.25 25.79)',
       fast: 'oklch(75% 0.14 145)',
       normal: 'oklch(85% 0.14 55)',
       slow: 'oklch(62% 0.22 25)',
@@ -85,20 +141,39 @@ export const themes: Theme[] = [
     }
   },
   {
+    name: 'Earth',
+    colors: {
+      bg: 'oklch(25% 0.037 91)',
+      primary: 'oklch(89.2% 0.108 91)',
+      secondary: 'oklch(58.8% 0.183 91)',
+      tertiary: 'oklch(40% 0.1 91)',
+      error: 'oklch(0.62 0.25 25.79)',
+      fast: 'oklch(75% 0.14 145)',
+      normal: 'oklch(85% 0.14 55)',
+      slow: 'oklch(62% 0.22 25)',
+      islandBg: 'oklch(43.1% 0.14 91 / 40%)',
+      islandFg: 'oklch(75% 0.183 91)',
+      islandButtonBg: 'oklch(64% 0.14 71 / 20%)',
+      islandButtonHoverBg: 'oklch(64% 0.14 71 / 30%)',
+      mutedButtonBg: 'oklch(49.8% 0.161 91 / 10%)',
+      mutedButtonBgHover: 'oklch(49.8% 0.161 91 / 30%)'
+    }
+  },
+  {
     name: 'Ember',
     colors: {
       bg: 'oklch(32% 0.1 55)',
-      primary: 'oklch(70% 0.2 45)',
-      secondary: 'oklch(52% 0.18 40)',
+      primary: 'oklch(75% 0.2 45)',
+      secondary: 'oklch(55% 0.18 40)',
       tertiary: 'oklch(42% 0.12 50)',
-      error: 'oklch(75% 0.18 25)',
+      error: 'oklch(0.62 0.3 25.79)',
       fast: 'oklch(80% 0.16 50)',
       normal: 'oklch(70% 0.2 45)',
-      slow: 'oklch(75% 0.18 25)',
+      slow: 'oklch(0.62 0.3 25.79)',
       islandBg: 'oklch(70% 0.2 45 / 22%)',
-      islandFg: 'oklch(70% 0.2 45)',
+      islandFg: 'oklch(75% 0.2 45)',
       islandButtonBg: 'oklch(70% 0.2 45 / 14%)',
-      islandButtonHoverBg: 'oklch(70% 0.2 45 / 30%)',
+      islandButtonHoverBg: 'oklch(70% 0.2 45 / 25%)',
       mutedButtonBg: 'oklch(52% 0.18 40 / 18%)',
       mutedButtonBgHover: 'oklch(52% 0.18 40 / 28%)'
     }
@@ -217,82 +292,7 @@ export const themes: Theme[] = [
       mutedButtonBgHover: 'oklch(74% 0.07 90 / 24%)'
     }
   },
-  {
-    name: 'Parchment',
-    colors: {
-      bg: 'oklch(44% 0.04 95)',
-      primary: 'oklch(98% 0.08 100)',
-      secondary: 'oklch(74% 0.05 100)',
-      tertiary: 'oklch(60% 0.04 100)',
-      error: 'oklch(65% 0.2 25)',
-      fast: 'oklch(90% 0.1 100)',
-      normal: 'oklch(98% 0.08 100)',
-      slow: 'oklch(65% 0.2 25)',
-      islandBg: 'oklch(98% 0.08 100 / 22%)',
-      islandFg: 'oklch(98% 0.08 100)',
-      islandButtonBg: 'oklch(98% 0.08 100 / 14%)',
-      islandButtonHoverBg: 'oklch(98% 0.08 100 / 30%)',
-      mutedButtonBg: 'oklch(74% 0.05 100 / 18%)',
-      mutedButtonBgHover: 'oklch(74% 0.05 100 / 28%)'
-    }
-  },
-  {
-    name: 'Sand',
-    colors: {
-      bg: 'oklch(55% 0.06 95)',
-      primary: 'oklch(93% 0.07 91.19)',
-      secondary: 'oklch(80% 0.06 91.78)',
-      tertiary: 'oklch(65% 0.05 95)',
-      error: 'oklch(70% 0.22 25)',
-      fast: 'oklch(88% 0.12 145)',
-      normal: 'oklch(95% 0.04 95)',
-      slow: 'oklch(70% 0.22 25)',
-      islandBg: 'oklch(41% 0.06 90.85)',
-      islandFg: 'oklch(95% 0.04 95)',
-      islandButtonBg: 'oklch(50% 0.06 90.85)',
-      islandButtonHoverBg: 'oklch(65% 0.06 90.85)',
-      mutedButtonBg: 'oklch(50% 0.06 90.85)',
-      mutedButtonBgHover: 'oklch(60% 0.06 90.85)'
-    }
-  },
-  {
-    name: 'Paper',
-    colors: {
-      bg: 'oklch(75% 0.04 95)',
-      primary: 'oklch(20% 0.02 110)',
-      secondary: 'oklch(52% 0.04 95)',
-      tertiary: 'oklch(82% 0.04 95)',
-      error: 'oklch(55% 0.28 25)',
-      fast: 'oklch(100% 0 0)',
-      normal: 'oklch(90% 0.18 100)',
-      slow: 'oklch(55% 0.28 25)',
-      islandBg: 'oklch(94% 0.06 100 / 35%)',
-      islandFg: 'oklch(20% 0.02 110)',
-      islandButtonBg: 'oklch(94% 0.06 100 / 25%)',
-      islandButtonHoverBg: 'oklch(94% 0.06 100 / 55%)',
-      mutedButtonBg: 'oklch(94% 0.06 100 / 20%)',
-      mutedButtonBgHover: 'oklch(94% 0.06 100 / 35%)'
-    }
-  },
-  {
-    name: 'Dusk',
-    colors: {
-      bg: 'oklch(52% 0.03 145)',
-      primary: 'oklch(90% 0.06 70)',
-      secondary: 'oklch(76% 0.05 75)',
-      tertiary: 'oklch(66% 0.04 70)',
-      error: 'oklch(60% 0.2 25)',
-      fast: 'oklch(85% 0.08 70)',
-      normal: 'oklch(90% 0.06 70)',
-      slow: 'oklch(60% 0.2 25)',
-      islandBg: 'oklch(90% 0.06 70 / 22%)',
-      islandFg: 'oklch(90% 0.06 70)',
-      islandButtonBg: 'oklch(90% 0.06 70 / 14%)',
-      islandButtonHoverBg: 'oklch(90% 0.06 70 / 30%)',
-      mutedButtonBg: 'oklch(76% 0.05 75 / 18%)',
-      mutedButtonBgHover: 'oklch(76% 0.05 75 / 28%)'
-    }
-  },
+
   {
     name: 'Lichen',
     colors: {

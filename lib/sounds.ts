@@ -33,9 +33,10 @@ type SoundPackInfo = {
 export const soundPacks: SoundPackInfo[] = [
   { name: 'NK Creams', id: 'nkCreams', type: 'Linear' },
   { name: 'Otemu Browns', id: 'otemuBrowns', type: 'Tactile' },
-  { name: 'Holy Pandas', id: 'holyPandas', type: 'Tactile' }
+  { name: 'Holy Pandas', id: 'holyPandas', type: 'Tactile' },
+  { name: 'No Sound', id: 'none', type: 'Silent' }
 ]
 
 export type Sounds = ReturnType<typeof getSounds>
 
-export type SoundPack = keyof Sounds['packs']
+export type SoundPack = keyof Sounds['packs'] | 'none'

@@ -42,6 +42,8 @@ export default function Home() {
         </motion.div>
       </ClientOnly>
 
+      <div className="h-14 shrink-0" />
+
       {/* if there is data to show */}
       <div className="grow flex flex-col justify-center">
         <Words

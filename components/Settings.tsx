@@ -1,20 +1,15 @@
-import { Dispatch, memo, useState, useRef } from 'react'
+import { Dispatch, memo, useState } from 'react'
 import { Action } from '../lib/types'
-import { Volume2, VolumeX, Palette, Music, Download, Languages } from 'lucide-react'
+import { Palette, Music, Download, Languages } from 'lucide-react'
 import { motion } from 'motion/react'
 import { IslandButton } from './IslandButton'
 import { usePWAInstall } from './PWAInstallButton'
-import { useArrowNavigation } from '../hooks/useArrowNavigation'
 
 type SettingsProps = {
   dispatch: Dispatch<Action>
-  soundEnabled: boolean
 }
 
-export const Settings = memo(function Settings({
-  dispatch,
-  soundEnabled
-}: SettingsProps) {
+export const Settings = memo(function Settings({ dispatch }: SettingsProps) {
   const iconClass = 'size-5'
   const [activeButton, setActiveButton] = useState<string | null>(null)
   const { showInstall, handleInstall } = usePWAInstall()
@@ -84,23 +79,6 @@ export const Settings = memo(function Settings({
         isFocused={activeButton === 'themes'}
       >
         <Palette className={iconClass} />
-      </IslandButton>
-
-      {/* sound toggle */}
-      <IslandButton
-        onClick={() => dispatch({ type: 'setSoundEnabled', data: !soundEnabled })}
-        aria-label="Toggle sound effects"
-        onMouseEnter={() => handleMouseEnter('sound-toggle')}
-        onFocus={() => handleFocus('sound-toggle')}
-        onBlur={handleBlur}
-        isHovered={activeButton === 'sound-toggle'}
-        isFocused={activeButton === 'sound-toggle'}
-      >
-        {soundEnabled ? (
-          <Volume2 className={iconClass} />
-        ) : (
-          <VolumeX className={iconClass} />
-        )}
       </IslandButton>
 
       {/* sound selector */}

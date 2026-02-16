@@ -47,10 +47,10 @@ export function SoundSelector(props: Props) {
           >
             {isActive && (
               <div className="absolute top-1/2 -translate-y-1/2 right-4">
-                <Check className="w-6 h-6" />
+                <Check className="size-5" />
               </div>
             )}
-            <h3 className="text-base font-medium mb-1.5 ">{soundPack.name}</h3>
+            <h3 className="text-base font-medium mb-1.5">{soundPack.name}</h3>
             <p className="text-xs font-medium opacity-70 uppercase tracking-wider">
               {soundPack.type}
             </p>

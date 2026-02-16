@@ -136,10 +136,8 @@ const KeyStat = memo(function KeyStat({
         <motion.div
           layoutId="keyboard-tooltip"
           className={cn(
-            'absolute z-50 p-4 rounded-lg pointer-events-none top-0 left-1/2 -translate-x-1/2 -translate-y-[150%]',
-            isTyped
-              ? 'bg-(--color)/25 backdrop-blur-xl'
-              : 'bg-muted-button-bg/25 backdrop-blur-xl'
+            'absolute z-50 p-4 backdrop-blur-xl min-w-[180px]  rounded-lg pointer-events-none top-0 left-1/2 -translate-x-1/2 -translate-y-[150%]',
+            isTyped ? 'bg-(--color)/25 ' : 'bg-muted-button-bg'
           )}
           transition={{
             layout: { type: 'spring', stiffness: 500, damping: 30 }

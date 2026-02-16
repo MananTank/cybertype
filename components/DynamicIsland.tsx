@@ -151,7 +151,7 @@ export function DynamicIsland({ state, dispatch }: Props) {
                 transition={islandSpringClose}
                 style={squircle(24)}
               >
-                <Settings dispatch={dispatch} soundEnabled={state.soundEnabled} />
+                <Settings dispatch={dispatch} />
               </motion.div>
             ) : (
               // Expanded state

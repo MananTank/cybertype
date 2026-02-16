@@ -189,7 +189,8 @@ const Character = memo(function Character({
     <span
       className={cn('p-[0.03em] block relative', {
         // Error state
-        'text-error [text-shadow:0_0_0.5em_var(--error)]': isError,
+        'text-error [text-shadow:0_0_0.3em_color-mix(in_srgb,var(--error)_50%,transparent)]':
+          isError,
         // Active word characters (not yet typed)
         'text-primary': isCurrent && !isTypedChar && !isError,
         // Typed characters (current word or past words)

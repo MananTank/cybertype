@@ -27,6 +27,8 @@ export function stateReducer(state: State, action: Action): void {
 
     case 'setSoundPack': {
       state.soundPack = action.data
+      // Automatically enable/disable sound based on pack selection
+      state.soundEnabled = action.data !== 'none'
       return
     }
 
