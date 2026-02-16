@@ -77,7 +77,7 @@ export function useKeys(
       dispatch({ type: 'keydown', key: event.key })
 
       // play error if typed the wrong key
-      if (soundEnabled && soundsRef.current) {
+      if (soundEnabled && soundsRef.current && soundPack !== 'none') {
         soundsRef.current.packs[soundPack]()
         if (targetKey !== event.key) {
           soundsRef.current.error()
