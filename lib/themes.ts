@@ -34,9 +34,9 @@ export const themes: Theme[] = [
       secondary: 'oklch(74% 0.05 100)',
       tertiary: 'oklch(60% 0.04 100)',
       error: 'oklch(85% 0.14 55)',
-      fast: 'oklch(75% 0.14 145)',
-      normal: 'oklch(98% 0.08 100)',
-      slow: 'oklch(85% 0.14 55)',
+      fast: 'oklch(98% 0.08 100)',
+      normal: 'oklch(85% 0.14 80)',
+      slow: 'oklch(85% 0.14 40)',
       islandBg: 'oklch(98% 0.08 100 / 22%)',
       islandFg: 'oklch(98% 0.08 100)',
       islandButtonBg: 'oklch(98% 0.08 100 / 14%)',
@@ -53,9 +53,9 @@ export const themes: Theme[] = [
       secondary: 'oklch(76% 0.05 75)',
       tertiary: 'oklch(66% 0.04 70)',
       error: 'oklch(85% 0.14 55)',
-      fast: 'oklch(75% 0.14 145)',
-      normal: 'oklch(98% 0.08 100)',
-      slow: 'oklch(85% 0.14 55)',
+      fast: 'oklch(98% 0.08 100)',
+      normal: 'oklch(85% 0.14 80)',
+      slow: 'oklch(85% 0.14 40)',
       islandBg: 'oklch(90% 0.06 70 / 22%)',
       islandFg: 'oklch(90% 0.06 70)',
       islandButtonBg: 'oklch(90% 0.06 70 / 14%)',
@@ -67,14 +67,14 @@ export const themes: Theme[] = [
   {
     name: 'Paper',
     colors: {
-      bg: 'oklch(75% 0.04 95)',
+      bg: 'oklch(72% 0.04 95)',
       primary: 'oklch(20% 0.02 110)',
       secondary: 'oklch(52% 0.04 95)',
       tertiary: 'oklch(82% 0.04 95)',
-      error: 'oklch(55% 0.28 25)',
-      fast: 'oklch(0.91 0.12 165.27)',
-      normal: 'oklch(0.91 0.12 101.95)',
-      slow: 'oklch(60% 0.25 25)',
+      error: 'oklch(0.52 0.17 32.75)',
+      fast: 'oklch(1 0.12 165.27)',
+      normal: 'oklch(0.95 0.12 101.95)',
+      slow: 'oklch(92% 0.14 40)',
       islandBg: 'oklch(94% 0.06 100 / 35%)',
       islandFg: 'oklch(20% 0.02 110)',
       islandButtonBg: 'oklch(94% 0.06 100 / 25%)',
@@ -141,22 +141,22 @@ export const themes: Theme[] = [
     }
   },
   {
-    name: 'Earth',
+    name: 'Bronze',
     colors: {
-      bg: 'oklch(25% 0.037 91)',
-      primary: 'oklch(89.2% 0.108 91)',
-      secondary: 'oklch(58.8% 0.183 91)',
-      tertiary: 'oklch(40% 0.1 91)',
-      error: 'oklch(0.62 0.25 25.79)',
-      fast: 'oklch(75% 0.14 145)',
-      normal: 'oklch(85% 0.14 55)',
-      slow: 'oklch(62% 0.22 25)',
-      islandBg: 'oklch(43.1% 0.14 91 / 40%)',
-      islandFg: 'oklch(75% 0.183 91)',
-      islandButtonBg: 'oklch(64% 0.14 71 / 20%)',
-      islandButtonHoverBg: 'oklch(64% 0.14 71 / 30%)',
-      mutedButtonBg: 'oklch(49.8% 0.161 91 / 10%)',
-      mutedButtonBgHover: 'oklch(49.8% 0.161 91 / 30%)'
+      bg: 'oklch(35% 0.08 65)',
+      primary: 'oklch(80% 0.14 70)',
+      secondary: 'oklch(70% 0.12 70)',
+      tertiary: 'oklch(58% 0.1 70)',
+      error: 'oklch(0.72 0.19 47.13)',
+      fast: 'oklch(0.99 0.07 107.65)',
+      normal: 'oklch(87% 0.18 90)',
+      slow: 'oklch(0.72 0.19 47.13)',
+      islandBg: 'oklch(80% 0.14 70 / 22%)',
+      islandFg: 'oklch(80% 0.14 70)',
+      islandButtonBg: 'oklch(80% 0.14 70 / 14%)',
+      islandButtonHoverBg: 'oklch(80% 0.14 70 / 30%)',
+      mutedButtonBg: 'oklch(70% 0.12 70 / 10%)',
+      mutedButtonBgHover: 'oklch(70% 0.12 70 / 28%)'
     }
   },
   {
@@ -179,21 +179,60 @@ export const themes: Theme[] = [
     }
   },
   {
+    name: 'Mahogany',
+    colors: {
+      bg: 'oklch(22% 0.05 55)',
+      primary: 'oklch(65% 0.16 45)',
+      secondary: 'oklch(45% 0.12 55)',
+      tertiary: 'oklch(35% 0.1 55)',
+      error: 'oklch(0.62 0.3 25.79)',
+      fast: 'oklch(80% 0.16 50)',
+      normal: 'oklch(70% 0.2 45)',
+      slow: 'oklch(0.62 0.3 25.79)',
+      islandBg: 'oklch(52% 0.16 45 / 22%)',
+      islandFg: 'oklch(52% 0.16 45)',
+      islandButtonBg: 'oklch(52% 0.16 45 / 14%)',
+      islandButtonHoverBg: 'oklch(52% 0.16 45 / 30%)',
+      mutedButtonBg: 'oklch(42% 0.12 55 / 18%)',
+      mutedButtonBgHover: 'oklch(42% 0.12 55 / 28%)'
+    }
+  },
+  {
+    name: 'Earth',
+    colors: {
+      bg: 'oklch(25% 0.037 91)',
+      primary: 'oklch(89.2% 0.108 91)',
+      secondary: 'oklch(58.8% 0.183 91)',
+      tertiary: 'oklch(40% 0.1 91)',
+      error: 'oklch(0.62 0.25 25.79)',
+      fast: 'oklch(75% 0.14 145)',
+      normal: 'oklch(85% 0.14 55)',
+      slow: 'oklch(62% 0.22 25)',
+      islandBg: 'oklch(43.1% 0.14 91 / 40%)',
+      islandFg: 'oklch(75% 0.183 91)',
+      islandButtonBg: 'oklch(64% 0.14 71 / 20%)',
+      islandButtonHoverBg: 'oklch(64% 0.14 71 / 30%)',
+      mutedButtonBg: 'oklch(49.8% 0.161 91 / 10%)',
+      mutedButtonBgHover: 'oklch(49.8% 0.161 91 / 30%)'
+    }
+  },
+
+  {
     name: 'Dune',
     colors: {
       bg: 'oklch(78% 0.12 90)',
       primary: 'oklch(28% 0.08 55)',
       secondary: 'oklch(55% 0.1 70)',
       tertiary: 'oklch(90% 0.1 90)',
-      error: 'oklch(35% 0.18 25)',
-      fast: 'oklch(38% 0.12 35)',
-      normal: 'oklch(28% 0.08 55)',
-      slow: 'oklch(48% 0.22 20)',
+      error: 'oklch(0.62 0.25 25.79)',
+      fast: 'oklch(0.5 0.16 151.66)',
+      normal: 'oklch(0.4 0.18 104.42)',
+      slow: 'oklch(0.6 0.19 49.32)',
       islandBg: 'oklch(28% 0.08 55 / 16%)',
       islandFg: 'oklch(28% 0.08 55)',
       islandButtonBg: 'oklch(28% 0.08 55 / 10%)',
       islandButtonHoverBg: 'oklch(28% 0.08 55 / 22%)',
-      mutedButtonBg: 'oklch(55% 0.1 70 / 20%)',
+      mutedButtonBg: 'oklch(55% 0.1 70 / 15%)',
       mutedButtonBgHover: 'oklch(55% 0.1 70 / 30%)'
     }
   },
@@ -202,7 +241,7 @@ export const themes: Theme[] = [
     colors: {
       bg: 'oklch(38% 0.1 75)',
       primary: 'oklch(87% 0.18 90)',
-      secondary: 'oklch(74% 0.16 85)',
+      secondary: 'oklch(60% 0.16 85)',
       tertiary: 'oklch(62% 0.14 80)',
       error: 'oklch(0.72 0.19 47.13)',
       fast: 'oklch(0.99 0.07 107.65)',
@@ -212,48 +251,11 @@ export const themes: Theme[] = [
       islandFg: 'oklch(87% 0.18 90)',
       islandButtonBg: 'oklch(87% 0.18 90 / 14%)',
       islandButtonHoverBg: 'oklch(87% 0.18 90 / 30%)',
-      mutedButtonBg: 'oklch(74% 0.16 85 / 18%)',
+      mutedButtonBg: 'oklch(74% 0.16 85 / 10%)',
       mutedButtonBgHover: 'oklch(74% 0.16 85 / 28%)'
     }
   },
-  {
-    name: 'Bronze',
-    colors: {
-      bg: 'oklch(35% 0.08 65)',
-      primary: 'oklch(80% 0.14 70)',
-      secondary: 'oklch(70% 0.12 70)',
-      tertiary: 'oklch(58% 0.1 70)',
-      error: 'oklch(0.72 0.19 47.13)',
-      fast: 'oklch(0.99 0.07 107.65)',
-      normal: 'oklch(87% 0.18 90)',
-      slow: 'oklch(0.72 0.19 47.13)',
-      islandBg: 'oklch(80% 0.14 70 / 22%)',
-      islandFg: 'oklch(80% 0.14 70)',
-      islandButtonBg: 'oklch(80% 0.14 70 / 14%)',
-      islandButtonHoverBg: 'oklch(80% 0.14 70 / 30%)',
-      mutedButtonBg: 'oklch(70% 0.12 70 / 18%)',
-      mutedButtonBgHover: 'oklch(70% 0.12 70 / 28%)'
-    }
-  },
-  {
-    name: 'Mahogany',
-    colors: {
-      bg: 'oklch(22% 0.05 55)',
-      primary: 'oklch(52% 0.16 45)',
-      secondary: 'oklch(42% 0.12 55)',
-      tertiary: 'oklch(35% 0.08 75)',
-      error: 'oklch(55% 0.2 25)',
-      fast: 'oklch(60% 0.14 50)',
-      normal: 'oklch(52% 0.16 45)',
-      slow: 'oklch(55% 0.2 25)',
-      islandBg: 'oklch(52% 0.16 45 / 22%)',
-      islandFg: 'oklch(52% 0.16 45)',
-      islandButtonBg: 'oklch(52% 0.16 45 / 14%)',
-      islandButtonHoverBg: 'oklch(52% 0.16 45 / 30%)',
-      mutedButtonBg: 'oklch(42% 0.12 55 / 18%)',
-      mutedButtonBgHover: 'oklch(42% 0.12 55 / 28%)'
-    }
-  },
+
   {
     name: 'Latte',
     colors: {
