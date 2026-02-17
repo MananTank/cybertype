@@ -14,15 +14,14 @@ const row3 = ['z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/']
 export function KeyStats({ keyStats }: KeyStatsProps) {
   const [hoveredKey, setHoveredKey] = useState<string | null>(null)
 
-  const mapper = (keys: string[], rowIndex: number) =>
-    keys.map((key, keyIndex) => {
+  const mapper = (keys: string[]) =>
+    keys.map(key => {
       return (
         <KeyStat
           key={key}
           keyName={key}
           count={keyStats[key].count}
           totalTime={keyStats[key].totalTime}
-          animationDelay={1.5 + rowIndex * 0.08 + keyIndex * 0.025}
           isHovered={hoveredKey === key}
           onHover={() => setHoveredKey(key)}
           onLeave={() => setHoveredKey(null)}
@@ -32,11 +31,16 @@ export function KeyStats({ keyStats }: KeyStatsProps) {
 
   return (
     <LayoutGroup>
-      <div className="flex flex-col items-center py-12 relative z-10">
-        <div className="flex justify-center">{mapper(row1, 0)}</div>
-        <div className="flex justify-center">{mapper(row2, 1)}</div>
-        <div className="flex justify-center">{mapper(row3, 2)}</div>
-      </div>
+      <motion.div
+        className="flex flex-col items-center py-12 relative z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 1.2 }}
+      >
+        <div className="flex justify-center">{mapper(row1)}</div>
+        <div className="flex justify-center">{mapper(row2)}</div>
+        <div className="flex justify-center">{mapper(row3)}</div>
+      </motion.div>
     </LayoutGroup>
   )
 }
@@ -45,7 +49,6 @@ type KeyStatProps = {
   count: number
   totalTime: number
   keyName: string
-  animationDelay: number
   isHovered: boolean
   onHover: () => void
   onLeave: () => void
@@ -55,7 +58,6 @@ const KeyStat = memo(function KeyStat({
   keyName,
   count,
   totalTime,
-  animationDelay,
   isHovered,
   onHover,
   onLeave
@@ -84,7 +86,7 @@ const KeyStat = memo(function KeyStat({
   const hideOnMobile = ['[', ']', "'"].includes(keyName)
 
   return (
-    <motion.div
+    <div
       className={cn(
         'group relative text-(--color) p-[3px] md:p-1',
         speedClass,
@@ -92,14 +94,6 @@ const KeyStat = memo(function KeyStat({
       )}
       ref={elRef}
       data-key={keyName}
-      initial={{ opacity: 0, y: 24, scale: 0.7 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{
-        duration: 0.8,
-        type: 'spring',
-        bounce: 0.1,
-        delay: animationDelay
-      }}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
@@ -152,7 +146,7 @@ const KeyStat = memo(function KeyStat({
           </div>
         </motion.div>
       )}
-    </motion.div>
+    </div>
   )
 })
 

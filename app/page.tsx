@@ -58,7 +58,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: -80 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1], delay: 2 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 1.5 }}
           className="relative z-50"
         >
           <DynamicIsland state={state} dispatch={dispatch} />
@@ -96,7 +96,7 @@ export default function Home() {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 2 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 1.5 }}
       >
         <ResetButton onReset={() => dispatch({ type: 'reset' })} />
       </motion.div>
@@ -106,7 +106,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 2 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
         >
           <Footer />
         </motion.div>
@@ -151,7 +151,7 @@ function ResetButton({ onReset }: { onReset: () => void }) {
         ref={scope}
         type="button"
         onClick={handleClick}
-        className="p-2 outline-none  rounded-full text-secondary hover:text-secondary hover:bg-tertiary/30 focus-visible:text-primary focus-visible:bg-tertiary/30 transition-colors cursor-pointer"
+        className="p-2 outline-none  rounded-full text-secondary/50 hover:text-secondary hover:bg-tertiary/30 focus-visible:text-primary focus-visible:bg-tertiary/30 transition-colors cursor-pointer"
         aria-label="Reset and shuffle (Shift+Enter)"
         title="Reset and shuffle (Shift+Enter)"
         whileTap={{ scale: 0.9 }}

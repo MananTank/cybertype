@@ -55,7 +55,7 @@ export function Words({
 
   return (
     <div
-      className="flex justify-center relative overflow-hidden h-[500px] leading-[1.3] py-20 z-1 text-2xl md:text-4xl select-none cursor-text"
+      className="flex justify-center relative overflow-hidden h-[500px] leading-[1.3] py-20 z-1 text-2xl md:text-4xl select-none cursor-text md:cursor-auto"
       onClick={onTap}
     >
       {/* top shadow */}
@@ -89,10 +89,10 @@ export function Words({
             <motion.div
               key={shuffleKey}
               initial={
-                shuffleKey > 0 ? { opacity: 0, scale: 0.95, filter: 'blur(10px)' } : false
+                shuffleKey > 0 ? { opacity: 0, scale: 0.95, filter: 'blur(8px)' } : false
               }
               animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, scale: 1.02, filter: 'blur(8px)' }}
+              exit={{ opacity: 0, scale: 1.02, filter: 'blur(4px)' }}
               transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               onAnimationComplete={() => {
                 if (wordsRef.current) {
@@ -154,10 +154,10 @@ const Word = memo(function Word({
       data-current={isCurrent}
       data-typed={isTyped}
       className="inline-flex"
-      initial={{ opacity: 0, filter: 'blur(10px)', y: isInitialLoad ? 24 : 12 }}
+      initial={{ opacity: 0, filter: 'blur(8px)', y: isInitialLoad ? 24 : 12 }}
       animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
       transition={{
-        duration: isInitialLoad ? 0.8 : 0.4,
+        duration: isInitialLoad ? 0.5 : 0.4,
         ease: [0.25, 0.1, 0.25, 1],
         delay: isInitialLoad ? 0.5 + index * 0.015 : index * 0.006
       }}
@@ -197,7 +197,7 @@ const Character = memo(function Character({
 }: CharacterProps) {
   return (
     <span
-      className={cn('p-[0.03em] block relative', {
+      className={cn('p-[0.03em] block relative will-change-transform', {
         // Error state
         'text-error [text-shadow:0_0_0.3em_color-mix(in_srgb,var(--error)_50%,transparent)]':
           isError,
