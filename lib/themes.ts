@@ -1,8 +1,3 @@
-/**
- * Theme color definitions with type-safe interface.
- * All colors use OKLCH format for perceptual uniformity.
- */
-
 export interface ThemeColors {
   bg: string
   primary: string
@@ -216,7 +211,6 @@ export const themes: Theme[] = [
       mutedButtonBgHover: 'oklch(49.8% 0.161 91 / 30%)'
     }
   },
-
   {
     name: 'Arrakis',
     colors: {
@@ -255,255 +249,82 @@ export const themes: Theme[] = [
       mutedButtonBgHover: 'oklch(60% 0.16 85 / 20%)'
     }
   },
-  // {
-  //   name: 'Latte',
-  //   colors: {
-  //     bg: 'oklch(25% 0.04 91)',
-  //     primary: 'oklch(88% 0.06 91)',
-  //     secondary: 'oklch(65% 0.08 91)',
-  //     tertiary: 'oklch(40% 0.05 91)',
-  //     error: 'oklch(65% 0.2 25)',
-  //     fast: 'oklch(75% 0.12 145)',
-  //     normal: 'oklch(88% 0.06 91)',
-  //     slow: 'oklch(65% 0.2 25)',
-  //     islandBg: 'oklch(88% 0.06 91 / 18%)',
-  //     islandFg: 'oklch(88% 0.06 91)',
-  //     islandButtonBg: 'oklch(88% 0.06 91 / 10%)',
-  //     islandButtonHoverBg: 'oklch(88% 0.06 91 / 24%)',
-  //     mutedButtonBg: 'oklch(65% 0.08 91 / 12%)',
-  //     mutedButtonBgHover: 'oklch(65% 0.08 91 / 22%)'
-  //   }
-  // },
-  // {
-  //   name: 'Wheat',
-  //   colors: {
-  //     bg: 'oklch(30% 0.04 90)',
-  //     primary: 'oklch(85% 0.08 90)',
-  //     secondary: 'oklch(74% 0.07 90)',
-  //     tertiary: 'oklch(46% 0.05 90)',
-  //     error: 'oklch(60% 0.2 25)',
-  //     fast: 'oklch(78% 0.1 120)',
-  //     normal: 'oklch(85% 0.08 90)',
-  //     slow: 'oklch(60% 0.2 25)',
-  //     islandBg: 'oklch(85% 0.08 90 / 20%)',
-  //     islandFg: 'oklch(85% 0.08 90)',
-  //     islandButtonBg: 'oklch(85% 0.08 90 / 12%)',
-  //     islandButtonHoverBg: 'oklch(85% 0.08 90 / 26%)',
-  //     mutedButtonBg: 'oklch(74% 0.07 90 / 14%)',
-  //     mutedButtonBgHover: 'oklch(74% 0.07 90 / 24%)'
-  //   }
-  // },
-
-  {
-    name: 'Eucalyptus',
-    colors: {
-      bg: 'oklch(45% 0.04 135)',
-      primary: 'oklch(85% 0.05 150)',
-      secondary: 'oklch(72% 0.04 150)',
-      tertiary: 'oklch(56% 0.04 145)',
-      error: 'oklch(62% 0.2 25)',
-      fast: 'oklch(78% 0.06 155)',
-      normal: 'oklch(85% 0.05 150)',
-      slow: 'oklch(62% 0.2 25)',
-      islandBg: 'oklch(85% 0.05 150 / 18%)',
-      islandFg: 'oklch(85% 0.05 150)',
-      islandButtonBg: 'oklch(85% 0.05 150 / 12%)',
-      islandButtonHoverBg: 'oklch(85% 0.05 150 / 24%)',
-      mutedButtonBg: 'oklch(72% 0.04 150 / 18%)',
-      mutedButtonBgHover: 'oklch(72% 0.04 150 / 30%)'
-    }
-  },
-  // {
-  //   name: 'Sunlight',
-  //   colors: {
-  //     bg: 'oklch(22% 0.04 85)',
-  //     primary: 'oklch(85% 0.12 85)',
-  //     secondary: 'oklch(62% 0.1 80)',
-  //     tertiary: 'oklch(38% 0.06 85)',
-  //     error: 'oklch(65% 0.2 25)',
-  //     fast: 'oklch(75% 0.14 145)',
-  //     normal: 'oklch(85% 0.12 85)',
-  //     slow: 'oklch(65% 0.2 25)',
-  //     islandBg: 'oklch(85% 0.12 85 / 20%)',
-  //     islandFg: 'oklch(85% 0.12 85)',
-  //     islandButtonBg: 'oklch(85% 0.12 85 / 12%)',
-  //     islandButtonHoverBg: 'oklch(85% 0.12 85 / 26%)',
-  //     mutedButtonBg: 'oklch(62% 0.1 80 / 14%)',
-  //     mutedButtonBgHover: 'oklch(62% 0.1 80 / 26%)'
-  //   }
-  // },
-  // {
-  //   name: 'Sky',
-  //   colors: {
-  //     bg: 'oklch(42% 0.15 250)',
-  //     primary: 'oklch(90% 0.22 100)',
-  //     secondary: 'oklch(78% 0.1 250)',
-  //     tertiary: 'oklch(52% 0.12 250)',
-  //     error: 'oklch(85% 0.18 195)',
-  //     fast: 'oklch(85% 0.2 175)',
-  //     normal: 'oklch(100% 0 0)',
-  //     slow: 'oklch(90% 0.22 105)',
-  //     islandBg: 'oklch(78% 0.1 250 / 20%)',
-  //     islandFg: 'oklch(78% 0.1 250)',
-  //     islandButtonBg: 'oklch(78% 0.1 250 / 15%)',
-  //     islandButtonHoverBg: 'oklch(78% 0.1 250 / 25%)',
-  //     mutedButtonBg: 'oklch(78% 0.1 250 / 15%)',
-  //     mutedButtonBgHover: 'oklch(78% 0.1 250 / 25%)'
-  //   }
-  // },
   {
     name: 'Fernshade',
     colors: {
       bg: 'oklch(20% 0.06 120)',
       primary: 'oklch(82% 0.14 90)',
-      secondary: 'oklch(52% 0.1 120)',
-      tertiary: 'oklch(32% 0.08 120)',
+      secondary: 'oklch(45% 0.1 120)',
+      tertiary: 'oklch(30% 0.08 120)',
       error: 'oklch(65% 0.22 30)',
       fast: 'oklch(78% 0.16 160)',
       normal: 'oklch(82% 0.14 90)',
       slow: 'oklch(65% 0.22 30)',
-      islandBg: 'oklch(82% 0.14 90 / 25%)',
+      islandBg: 'oklch(82% 0.14 90 / 20%)',
       islandFg: 'oklch(82% 0.14 90)',
-      islandButtonBg: 'oklch(82% 0.14 90 / 15%)',
-      islandButtonHoverBg: 'oklch(82% 0.14 90 / 35%)',
-      mutedButtonBg: 'oklch(82% 0.14 90 / 15%)',
+      islandButtonBg: 'oklch(82% 0.14 90 / 12%)',
+      islandButtonHoverBg: 'oklch(82% 0.14 90 / 20%)',
+      mutedButtonBg: 'oklch(45% 0.1 120 / 15%)',
       mutedButtonBgHover: 'oklch(82% 0.14 90 / 25%)'
     }
   },
-  // {
-  //   name: 'Terracotta',
-  //   colors: {
-  //     bg: 'oklch(24% 0.08 35)',
-  //     primary: 'oklch(85% 0.16 35)',
-  //     secondary: 'oklch(55% 0.14 35)',
-  //     tertiary: 'oklch(36% 0.1 35)',
-  //     error: 'oklch(60% 0.24 15)',
-  //     fast: 'oklch(80% 0.18 140)',
-  //     normal: 'oklch(85% 0.16 35)',
-  //     slow: 'oklch(60% 0.24 15)',
-  //     islandBg: 'oklch(85% 0.16 35 / 25%)',
-  //     islandFg: 'oklch(85% 0.16 35)',
-  //     islandButtonBg: 'oklch(85% 0.16 35 / 15%)',
-  //     islandButtonHoverBg: 'oklch(85% 0.16 35 / 35%)',
-  //     mutedButtonBg: 'oklch(85% 0.16 35 / 15%)',
-  //     mutedButtonBgHover: 'oklch(85% 0.16 35 / 25%)'
-  //   }
-  // },
-  // {
-  //   name: 'Fern',
-  //   colors: {
-  //     bg: 'oklch(22% 0.06 120)',
-  //     primary: 'oklch(85% 0.1 120)',
-  //     secondary: 'oklch(62% 0.1 120)',
-  //     tertiary: 'oklch(38% 0.08 120)',
-  //     error: 'oklch(65% 0.2 25)',
-  //     fast: 'oklch(78% 0.12 145)',
-  //     normal: 'oklch(85% 0.1 120)',
-  //     slow: 'oklch(65% 0.2 25)',
-  //     islandBg: 'oklch(85% 0.1 120 / 20%)',
-  //     islandFg: 'oklch(85% 0.1 120)',
-  //     islandButtonBg: 'oklch(85% 0.1 120 / 12%)',
-  //     islandButtonHoverBg: 'oklch(85% 0.1 120 / 26%)',
-  //     mutedButtonBg: 'oklch(62% 0.1 120 / 14%)',
-  //     mutedButtonBgHover: 'oklch(62% 0.1 120 / 26%)'
-  //   }
-  // },
-
   {
     name: 'Meadowlight',
     colors: {
       bg: 'oklch(40% 0.06 115)',
       primary: 'oklch(95% 0.14 115)',
-      secondary: 'oklch(84% 0.1 115)',
-      tertiary: 'oklch(70% 0.09 115)',
-      error: 'oklch(65% 0.2 25)',
-      fast: 'oklch(88% 0.12 130)',
-      normal: 'oklch(95% 0.14 115)',
-      slow: 'oklch(65% 0.2 25)',
+      secondary: 'oklch(67% 0.1 115)',
+      tertiary: 'oklch(55% 0.09 115)',
+      error: 'oklch(85% 0.14 90)',
+      fast: 'oklch(97% 0.14 115)',
+      normal: 'oklch(85% 0.14 90)',
+      slow: 'oklch(75% 0.22 30)',
       islandBg: 'oklch(95% 0.14 115 / 22%)',
       islandFg: 'oklch(95% 0.14 115)',
       islandButtonBg: 'oklch(95% 0.14 115 / 14%)',
       islandButtonHoverBg: 'oklch(95% 0.14 115 / 30%)',
-      mutedButtonBg: 'oklch(84% 0.1 115 / 16%)',
-      mutedButtonBgHover: 'oklch(84% 0.1 115 / 26%)'
+      mutedButtonBg: 'oklch(84% 0.1 115 / 12%)',
+      mutedButtonBgHover: 'oklch(84% 0.1 115 / 20%)'
     }
   },
-  // {
-  //   name: 'Olive',
-  //   colors: {
-  //     bg: 'oklch(30% 0.05 110)',
-  //     primary: 'oklch(86% 0.1 110)',
-  //     secondary: 'oklch(78% 0.07 110)',
-  //     tertiary: 'oklch(46% 0.08 110)',
-  //     error: 'oklch(62% 0.2 25)',
-  //     fast: 'oklch(80% 0.1 130)',
-  //     normal: 'oklch(86% 0.1 110)',
-  //     slow: 'oklch(62% 0.2 25)',
-  //     islandBg: 'oklch(86% 0.1 110 / 20%)',
-  //     islandFg: 'oklch(86% 0.1 110)',
-  //     islandButtonBg: 'oklch(86% 0.1 110 / 12%)',
-  //     islandButtonHoverBg: 'oklch(86% 0.1 110 / 26%)',
-  //     mutedButtonBg: 'oklch(78% 0.07 110 / 14%)',
-  //     mutedButtonBgHover: 'oklch(78% 0.07 110 / 24%)'
-  //   }
-  // },
+  {
+    name: 'Olive',
+    colors: {
+      bg: 'oklch(30% 0.05 110)',
+      primary: 'oklch(86% 0.1 110)',
+      secondary: 'oklch(55% 0.07 110)',
+      tertiary: 'oklch(46% 0.08 110)',
+      error: 'oklch(85% 0.14 90)',
+      fast: 'oklch(86% 0.1 110)',
+      normal: 'oklch(85% 0.14 90)',
+      slow: 'oklch(85% 0.14 30)',
+      islandBg: 'oklch(86% 0.1 110 / 20%)',
+      islandFg: 'oklch(86% 0.1 110)',
+      islandButtonBg: 'oklch(86% 0.1 110 / 10%)',
+      islandButtonHoverBg: 'oklch(86% 0.1 110 / 20%)',
+      mutedButtonBg: 'oklch(78% 0.07 110 / 7%)',
+      mutedButtonBgHover: 'oklch(78% 0.07 110 / 20%)'
+    }
+  },
   {
     name: 'Harvest',
     colors: {
-      bg: 'oklch(46% 0.08 110)',
-      primary: 'oklch(75% 0.12 80)',
+      bg: 'oklch(35% 0.08 110)',
+      primary: 'oklch(85% 0.12 80)',
       secondary: 'oklch(62% 0.12 95)',
-      tertiary: 'oklch(52% 0.14 130)',
-      error: 'oklch(60% 0.2 25)',
-      fast: 'oklch(70% 0.14 130)',
-      normal: 'oklch(75% 0.12 80)',
-      slow: 'oklch(60% 0.2 25)',
-      islandBg: 'oklch(75% 0.12 80 / 22%)',
-      islandFg: 'oklch(75% 0.12 80)',
-      islandButtonBg: 'oklch(75% 0.12 80 / 14%)',
-      islandButtonHoverBg: 'oklch(75% 0.12 80 / 28%)',
+      tertiary: 'oklch(50% 0.12 95)',
+      error: 'oklch(85% 0.14 30)',
+      fast: 'oklch(86% 0.1 110)',
+      normal: 'oklch(85% 0.14 90)',
+      slow: 'oklch(85% 0.14 30)',
+      islandBg: 'oklch(75% 0.12 80 / 20%)',
+      islandFg: 'oklch(85% 0.12 80)',
+      islandButtonBg: 'oklch(75% 0.12 80 / 15%)',
+      islandButtonHoverBg: 'oklch(75% 0.12 80 / 25%)',
       mutedButtonBg: 'oklch(62% 0.12 95 / 16%)',
       mutedButtonBgHover: 'oklch(62% 0.12 95 / 26%)'
     }
   }
-  // {
-  //   name: 'Flame',
-  //   colors: {
-  //     bg: 'oklch(52% 0.18 40)',
-  //     primary: 'oklch(80% 0.1 50)',
-  //     secondary: 'oklch(74% 0.16 55)',
-  //     tertiary: 'oklch(68% 0.2 35)',
-  //     error: 'oklch(75% 0.18 20)',
-  //     fast: 'oklch(88% 0.08 55)',
-  //     normal: 'oklch(80% 0.1 50)',
-  //     slow: 'oklch(75% 0.18 20)',
-  //     islandBg: 'oklch(80% 0.1 50 / 24%)',
-  //     islandFg: 'oklch(80% 0.1 50)',
-  //     islandButtonBg: 'oklch(80% 0.1 50 / 15%)',
-  //     islandButtonHoverBg: 'oklch(80% 0.1 50 / 32%)',
-  //     mutedButtonBg: 'oklch(74% 0.16 55 / 20%)',
-  //     mutedButtonBgHover: 'oklch(74% 0.16 55 / 32%)'
-  //   }
-  // }
-  // {
-  //   name: 'Sunrise',
-  //   colors: {
-  //     bg: 'oklch(72% 0.2 55)',
-  //     primary: 'oklch(95% 0.2 100)',
-  //     secondary: 'oklch(92% 0.14 95)',
-  //     tertiary: 'oklch(76% 0.18 65)',
-  //     error: 'oklch(78% 0.18 25)',
-  //     fast: 'oklch(98% 0.14 100)',
-  //     normal: 'oklch(95% 0.2 100)',
-  //     slow: 'oklch(78% 0.18 25)',
-  //     islandBg: 'oklch(95% 0.2 100 / 28%)',
-  //     islandFg: 'oklch(95% 0.2 100)',
-  //     islandButtonBg: 'oklch(95% 0.2 100 / 18%)',
-  //     islandButtonHoverBg: 'oklch(95% 0.2 100 / 36%)',
-  //     mutedButtonBg: 'oklch(92% 0.14 95 / 24%)',
-  //     mutedButtonBgHover: 'oklch(92% 0.14 95 / 36%)'
-  //   }
-  // },
 ]
 
 export const DEFAULT_THEME_INDEX = 0
