@@ -16,15 +16,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'cybertype',
     description: 'Fast and Minimal Typing App - Improve your typing speed.',
-    url: 'https://cybertype.app',
-    type: 'website',
-    images: ['https://cybertype.app/og.png']
+    url: 'https://cybertype.io',
+    type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
     title: 'cybertype',
-    description: 'Fast and Minimal Typing App - Improve your typing speed.',
-    images: ['https://cybertype.app/og.png']
+    description: 'Fast and Minimal Typing App - Improve your typing speed.'
   },
   icons: {
     icon: { url: '/icons/icon.svg', type: 'image/svg+xml' },

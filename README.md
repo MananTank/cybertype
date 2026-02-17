@@ -2,7 +2,7 @@
 
 A minimal typing practice app without the clutter. No ads, No distractions - just endless zen typing experience
 
-[Website](https://cybertype.app/)
+[Website](https://cybertype.io/)
 
 <img src='./docs/themes.png' />
 

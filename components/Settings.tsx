@@ -1,9 +1,39 @@
-import { Dispatch, memo, useState } from 'react'
+import { Dispatch, memo, useState, useEffect, useCallback } from 'react'
 import { Action } from '../lib/types'
-import { Palette, Music, Download, Languages } from 'lucide-react'
+import { Palette, Music, Download, Languages, Maximize, Minimize } from 'lucide-react'
 import { motion } from 'motion/react'
 import { IslandButton } from './IslandButton'
 import { usePWAInstall } from './PWAInstallButton'
+
+function useFullscreen() {
+  const [isFullscreen, setIsFullscreen] = useState(false)
+
+  useEffect(() => {
+    const handleChange = () => {
+      setIsFullscreen(!!document.fullscreenElement)
+    }
+
+    document.addEventListener('fullscreenchange', handleChange)
+    return () => document.removeEventListener('fullscreenchange', handleChange)
+  }, [])
+
+  const toggleFullscreen = useCallback(async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen()
+      } else {
+        await document.exitFullscreen()
+      }
+    } catch (err) {
+      console.error('Fullscreen error:', err)
+    }
+  }, [])
+
+  // Check if fullscreen is supported
+  const isSupported = typeof document !== 'undefined' && document.fullscreenEnabled
+
+  return { isFullscreen, toggleFullscreen, isSupported }
+}
 
 type SettingsProps = {
   dispatch: Dispatch<Action>
@@ -13,6 +43,7 @@ export const Settings = memo(function Settings({ dispatch }: SettingsProps) {
   const iconClass = 'size-5'
   const [activeButton, setActiveButton] = useState<string | null>(null)
   const { showInstall, handleInstall } = usePWAInstall()
+  const { isFullscreen, toggleFullscreen, isSupported: fullscreenSupported } = useFullscreen()
 
   const handleMouseEnter = (id: string) => setActiveButton(id)
   const handleFocus = (id: string) => setActiveButton(id)
@@ -93,6 +124,25 @@ export const Settings = memo(function Settings({ dispatch }: SettingsProps) {
       >
         <Music className={iconClass} />
       </IslandButton>
+
+      {/* fullscreen toggle */}
+      {fullscreenSupported && (
+        <IslandButton
+          onClick={toggleFullscreen}
+          aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+          onMouseEnter={() => handleMouseEnter('fullscreen')}
+          onFocus={() => handleFocus('fullscreen')}
+          onBlur={handleBlur}
+          isHovered={activeButton === 'fullscreen'}
+          isFocused={activeButton === 'fullscreen'}
+        >
+          {isFullscreen ? (
+            <Minimize className={iconClass} />
+          ) : (
+            <Maximize className={iconClass} />
+          )}
+        </IslandButton>
+      )}
 
       {/* PWA install button */}
       {showInstall && (
