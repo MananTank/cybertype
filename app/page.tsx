@@ -16,6 +16,7 @@ import { motion, useAnimate } from 'motion/react'
 
 export default function Home() {
   const [state, dispatch] = useAppState()
+  const mobileInputRef = React.useRef<HTMLInputElement>(null)
 
   const targetKey =
     state.words.length === 0
@@ -29,6 +30,27 @@ export default function Home() {
   useKeys(targetKey, dispatch, state.soundEnabled, state.soundPack, ignoreTyping)
   useTypingStarted(state.typingStarted)
   useLocalStorage(state)
+
+  // Focus hidden input to open mobile keyboard
+  const handleWordsTap = React.useCallback(() => {
+    mobileInputRef.current?.focus()
+  }, [])
+
+  // Handle mobile input changes (for keyboards that don't fire keydown properly)
+  const handleMobileInput = React.useCallback(
+    (e: React.FormEvent<HTMLInputElement>) => {
+      const input = e.currentTarget
+      const value = input.value
+      if (value.length > 0) {
+        // Get the last character typed
+        const lastChar = value[value.length - 1]
+        dispatch({ type: 'keydown', key: lastChar })
+        // Clear the input
+        input.value = ''
+      }
+    },
+    [dispatch]
+  )
 
   return (
     <div className="min-h-screen max-w-5xl mx-auto flex flex-col px-5 h-screen">
@@ -44,6 +66,20 @@ export default function Home() {
 
       <div className="h-14 shrink-0" />
 
+      {/* Hidden input for mobile keyboard */}
+      <input
+        ref={mobileInputRef}
+        type="text"
+        autoCapitalize="off"
+        autoCorrect="off"
+        autoComplete="off"
+        spellCheck={false}
+        className="sr-only"
+        aria-label="Type here"
+        tabIndex={-1}
+        onInput={handleMobileInput}
+      />
+
       {/* if there is data to show */}
       <div className="grow flex flex-col justify-center">
         <Words
@@ -51,6 +87,7 @@ export default function Home() {
           progress={state.progress}
           errorLocations={state.errorLocations}
           shuffleKey={state.shuffleKey}
+          onTap={handleWordsTap}
         />
       </div>
 

@@ -11,7 +11,7 @@ export function ThemeSwitcher({ handleClose }: { handleClose: () => void }) {
   return (
     <div
       tabIndex={-1}
-      className="max-h-[calc(100vh-200px)] px-6 pt-8 pb-12 w-[800px] max-w-[calc(100vw-40px)] grid gap-6 md:gap-x-10 md:gap-y-8 md:grid-cols-4 grid-cols-2 overflow-y-auto outline-none"
+      className="max-h-[calc(100vh-80px)] px-6 pt-8 pb-12 w-[800px] max-w-[calc(100vw-40px)] grid gap-6 md:gap-x-10 md:gap-y-8 md:grid-cols-4 grid-cols-2 overflow-y-auto outline-none"
     >
       {themes.map((theme, i) => {
         const isSelected = themeIndex === i

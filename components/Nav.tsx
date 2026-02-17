@@ -30,7 +30,7 @@ export function Footer() {
 
   return (
     <div className="flex items-center justify-center py-5 gap-5">
-      <div className="flex items-center gap-1.5 text-secondary select-none text-xs ">
+      <div className="items-center gap-1.5 text-secondary select-none text-xs hidden md:flex">
         <div
           ref={kbdRef}
           className="flex items-center gap-1 py-1 px-2.5 rounded bg-muted-button-bg font-mono tracking-wide transition-transform duration-100 data-pressed:scale-90 data-pressed:bg-tertiary/60"
