@@ -19,7 +19,13 @@ type WordsProps = {
   onTap?: () => void
 }
 
-export function Words({ words, progress, errorLocations, shuffleKey, onTap }: WordsProps) {
+export function Words({
+  words,
+  progress,
+  errorLocations,
+  shuffleKey,
+  onTap
+}: WordsProps) {
   const wordsRef = useRef<HTMLDivElement>(null)
   const shouldScrollRef = useRef(true)
 
