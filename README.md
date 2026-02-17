@@ -4,7 +4,7 @@ A minimal typing practice app without the clutter. No ads, No distractions - jus
 
 [Website](https://cybertype.io/)
 
-<img src='./docs/themes.png' />
+<!-- <img src='./docs/themes.png' /> -->
 
 ## Features
 

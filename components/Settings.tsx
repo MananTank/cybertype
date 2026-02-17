@@ -43,7 +43,11 @@ export const Settings = memo(function Settings({ dispatch }: SettingsProps) {
   const iconClass = 'size-5'
   const [activeButton, setActiveButton] = useState<string | null>(null)
   const { showInstall, handleInstall } = usePWAInstall()
-  const { isFullscreen, toggleFullscreen, isSupported: fullscreenSupported } = useFullscreen()
+  const {
+    isFullscreen,
+    toggleFullscreen,
+    isSupported: fullscreenSupported
+  } = useFullscreen()
 
   const handleMouseEnter = (id: string) => setActiveButton(id)
   const handleFocus = (id: string) => setActiveButton(id)
@@ -55,34 +59,26 @@ export const Settings = memo(function Settings({ dispatch }: SettingsProps) {
       onMouseLeave={() => setActiveButton(null)}
       exit={{
         opacity: 0,
-        filter: 'blur(8px)',
+        filter: 'blur(4px)',
         transition: {
-          duration: 0.3
+          duration: 0.1
         }
       }}
       initial={{
         opacity: 0,
-        filter: 'blur(8px)'
+        filter: 'blur(4px)'
       }}
       animate={{
         opacity: 1,
         filter: 'blur(0px)',
         transition: {
-          // delay: 0.1,
-          duration: 0.3
+          duration: 0.2,
+          delay: 0.1
         }
-        // filter: 'blur(0px)'
       }}
     >
       {/* app name */}
-      <div
-        // layout
-        // transition={{
-        //   bounce: 0
-        // }}
-
-        className="text-sm tracking-[0.3em] uppercase pl-5 pr-3 font-semibold text-island-fg"
-      >
+      <div className="text-sm tracking-[0.3em] uppercase pl-5 pr-3 font-semibold text-island-fg">
         cybertype
       </div>
 
