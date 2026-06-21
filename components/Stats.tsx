@@ -1,4 +1,4 @@
-import NumberFlow from '@number-flow/react'
+import { TextMorph } from 'torph/react'
 import { getSpeed } from '../lib/utils'
 
 type StatsProps = {
@@ -32,7 +32,7 @@ function Stat(props: StatProps) {
   return (
     <div className={className}>
       <div className="flex gap-[0.1em] items-center text-4xl text-primary font-medium">
-        <NumberFlow value={value} />
+        <TextMorph>{value}</TextMorph>
         <span className="text-[0.8em] opacity-50">{unit}</span>
       </div>
     </div>

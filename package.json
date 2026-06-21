@@ -12,7 +12,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@number-flow/react": "^0.5.11",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/jest": "^29.1.1",
     "@vercel/analytics": "^1.6.1",
@@ -31,6 +30,7 @@
     "react-dom": "19.2.4",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
+    "torph": "^0.0.9",
     "ts-jest": "^29.0.3",
     "use-immer": "^0.11.0"
   },
